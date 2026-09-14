@@ -1,0 +1,23 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: catalina-postgres
+    restart: unless-stopped
+    
+    env_file:
+      - /opt/catalina/config/postgres.env
+
+    ports:
+      - "127.0.0.1:5432:5432"
+
+    volumes:
+      - /opt/catalina/postgres/data:/var/lib/postgresql/data
+ 
+    networks:
+      - catalina-network
+
+networks:
+  catalina-network:
+    name: catalina-network
+

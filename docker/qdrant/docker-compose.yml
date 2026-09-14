@@ -1,0 +1,22 @@
+services:
+
+  
+  qdrant:
+   image: qdrant/qdrant:latest
+   container_name: catalina-qdrant
+   restart: unless-stopped
+
+   ports:
+    - "6333:6333"
+    - "6334:6334"
+
+   volumes:
+    - /opt/catalina/qdrant/storage:/qdrant/storage
+
+   networks:
+    - catalina-network
+
+networks:
+  catalina-network:
+    name: catalina-network
+

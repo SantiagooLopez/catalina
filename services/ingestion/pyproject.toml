@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "catalina-ingestion"
+version = "0.1.0"
+description = "Servicio de ingesta documental del proyecto Catalina RAG"
+requires-python = ">=3.12,<3.14"
+
+dependencies = [
+    "fastapi>=0.115,<1.0",
+    "uvicorn[standard]>=0.34,<1.0",
+    "pydantic>=2.10,<3.0",
+    "pydantic-settings>=2.7,<3.0",
+    "psycopg[binary,pool]>=3.2,<4.0",
+    "qdrant-client>=1.12,<2.0",
+    "httpx>=0.27,<1.0",
+    "python-multipart>=0.0.18,<1.0",
+    "pymupdf>=1.25,<2.0",
+    "python-docx>=1.1,<2.0",
+    "beautifulsoup4>=4.12,<5.0",
+    "lxml>=5.0,<7.0",
+    "puremagic>=1.28,<2.0",
+    "tenacity>=9.0,<10.0",
+    "structlog>=24.0,<27.0",
+    "orjson>=3.10,<4.0",
+    "charset-normalizer>=3.4,<4.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<10.0",
+    "pytest-asyncio>=0.25,<2.0",
+    "pytest-cov>=6.0,<8.0",
+    "respx>=0.22,<1.0",
+    "ruff>=0.9,<1.0",
+    "mypy>=1.14,<2.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+packages = ["catalina_ingestion"]
+
+

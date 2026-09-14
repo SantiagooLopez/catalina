@@ -1,0 +1,61 @@
+UNIVERSIDAD CATÓLICA DE COLOMBIA
+REGISTRO Y CONTROL ACADÉMICO - RyCA
+
+TIPO DE FUENTE
+Snapshot controlado de página institucional oficial.
+
+FECHA DE CAPTURA
+2026-09-08
+
+DEPENDENCIA
+Oficina de Registro y Control Académico - RyCA.
+
+DESCRIPCIÓN
+La Oficina de Registro y Control Académico es responsable institucionalmente de la administración y funcionamiento de procesos académicos soportados por los sistemas de información de la Universidad.
+
+Entre sus funciones se encuentra el control de los procesos de Registro y Control Académico, la atención a usuarios y la aplicación de la normatividad institucional relacionada con los estudiantes.
+
+PROCEDIMIENTOS PUBLICADOS
+La dependencia publica información y procedimientos relacionados con:
+
+- Certificados y constancias.
+- Renovación de matrícula de pregrado.
+- Renovación de matrícula de posgrado.
+- Devolución o abono de matrícula.
+- Cálculo de promedios ponderados.
+- Becas.
+- Verificaciones académicas.
+- Reglamentos y calendarios académicos.
+
+CERTIFICADOS Y CONSTANCIAS EN LÍNEA
+
+Los estudiantes pueden solicitar certificados y constancias académicas mediante PAW 2.0.
+
+Procedimiento:
+
+1. Ingresar a PAW 2.0 y seleccionar el perfil de estudiantes.
+
+2. Desde el menú de procesos, ingresar a la opción de solicitud de certificados y constancias utilizando las credenciales institucionales correspondientes.
+
+3. Verificar los datos y seleccionar el certificado o constancia requerida.
+
+4. Realizar el pago del recibo generado por el sistema.
+
+Después del pago, el documento solicitado es enviado posteriormente al correo electrónico del solicitante con firma digital.
+
+La página institucional informa un plazo de hasta ocho días hábiles para la entrega de estos documentos.
+
+CUENTA INSTITUCIONAL
+Para utilizar el procedimiento automático se requiere una cuenta de correo institucional activa.
+
+Cuando una persona no dispone de cuenta institucional, la página de Registro y Control Académico ofrece un canal alternativo para solicitudes de certificaciones.
+
+VERIFICACIONES ACADÉMICAS
+Para estudiantes activos o inactivos, las verificaciones académicas deben ser solicitadas formalmente a Registro y Control Académico y requieren la autorización correspondiente para el tratamiento de datos personales.
+
+TRAZABILIDAD
+Fuente institucional:
+Universidad Católica de Colombia.
+Sección: Registro y Control Académico - RyCA.
+
+Documento creado exclusivamente como snapshot textual controlado para la evaluación del sistema RAG Catalina.

@@ -1,0 +1,101 @@
+UNIVERSIDAD CATÓLICA DE COLOMBIA
+CONTACTOS Y UBICACIONES
+
+TIPO DE FUENTE
+Snapshot textual controlado de información institucional oficial.
+
+FECHA DE CAPTURA
+2026-09-08
+
+DATOS GENERALES
+La Universidad Católica de Colombia cuenta con varias sedes y dependencias ubicadas en Bogotá D.C.
+
+TELÉFONO GENERAL
++57 (601) 4433700
+
+SEDES PRINCIPALES
+
+SEDE LAS TORRES
+Dirección:
+Avenida Caracas # 46-72
+Bogotá D.C.
+
+SEDE 4
+Dirección:
+Carrera 13 # 47-30
+Bogotá D.C.
+
+SEDE EL CLAUSTRO
+Dirección:
+Diagonal 46A # 15B-10
+Bogotá D.C.
+
+SEDE CARRERA 13
+Dirección:
+Carrera 13 # 47-49
+Bogotá D.C.
+
+CASA EXTENSIÓN
+Dirección:
+Diagonal 46 # 15B-18
+Bogotá D.C.
+
+OTRAS DEPENDENCIAS
+
+FACULTAD DE DERECHO
+Consultorio Jurídico:
+Carrera 13 # 46-61
+Bogotá D.C.
+
+FACULTAD DE PSICOLOGÍA
+Unidad de Servicios Psicológicos:
+Calle 48 # 15-71
+Bogotá D.C.
+
+Facultad de Psicología:
+Avenida Caracas # 46-22
+Bogotá D.C.
+
+LICEO - PRIMARIA
+Diagonal 46A # 15B-17
+Bogotá D.C.
+
+LICEO - BACHILLERATO
+Carrera 15 # 46-69/67
+Bogotá D.C.
+
+BIENESTAR UNIVERSITARIO
+
+Bienestar Universitario se encuentra en:
+
+Sede El Claustro
+Diagonal 46A # 15B-10
+Bogotá D.C.
+
+Teléfono:
+(601) 4433700 extensión 3080
+
+Correo:
+bienestar@ucatolica.edu.co
+
+ÁREAS Y SERVICIOS DE BIENESTAR
+
+La información institucional de Vida Universitaria presenta, entre otras, las siguientes áreas y servicios:
+
+- Encuentra lo perdido.
+- Vive cerca de la U.
+- Becas y auxilios.
+- Arte y cultura.
+- Deportes, actividad física y recreación.
+- Pastoral y Capellanía.
+- Convivencia e Inclusión.
+- Salud Universitaria.
+
+TRAZABILIDAD
+
+Fuentes institucionales:
+Universidad Católica de Colombia.
+Sección: Contactos y ubicaciones.
+Sección: Vida Universitaria - Bienestar Universitario.
+
+Documento creado exclusivamente como snapshot textual controlado para la evaluación del sistema RAG Catalina.

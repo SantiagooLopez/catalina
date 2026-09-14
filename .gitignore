@@ -1,0 +1,30 @@
+# ========================================
+# Catalina - datos operativos del servidor
+# ========================================
+
+# Backups
+/backups/
+
+# Documentos persistidos / uploads
+/documents/
+
+# Datos persistentes de bases
+/postgres/
+/qdrant/
+
+# Configuración local potencialmente sensible
+/config/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
