@@ -1,0 +1,158 @@
+from catalina_ingestion.domain.exceptions import GenerationError
+from catalina_ingestion.domain.generation import (
+    GeneratedAnswer,
+    GenerationReason,
+)
+from catalina_ingestion.domain.rag_context import RagContext
+from catalina_ingestion.domain.retrieval import RetrievalQuery
+from catalina_ingestion.services.document_identifier_resolver import (
+    DocumentIdentifierResolution,
+    DocumentIdentifierResolver,
+)
+from catalina_ingestion.services.generation import GenerationService
+from catalina_ingestion.services.generation_verifier import (
+    GenerationVerifier,
+)
+from catalina_ingestion.services.prompt_builder import PromptBuilder
+from catalina_ingestion.services.retrieval_runtime import (
+    ManagedRetrievalService,
+)
+
+REJECTED_ANSWER_TEXT = (
+    "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad."
+)
+
+
+class AnswerGenerationService:
+    def __init__(
+        self,
+        retrieval_service: ManagedRetrievalService | None = None,
+        prompt_builder: PromptBuilder | None = None,
+        generation_service: GenerationService | None = None,
+        verifier: GenerationVerifier | None = None,
+        identifier_resolver: DocumentIdentifierResolver | None = None,
+    ) -> None:
+        self.retrieval_service = retrieval_service or ManagedRetrievalService()
+        self.prompt_builder = prompt_builder or PromptBuilder()
+        self.generation_service = generation_service or GenerationService()
+        self.verifier = verifier or GenerationVerifier()
+        self.identifier_resolver = identifier_resolver or DocumentIdentifierResolver()
+
+    async def answer(
+        self,
+        query: RetrievalQuery,
+    ) -> GeneratedAnswer:
+        context = await self.retrieval_service.build(query)
+
+        if not context.enabled:
+            return self._rejected_answer(context)
+
+        identifier_resolution = self.identifier_resolver.resolve(context)
+
+        if identifier_resolution is not None:
+            return self._identifier_answer(
+                context=context,
+                resolution=identifier_resolution,
+            )
+
+        prompt = self.prompt_builder.build(context)
+
+        answer = await self.generation_service.generate(
+            query=context.query,
+            prompt=prompt,
+            citations=context.sources,
+        )
+
+        verification = self.verifier.verify(
+            context=context,
+            answer=answer,
+        )
+
+        if verification.valid:
+            return answer
+
+        correction_prompt = self.verifier.build_correction_prompt(
+            original_prompt=prompt,
+            previous_answer=answer.text,
+            verification=verification,
+        )
+
+        corrected_answer = await self.generation_service.generate(
+            query=context.query,
+            prompt=correction_prompt,
+            citations=context.sources,
+        )
+
+        corrected_verification = self.verifier.verify(
+            context=context,
+            answer=corrected_answer,
+        )
+
+        if corrected_verification.valid:
+            return corrected_answer
+
+        raise GenerationError(
+            "GENERATION_VERIFICATION_FAILED",
+            ("La respuesta generada no superó la validación factual."),
+            {
+                "first_reason": verification.reason,
+                "final_reason": (corrected_verification.reason),
+                "required_identifier": (corrected_verification.required_identifier),
+                "primary_citation": (corrected_verification.primary_citation),
+            },
+        )
+
+    @staticmethod
+    def _identifier_answer(
+        *,
+        context: RagContext,
+        resolution: DocumentIdentifierResolution,
+    ) -> GeneratedAnswer:
+        text = (
+            f"El {resolution.identifier_kind} identificado "
+            "en la fuente institucional principal corresponde "
+            f"al identificador documental "
+            f"{resolution.identifier}. "
+            f"[{resolution.citation_id}]"
+        )
+
+        return GeneratedAnswer(
+            query=context.query,
+            text=text,
+            generated=False,
+            reason=(GenerationReason.DOCUMENT_IDENTIFIER_RESOLVED),
+            model=None,
+            citations=(resolution.source,),
+            statistics=None,
+        )
+
+    @staticmethod
+    def _rejected_answer(
+        context: RagContext,
+    ) -> GeneratedAnswer:
+        reason = _map_rejection_reason(context.reason)
+
+        return GeneratedAnswer(
+            query=context.query,
+            text=REJECTED_ANSWER_TEXT,
+            generated=False,
+            reason=reason,
+            model=None,
+            citations=(),
+            statistics=None,
+        )
+
+
+def _map_rejection_reason(
+    reason: str,
+) -> GenerationReason:
+    mapping = {
+        "insufficient_evidence": (GenerationReason.INSUFFICIENT_EVIDENCE),
+        "insufficient_evidence_after_budget": (GenerationReason.INSUFFICIENT_EVIDENCE_AFTER_BUDGET),
+        "unsupported_grounding": (GenerationReason.UNSUPPORTED_GROUNDING),
+    }
+
+    try:
+        return mapping[reason]
+    except KeyError as error:
+        raise ValueError(f"Motivo de rechazo RAG no soportado: {reason}") from error

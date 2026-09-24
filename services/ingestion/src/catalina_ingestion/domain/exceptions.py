@@ -16,6 +16,14 @@ class IngestionError(Exception):
         super().__init__(message)
 
 
+class GenerationError(IngestionError):
+    """Error controlado durante la generación de respuestas."""
+
+
+class TransientGenerationError(GenerationError):
+    """Fallo temporal de generación que puede reintentarse."""
+
+
 class FileValidationError(IngestionError):
     """Archivo rechazado durante su validación."""
 

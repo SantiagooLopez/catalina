@@ -42,10 +42,34 @@ class Settings(BaseSettings):
     ollama_url: str = "http://127.0.0.1:11434"
 
     ollama_embedding_model: str = "embeddinggemma:latest"
+    ollama_generation_model: str = "llama3.2:3b"
+
     ollama_timeout_seconds: int = Field(default=120, ge=1)
+    ollama_keep_alive: str = "10m"
+
+    generation_temperature: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=2.0,
+    )
+    generation_max_tokens: int = Field(
+        default=512,
+        ge=1,
+        le=4096,
+    )
+    generation_retry_attempts: int = Field(
+        default=3,
+        ge=1,
+        le=10,
+    )
+    generation_retry_wait_seconds: float = Field(
+        default=1.0,
+        ge=0.0,
+        le=30.0,
+    )
+
     embedding_dimension: int = Field(default=768, gt=0)
     embedding_batch_size: int = Field(default=8, ge=1)
-    ollama_keep_alive: str = "10m"
     ollama_truncate: bool = False
     embedding_retry_attempts: int = Field(default=3, ge=1, le=10)
     embedding_retry_wait_seconds: float = Field(

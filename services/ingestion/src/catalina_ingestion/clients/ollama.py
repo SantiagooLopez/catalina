@@ -24,8 +24,18 @@ async def open_ollama_client() -> httpx.AsyncClient:
 
         installed_models = {model["name"] for model in response.json().get("models", [])}
 
-        if settings.ollama_embedding_model not in installed_models:
-            raise RuntimeError(f"No está instalado el modelo {settings.ollama_embedding_model}")
+        required_models = {
+            settings.ollama_embedding_model,
+            settings.ollama_generation_model,
+        }
+
+        missing_models = sorted(required_models - installed_models)
+
+        if missing_models:
+            raise RuntimeError(
+                "No están instalados los modelos requeridos de Ollama: " + ", ".join(missing_models)
+            )
+
     except Exception:
         await client.aclose()
         raise
