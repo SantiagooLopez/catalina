@@ -54,3 +54,37 @@ class TransientEmbeddingError(EmbeddingError):
 
 class IndexingError(IngestionError):
     """Error controlado durante la indexación vectorial."""
+
+
+class AuthenticationError(IngestionError):
+    """Error controlado durante autenticación."""
+
+
+class InvalidCredentialsError(AuthenticationError):
+    """Las credenciales proporcionadas no son válidas."""
+
+    def __init__(self) -> None:
+        super().__init__(
+            "INVALID_CREDENTIALS",
+            "Credenciales inválidas.",
+        )
+
+
+class InvalidRefreshTokenError(AuthenticationError):
+    """El refresh token no es válido o ya no puede utilizarse."""
+
+    def __init__(self) -> None:
+        super().__init__(
+            "INVALID_REFRESH_TOKEN",
+            "Refresh token inválido o expirado.",
+        )
+
+
+class InvalidAccessTokenError(AuthenticationError):
+    """El access token no es válido."""
+
+    def __init__(self) -> None:
+        super().__init__(
+            "INVALID_ACCESS_TOKEN",
+            "Access token inválido o expirado.",
+        )

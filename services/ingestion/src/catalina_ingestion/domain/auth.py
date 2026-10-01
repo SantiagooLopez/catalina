@@ -46,3 +46,31 @@ class AuthSession:
         now: datetime,
     ) -> bool:
         return not self.revoked and not self.is_expired(now=now)
+
+
+@dataclass(frozen=True, slots=True)
+class AuthenticationResult:
+    user_id: int
+    email: str
+    nombre: str
+    rol: str
+    access_token: str
+    refresh_token: str
+    refresh_expires_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class TokenRefreshResult:
+    user_id: int
+    access_token: str
+    refresh_token: str
+    refresh_expires_at: datetime
+
+
+@dataclass(frozen=True, slots=True)
+class AuthenticatedUser:
+    id: int
+    email: str
+    nombre: str
+    rol: str
+    activo: bool
