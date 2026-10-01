@@ -20,7 +20,32 @@ class Settings(BaseSettings):
     app_host: str = "127.0.0.1"
     app_port: int = Field(default=8001, ge=1, le=65535)
     log_level: str = "INFO"
-
+    auth_jwt_secret: str | None = Field(
+        default=None,
+        min_length=32,
+        repr=False,
+    )
+    auth_jwt_algorithm: Literal["HS256"] = "HS256"
+    auth_access_token_minutes: int = Field(
+        default=15,
+        ge=1,
+        le=1440,
+    )
+    auth_refresh_token_days: int = Field(
+        default=7,
+        ge=1,
+        le=90,
+    )
+    auth_jwt_issuer: str = Field(
+        default="catalina-api",
+        min_length=1,
+        max_length=100,
+    )
+    auth_jwt_audience: str = Field(
+        default="catalina-web",
+        min_length=1,
+        max_length=100,
+    )
     database_host: str = "127.0.0.1"
     database_port: int = Field(default=5432, ge=1, le=65535)
     database_name: str = "catalina_db"
