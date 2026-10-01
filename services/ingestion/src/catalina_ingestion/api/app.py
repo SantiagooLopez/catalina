@@ -4,12 +4,16 @@ from contextlib import AsyncExitStack, asynccontextmanager
 from fastapi import FastAPI
 
 from catalina_ingestion.api.errors import (
+    authentication_error_handler,
     generation_error_handler,
     retrieval_error_handler,
     unexpected_error_handler,
 )
 from catalina_ingestion.api.routes.answers import (
     router as answers_router,
+)
+from catalina_ingestion.api.routes.auth import (
+    router as auth_router,
 )
 from catalina_ingestion.api.routes.health import (
     router as health_router,
@@ -27,6 +31,7 @@ from catalina_ingestion.db.postgres import (
     open_postgres_pool,
 )
 from catalina_ingestion.domain.exceptions import (
+    AuthenticationError,
     GenerationError,
 )
 from catalina_ingestion.domain.retrieval_runtime import (
@@ -34,6 +39,9 @@ from catalina_ingestion.domain.retrieval_runtime import (
 )
 from catalina_ingestion.services.answer_generation import (
     AnswerGenerationService,
+)
+from catalina_ingestion.services.auth import (
+    AuthService,
 )
 
 
@@ -52,7 +60,7 @@ async def lifespan(
         stack.push_async_callback(close_qdrant_client)
 
         app.state.answer_service = AnswerGenerationService()
-
+        app.state.auth_service = AuthService()
         yield
 
 
@@ -73,6 +81,10 @@ def create_app() -> FastAPI:
         answers_router,
         prefix="/api/v1",
     )
+    app.include_router(
+        auth_router,
+        prefix="/api/v1",
+    )
     app.add_exception_handler(
         RetrievalExecutionError,
         retrieval_error_handler,
@@ -81,6 +93,11 @@ def create_app() -> FastAPI:
     app.add_exception_handler(
         GenerationError,
         generation_error_handler,
+    )
+
+    app.add_exception_handler(
+        AuthenticationError,
+        authentication_error_handler,
     )
 
     app.add_exception_handler(

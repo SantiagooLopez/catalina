@@ -4,6 +4,7 @@ from fastapi import Request
 from fastapi.responses import JSONResponse
 
 from catalina_ingestion.domain.exceptions import (
+    AuthenticationError,
     GenerationError,
     TransientGenerationError,
 )
@@ -33,12 +34,18 @@ def _error_response(
     message: str,
     retryable: bool,
     request_id: str,
+    headers: dict[str, str] | None = None,
 ) -> JSONResponse:
+    response_headers = {
+        "X-Request-ID": request_id,
+    }
+
+    if headers is not None:
+        response_headers.update(headers)
+
     return JSONResponse(
         status_code=status_code,
-        headers={
-            "X-Request-ID": request_id,
-        },
+        headers=response_headers,
         content={
             "error": {
                 "code": code,
@@ -120,6 +127,26 @@ async def generation_error_handler(
         message=error.message,
         retryable=retryable,
         request_id=request_id,
+    )
+
+
+async def authentication_error_handler(
+    request: Request,
+    error: AuthenticationError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=401,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+        headers={
+            "WWW-Authenticate": "Bearer",
+        },
     )
 
 
