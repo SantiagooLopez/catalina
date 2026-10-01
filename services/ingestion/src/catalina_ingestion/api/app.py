@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 from catalina_ingestion.api.errors import (
     authentication_error_handler,
+    conversation_not_found_error_handler,
     generation_error_handler,
     retrieval_error_handler,
     unexpected_error_handler,
@@ -14,6 +15,9 @@ from catalina_ingestion.api.routes.answers import (
 )
 from catalina_ingestion.api.routes.auth import (
     router as auth_router,
+)
+from catalina_ingestion.api.routes.conversations import (
+    router as conversations_router,
 )
 from catalina_ingestion.api.routes.health import (
     router as health_router,
@@ -32,6 +36,7 @@ from catalina_ingestion.db.postgres import (
 )
 from catalina_ingestion.domain.exceptions import (
     AuthenticationError,
+    ConversationNotFoundError,
     GenerationError,
 )
 from catalina_ingestion.domain.retrieval_runtime import (
@@ -42,6 +47,9 @@ from catalina_ingestion.services.answer_generation import (
 )
 from catalina_ingestion.services.auth import (
     AuthService,
+)
+from catalina_ingestion.services.conversations import (
+    ConversationService,
 )
 
 
@@ -61,6 +69,7 @@ async def lifespan(
 
         app.state.answer_service = AnswerGenerationService()
         app.state.auth_service = AuthService()
+        app.state.conversation_service = ConversationService()
         yield
 
 
@@ -85,6 +94,10 @@ def create_app() -> FastAPI:
         auth_router,
         prefix="/api/v1",
     )
+    app.include_router(
+        conversations_router,
+        prefix="/api/v1",
+    )
     app.add_exception_handler(
         RetrievalExecutionError,
         retrieval_error_handler,
@@ -99,7 +112,10 @@ def create_app() -> FastAPI:
         AuthenticationError,
         authentication_error_handler,
     )
-
+    app.add_exception_handler(
+        ConversationNotFoundError,
+        conversation_not_found_error_handler,
+    )
     app.add_exception_handler(
         Exception,
         unexpected_error_handler,

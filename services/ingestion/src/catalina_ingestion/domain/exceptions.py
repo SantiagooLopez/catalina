@@ -88,3 +88,11 @@ class InvalidAccessTokenError(AuthenticationError):
             "INVALID_ACCESS_TOKEN",
             "Access token inválido o expirado.",
         )
+
+
+class ConversationNotFoundError(IngestionError):
+    def __init__(self) -> None:
+        super().__init__(
+            code="CONVERSATION_NOT_FOUND",
+            message="Conversación no encontrada.",
+        )
