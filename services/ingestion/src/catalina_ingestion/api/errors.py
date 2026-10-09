@@ -10,6 +10,7 @@ from catalina_ingestion.domain.exceptions import (
     GenerationError,
     IndexingRunNotFoundError,
     IngestionJobNotFoundError,
+    JobControlConflictError,
     TransientGenerationError,
 )
 from catalina_ingestion.domain.retrieval_runtime import (
@@ -284,6 +285,23 @@ async def indexing_run_not_found_error_handler(
 
     return _error_response(
         status_code=404,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def job_control_conflict_error_handler(
+    request: Request,
+    error: JobControlConflictError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=409,
         code=error.code,
         message=error.message,
         retryable=False,

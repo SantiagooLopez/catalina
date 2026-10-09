@@ -147,3 +147,13 @@ class IndexingRunNotFoundError(IngestionError):
             code="INDEXING_RUN_NOT_FOUND",
             message="Ejecución de indexación no encontrada.",
         )
+class JobControlConflictError(IngestionError):
+    def __init__(
+        self,
+        code: str,
+        message: str,
+    ) -> None:
+        super().__init__(
+            code=code,
+            message=message,
+        )

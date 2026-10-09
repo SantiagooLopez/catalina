@@ -12,6 +12,7 @@ from catalina_ingestion.api.errors import (
     indexing_run_not_found_error_handler,
     ingestion_job_not_found_error_handler,
     invalid_current_password_error_handler,
+    job_control_conflict_error_handler,
     retrieval_error_handler,
     unexpected_error_handler,
     user_not_found_error_handler,
@@ -30,6 +31,9 @@ from catalina_ingestion.api.routes.documents import (
 )
 from catalina_ingestion.api.routes.health import (
     router as health_router,
+)
+from catalina_ingestion.api.routes.job_control import (
+    router as job_control_router,
 )
 from catalina_ingestion.api.routes.monitoring import (
     router as monitoring_router,
@@ -58,6 +62,7 @@ from catalina_ingestion.domain.exceptions import (
     IndexingRunNotFoundError,
     IngestionJobNotFoundError,
     InvalidCurrentPasswordError,
+    JobControlConflictError,
     UserNotFoundError,
 )
 from catalina_ingestion.domain.retrieval_runtime import (
@@ -77,6 +82,9 @@ from catalina_ingestion.services.conversations import (
 )
 from catalina_ingestion.services.document_admin import (
     DocumentAdminService,
+)
+from catalina_ingestion.services.job_control import (
+    JobControlService,
 )
 from catalina_ingestion.services.monitoring import (
     MonitoringService,
@@ -118,6 +126,7 @@ async def lifespan(
 
         app.state.monitoring_service = MonitoringService()
 
+        app.state.job_control_service = JobControlService()
         yield
 
 
@@ -161,6 +170,10 @@ def create_app() -> FastAPI:
 
     app.include_router(
         monitoring_router,
+        prefix="/api/v1",
+    )
+    app.include_router(
+        job_control_router,
         prefix="/api/v1",
     )
 
@@ -217,6 +230,10 @@ def create_app() -> FastAPI:
     app.add_exception_handler(
         Exception,
         unexpected_error_handler,
+    )
+    app.add_exception_handler(
+        JobControlConflictError,
+        job_control_conflict_error_handler,
     )
 
     return app
