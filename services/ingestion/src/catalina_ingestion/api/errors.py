@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from fastapi import Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from catalina_ingestion.domain.exceptions import (
@@ -304,6 +305,42 @@ async def job_control_conflict_error_handler(
         status_code=409,
         code=error.code,
         message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def request_validation_error_handler(
+    request: Request,
+    error: RequestValidationError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    details = error.errors()
+
+    message = "La solicitud contiene datos inválidos."
+
+    if details:
+        first = details[0]
+
+        location = ".".join(str(item) for item in first.get("loc", ()) if item != "body")
+
+        detail = first.get(
+            "msg",
+            "Valor inválido.",
+        )
+
+        if location:
+            message = f"Campo inválido '{location}': {detail}"
+        else:
+            message = detail
+
+    return _error_response(
+        status_code=422,
+        code="VALIDATION_ERROR",
+        message=message,
         retryable=False,
         request_id=request_id,
     )

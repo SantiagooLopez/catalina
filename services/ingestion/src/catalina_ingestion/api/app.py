@@ -2,6 +2,7 @@ from collections.abc import AsyncIterator
 from contextlib import AsyncExitStack, asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
 
 from catalina_ingestion.api.errors import (
     authentication_error_handler,
@@ -13,9 +14,13 @@ from catalina_ingestion.api.errors import (
     ingestion_job_not_found_error_handler,
     invalid_current_password_error_handler,
     job_control_conflict_error_handler,
+    request_validation_error_handler,
     retrieval_error_handler,
     unexpected_error_handler,
     user_not_found_error_handler,
+)
+from catalina_ingestion.api.middleware import (
+    SecurityHeadersMiddleware,
 )
 from catalina_ingestion.api.routes.answers import (
     router as answers_router,
@@ -144,7 +149,7 @@ def create_app() -> FastAPI:
         version="0.1.0",
         lifespan=lifespan,
     )
-
+    app.add_middleware(SecurityHeadersMiddleware)
     app.include_router(
         health_router,
         prefix="/api/v1",
@@ -245,6 +250,10 @@ def create_app() -> FastAPI:
     app.add_exception_handler(
         JobControlConflictError,
         job_control_conflict_error_handler,
+    )
+    app.add_exception_handler(
+        RequestValidationError,
+        request_validation_error_handler,
     )
 
     return app
