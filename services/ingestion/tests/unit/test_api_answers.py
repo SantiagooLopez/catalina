@@ -1,14 +1,32 @@
+from datetime import UTC, datetime
+from decimal import Decimal
 from types import SimpleNamespace
 from unittest.mock import AsyncMock
 
 from fastapi.testclient import TestClient
 
-from catalina_ingestion.api.app import create_app
+from catalina_ingestion.api.app import (
+    create_app,
+)
+from catalina_ingestion.domain.auth import (
+    AuthenticatedUser,
+)
+from catalina_ingestion.domain.conversation_answers import (
+    ConversationAnswerResult,
+)
+from catalina_ingestion.domain.conversations import (
+    Message,
+)
+from catalina_ingestion.domain.exceptions import (
+    ConversationNotFoundError,
+)
 from catalina_ingestion.domain.generation import (
     GeneratedAnswer,
     GenerationReason,
 )
-from catalina_ingestion.domain.rag_context import ContextSource
+from catalina_ingestion.domain.rag_context import (
+    ContextSource,
+)
 
 
 def make_source() -> ContextSource:
@@ -26,16 +44,60 @@ def make_source() -> ContextSource:
     )
 
 
+def make_message(
+    *,
+    question: str,
+    answer: str,
+    model: str | None,
+) -> Message:
+    return Message(
+        id=20,
+        conversacion_id=10,
+        pregunta=question,
+        respuesta=answer,
+        modelo=model,
+        tiempo_respuesta=Decimal("1.245"),
+        fecha=datetime.now(UTC),
+    )
+
+
 def create_test_client(
     service,
-) -> TestClient:
+) -> tuple[
+    TestClient,
+    SimpleNamespace,
+]:
+    auth_service = SimpleNamespace(
+        get_current_user=AsyncMock(
+            return_value=AuthenticatedUser(
+                id=7,
+                email="usuario@catalina.local",
+                nombre="Usuario Catalina",
+                rol="usuario",
+                activo=True,
+            )
+        )
+    )
+
     app = create_app()
-    app.state.answer_service = service
-    return TestClient(app)
+
+    app.state.auth_service = auth_service
+
+    app.state.conversation_answer_service = service
+
+    return (
+        TestClient(app),
+        auth_service,
+    )
+
+
+def auth_headers() -> dict[str, str]:
+    return {"Authorization": ("Bearer access-token")}
 
 
 def test_health_endpoint():
     app = create_app()
+
     client = TestClient(app)
 
     response = client.get("/api/v1/health")
@@ -51,12 +113,13 @@ def test_health_endpoint():
 def test_answers_returns_document_identifier_resolution():
     source = make_source()
 
-    result = GeneratedAnswer(
+    answer = GeneratedAnswer(
         query=("¿Qué acuerdo modificó el calendario académico de pregrado de 2026?"),
         text=(
-            "El acuerdo identificado en la fuente "
-            "institucional principal corresponde al "
-            "identificador documental 050-2026. [S1]"
+            "El acuerdo identificado en la "
+            "fuente institucional principal "
+            "corresponde al identificador "
+            "documental 050-2026. [S1]"
         ),
         generated=False,
         reason=(GenerationReason.DOCUMENT_IDENTIFIER_RESOLVED),
@@ -65,22 +128,35 @@ def test_answers_returns_document_identifier_resolution():
         statistics=None,
     )
 
+    result = ConversationAnswerResult(
+        answer=answer,
+        message=make_message(
+            question=answer.query,
+            answer=answer.text,
+            model=None,
+        ),
+    )
+
     service = SimpleNamespace(answer=AsyncMock(return_value=result))
 
-    client = create_test_client(service)
+    client, auth = create_test_client(service)
 
     response = client.post(
         "/api/v1/answers",
         json={
-            "query": result.query,
+            "conversation_id": 10,
+            "query": answer.query,
         },
+        headers=auth_headers(),
     )
 
     assert response.status_code == 200
 
     payload = response.json()
 
-    assert payload["query"] == result.query
+    assert payload["conversation_id"] == 10
+    assert payload["message_id"] == 20
+    assert payload["query"] == answer.query
     assert payload["generated"] is False
 
     assert payload["reason"] == "document_identifier_resolved"
@@ -96,40 +172,67 @@ def test_answers_returns_document_identifier_resolution():
 
     assert "050-2026" in payload["text"]
 
-    service.answer.assert_awaited_once()
+    (
+        service.answer.assert_awaited_once_with(
+            user_id=7,
+            conversation_id=10,
+            query=answer.query,
+        )
+    )
+
+    (
+        auth.get_current_user.assert_awaited_once_with(
+            access_token="access-token",
+        )
+    )
 
 
 def test_answers_returns_unsupported_grounding():
     query = "¿Dónde queda la sede de la Universidad Católica de Colombia en Cali?"
 
-    result = GeneratedAnswer(
+    answer = GeneratedAnswer(
         query=query,
         text=(
-            "No encontré evidencia institucional "
-            "suficiente para responder esta pregunta "
+            "No encontré evidencia "
+            "institucional suficiente para "
+            "responder esta pregunta "
             "con seguridad."
         ),
         generated=False,
-        reason=GenerationReason.UNSUPPORTED_GROUNDING,
+        reason=(GenerationReason.UNSUPPORTED_GROUNDING),
         model=None,
         citations=(),
         statistics=None,
     )
 
+    result = ConversationAnswerResult(
+        answer=answer,
+        message=make_message(
+            question=query,
+            answer=answer.text,
+            model=None,
+        ),
+    )
+
     service = SimpleNamespace(answer=AsyncMock(return_value=result))
 
-    client = create_test_client(service)
+    client, _ = create_test_client(service)
 
     response = client.post(
         "/api/v1/answers",
         json={
+            "conversation_id": 10,
             "query": query,
         },
+        headers=auth_headers(),
     )
 
     assert response.status_code == 200
 
     payload = response.json()
+
+    assert payload["conversation_id"] == 10
+    assert payload["message_id"] == 20
 
     assert payload["generated"] is False
 
@@ -143,18 +246,80 @@ def test_answers_returns_unsupported_grounding():
 def test_answers_rejects_blank_query_without_calling_service():
     service = SimpleNamespace(answer=AsyncMock())
 
-    client = create_test_client(service)
+    client, _ = create_test_client(service)
 
     response = client.post(
         "/api/v1/answers",
         json={
+            "conversation_id": 10,
             "query": "   ",
         },
+        headers=auth_headers(),
     )
 
     assert response.status_code == 422
 
     service.answer.assert_not_awaited()
+
+
+def test_answers_rejects_invalid_conversation_id():
+    service = SimpleNamespace(answer=AsyncMock())
+
+    client, _ = create_test_client(service)
+
+    response = client.post(
+        "/api/v1/answers",
+        json={
+            "conversation_id": 0,
+            "query": "Pregunta",
+        },
+        headers=auth_headers(),
+    )
+
+    assert response.status_code == 422
+
+    service.answer.assert_not_awaited()
+
+
+def test_answers_requires_bearer():
+    service = SimpleNamespace(answer=AsyncMock())
+
+    client, auth = create_test_client(service)
+
+    response = client.post(
+        "/api/v1/answers",
+        json={
+            "conversation_id": 10,
+            "query": "Pregunta",
+        },
+    )
+
+    assert response.status_code == 401
+
+    assert response.json()["error"]["code"] == "INVALID_ACCESS_TOKEN"
+
+    (auth.get_current_user.assert_not_awaited())
+
+    service.answer.assert_not_awaited()
+
+
+def test_answers_foreign_conversation_returns_404():
+    service = SimpleNamespace(answer=AsyncMock(side_effect=(ConversationNotFoundError())))
+
+    client, _ = create_test_client(service)
+
+    response = client.post(
+        "/api/v1/answers",
+        json={
+            "conversation_id": 99,
+            "query": "Pregunta",
+        },
+        headers=auth_headers(),
+    )
+
+    assert response.status_code == 404
+
+    assert response.json()["error"]["code"] == "CONVERSATION_NOT_FOUND"
 
 
 def test_openapi_contains_api_routes():
@@ -163,8 +328,11 @@ def test_openapi_contains_api_routes():
     schema = app.openapi()
 
     assert "/api/v1/health" in schema["paths"]
+
     assert "/api/v1/answers" in schema["paths"]
 
     assert "get" in schema["paths"]["/api/v1/health"]
 
-    assert "post" in schema["paths"]["/api/v1/answers"]
+    operation = schema["paths"]["/api/v1/answers"]["post"]
+
+    assert operation["security"]

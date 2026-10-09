@@ -48,6 +48,9 @@ from catalina_ingestion.services.answer_generation import (
 from catalina_ingestion.services.auth import (
     AuthService,
 )
+from catalina_ingestion.services.conversation_answers import (
+    ConversationAnswerService,
+)
 from catalina_ingestion.services.conversations import (
     ConversationService,
 )
@@ -67,7 +70,14 @@ async def lifespan(
         await open_qdrant_client()
         stack.push_async_callback(close_qdrant_client)
 
-        app.state.answer_service = AnswerGenerationService()
+        answer_service = AnswerGenerationService()
+
+        app.state.answer_service = answer_service
+
+        app.state.conversation_answer_service = ConversationAnswerService(
+            answer_service=answer_service,
+        )
+
         app.state.auth_service = AuthService()
         app.state.conversation_service = ConversationService()
         yield

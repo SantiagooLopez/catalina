@@ -1,21 +1,58 @@
-from fastapi import APIRouter, Request
-from pydantic import BaseModel, Field, field_validator
+from typing import Annotated
 
+from fastapi import (
+    APIRouter,
+    Request,
+    Security,
+)
+from fastapi.security import (
+    HTTPAuthorizationCredentials,
+    HTTPBearer,
+)
+from pydantic import (
+    BaseModel,
+    Field,
+    field_validator,
+)
+
+from catalina_ingestion.domain.conversation_answers import (
+    ConversationAnswerResult,
+)
+from catalina_ingestion.domain.exceptions import (
+    InvalidAccessTokenError,
+)
 from catalina_ingestion.domain.generation import (
     GeneratedAnswer,
     GenerationReason,
     GenerationStatistics,
 )
-from catalina_ingestion.domain.rag_context import ContextSource
-from catalina_ingestion.domain.retrieval import RetrievalQuery
+from catalina_ingestion.domain.rag_context import (
+    ContextSource,
+)
+from catalina_ingestion.services.auth import (
+    AuthService,
+)
+from catalina_ingestion.services.conversation_answers import (
+    ConversationAnswerService,
+)
 
 router = APIRouter(
     tags=["answers"],
 )
 
+bearer_scheme = HTTPBearer(
+    auto_error=False,
+)
+
 
 class AnswerRequest(BaseModel):
-    query: str = Field(min_length=1)
+    conversation_id: int = Field(
+        gt=0,
+    )
+
+    query: str = Field(
+        min_length=1,
+    )
 
     @field_validator("query")
     @classmethod
@@ -54,6 +91,8 @@ class GenerationStatisticsResponse(BaseModel):
 
 
 class AnswerResponse(BaseModel):
+    conversation_id: int
+    message_id: int
     query: str
     text: str
     generated: bool
@@ -63,6 +102,36 @@ class AnswerResponse(BaseModel):
     statistics: GenerationStatisticsResponse | None
 
 
+def _get_auth_service(
+    request: Request,
+) -> AuthService:
+    service = getattr(
+        request.app.state,
+        "auth_service",
+        None,
+    )
+
+    if service is None:
+        raise RuntimeError("AuthService no ha sido inicializado.")
+
+    return service
+
+
+def _get_conversation_answer_service(
+    request: Request,
+) -> ConversationAnswerService:
+    service = getattr(
+        request.app.state,
+        "conversation_answer_service",
+        None,
+    )
+
+    if service is None:
+        raise RuntimeError("ConversationAnswerService no ha sido inicializado.")
+
+    return service
+
+
 def _source_response(
     source: ContextSource,
 ) -> SourceResponse:
@@ -70,7 +139,7 @@ def _source_response(
         citation_id=source.citation_id,
         point_id=source.point_id,
         document_id=source.document_id,
-        document_version_id=source.document_version_id,
+        document_version_id=(source.document_version_id),
         document_name=source.document_name,
         version=source.version,
         page_start=source.page_start,
@@ -87,19 +156,23 @@ def _statistics_response(
         return None
 
     return GenerationStatisticsResponse(
-        total_duration_ns=statistics.total_duration_ns,
-        load_duration_ns=statistics.load_duration_ns,
-        prompt_eval_count=statistics.prompt_eval_count,
+        total_duration_ns=(statistics.total_duration_ns),
+        load_duration_ns=(statistics.load_duration_ns),
+        prompt_eval_count=(statistics.prompt_eval_count),
         prompt_eval_duration_ns=(statistics.prompt_eval_duration_ns),
         eval_count=statistics.eval_count,
-        eval_duration_ns=statistics.eval_duration_ns,
+        eval_duration_ns=(statistics.eval_duration_ns),
     )
 
 
 def build_answer_response(
-    answer: GeneratedAnswer,
+    result: ConversationAnswerResult,
 ) -> AnswerResponse:
+    answer: GeneratedAnswer = result.answer
+
     return AnswerResponse(
+        conversation_id=(result.message.conversacion_id),
+        message_id=result.message.id,
         query=answer.query,
         text=answer.text,
         generated=answer.generated,
@@ -117,20 +190,26 @@ def build_answer_response(
 async def answer(
     payload: AnswerRequest,
     request: Request,
+    credentials: Annotated[
+        HTTPAuthorizationCredentials | None,
+        Security(bearer_scheme),
+    ],
 ) -> AnswerResponse:
-    service = getattr(
-        request.app.state,
-        "answer_service",
-        None,
+    if credentials is None or credentials.scheme.lower() != "bearer" or not credentials.credentials:
+        raise InvalidAccessTokenError
+
+    auth_service = _get_auth_service(request)
+
+    user = await auth_service.get_current_user(
+        access_token=(credentials.credentials),
     )
 
-    if service is None:
-        raise RuntimeError("AnswerGenerationService no ha sido inicializado.")
+    service = _get_conversation_answer_service(request)
 
     result = await service.answer(
-        RetrievalQuery(
-            query=payload.query,
-        )
+        user_id=user.id,
+        conversation_id=(payload.conversation_id),
+        query=payload.query,
     )
 
     return build_answer_response(result)
