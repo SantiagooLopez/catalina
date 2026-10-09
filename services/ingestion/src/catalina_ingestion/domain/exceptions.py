@@ -96,3 +96,33 @@ class ConversationNotFoundError(IngestionError):
             code="CONVERSATION_NOT_FOUND",
             message="Conversación no encontrada.",
         )
+
+class UserNotFoundError(IngestionError):
+    def __init__(self) -> None:
+        super().__init__(
+            code="USER_NOT_FOUND",
+            message="Usuario no encontrado.",
+        )
+
+
+class ForbiddenError(IngestionError):
+    def __init__(self) -> None:
+        super().__init__(
+            code="FORBIDDEN",
+            message=(
+                "No tiene permisos para realizar "
+                "esta operación."
+            ),
+        )
+
+
+class InvalidCurrentPasswordError(
+    IngestionError
+):
+    def __init__(self) -> None:
+        super().__init__(
+            code="INVALID_CURRENT_PASSWORD",
+            message=(
+                "La contraseña actual no es correcta."
+            ),
+        )

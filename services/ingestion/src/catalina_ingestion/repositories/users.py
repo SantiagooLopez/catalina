@@ -252,6 +252,136 @@ class UserRepository:
 
         return self._to_user(row)
 
+    async def list_users(
+        self,
+        connection: AsyncConnection[Any],
+        *,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> list[User]:
+        if type(limit) is not int or not 1 <= limit <= 100:
+            raise ValueError("limit debe estar entre 1 y 100.")
+
+        if type(offset) is not int or offset < 0:
+            raise ValueError("offset debe ser mayor o igual a cero.")
+
+        cursor = await connection.execute(
+            """
+            SELECT
+                id,
+                email,
+                nombre,
+                rol,
+                password_hash,
+                activo,
+                fecha_creacion,
+                fecha_actualizacion,
+                ultimo_acceso
+            FROM catalina.usuarios
+            ORDER BY id ASC
+            LIMIT %s
+            OFFSET %s
+            """,
+            (
+                limit,
+                offset,
+            ),
+        )
+
+        rows = await cursor.fetchall()
+
+        return [self._to_user(row) for row in rows]
+
+    async def update_name(
+        self,
+        connection: AsyncConnection[Any],
+        user_id: int,
+        nombre: str,
+    ) -> User | None:
+        if type(user_id) is not int or user_id < 1:
+            raise ValueError("user_id debe ser un entero positivo.")
+
+        normalized_name = self._normalize_required(
+            nombre,
+            field_name="nombre",
+        )
+
+        cursor = await connection.execute(
+            """
+            UPDATE catalina.usuarios
+            SET
+                nombre = %s,
+                fecha_actualizacion = CURRENT_TIMESTAMP
+            WHERE id = %s
+            RETURNING
+                id,
+                email,
+                nombre,
+                rol,
+                password_hash,
+                activo,
+                fecha_creacion,
+                fecha_actualizacion,
+                ultimo_acceso
+            """,
+            (
+                normalized_name,
+                user_id,
+            ),
+        )
+
+        row = await cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return self._to_user(row)
+
+    async def update_role(
+        self,
+        connection: AsyncConnection[Any],
+        user_id: int,
+        role: str,
+    ) -> User | None:
+        if type(user_id) is not int or user_id < 1:
+            raise ValueError("user_id debe ser un entero positivo.")
+
+        normalized_role = self._normalize_required(
+            role,
+            field_name="rol",
+        ).lower()
+
+        cursor = await connection.execute(
+            """
+            UPDATE catalina.usuarios
+            SET
+                rol = %s,
+                fecha_actualizacion = CURRENT_TIMESTAMP
+            WHERE id = %s
+            RETURNING
+                id,
+                email,
+                nombre,
+                rol,
+                password_hash,
+                activo,
+                fecha_creacion,
+                fecha_actualizacion,
+                ultimo_acceso
+            """,
+            (
+                normalized_role,
+                user_id,
+            ),
+        )
+
+        row = await cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return self._to_user(row)
+
     @staticmethod
     def _normalize_email(
         email: str,

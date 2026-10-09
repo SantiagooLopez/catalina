@@ -184,3 +184,54 @@ async def unexpected_error_handler(
         retryable=False,
         request_id=request_id,
     )
+
+
+async def user_not_found_error_handler(
+    request,
+    error,
+):
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=404,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def forbidden_error_handler(
+    request,
+    error,
+):
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=403,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def invalid_current_password_error_handler(
+    request,
+    error,
+):
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=400,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )

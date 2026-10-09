@@ -6,9 +6,12 @@ from fastapi import FastAPI
 from catalina_ingestion.api.errors import (
     authentication_error_handler,
     conversation_not_found_error_handler,
+    forbidden_error_handler,
     generation_error_handler,
+    invalid_current_password_error_handler,
     retrieval_error_handler,
     unexpected_error_handler,
+    user_not_found_error_handler,
 )
 from catalina_ingestion.api.routes.answers import (
     router as answers_router,
@@ -21,6 +24,9 @@ from catalina_ingestion.api.routes.conversations import (
 )
 from catalina_ingestion.api.routes.health import (
     router as health_router,
+)
+from catalina_ingestion.api.routes.users import (
+    router as users_router,
 )
 from catalina_ingestion.clients.ollama import (
     close_ollama_client,
@@ -37,7 +43,10 @@ from catalina_ingestion.db.postgres import (
 from catalina_ingestion.domain.exceptions import (
     AuthenticationError,
     ConversationNotFoundError,
+    ForbiddenError,
     GenerationError,
+    InvalidCurrentPasswordError,
+    UserNotFoundError,
 )
 from catalina_ingestion.domain.retrieval_runtime import (
     RetrievalExecutionError,
@@ -53,6 +62,9 @@ from catalina_ingestion.services.conversation_answers import (
 )
 from catalina_ingestion.services.conversations import (
     ConversationService,
+)
+from catalina_ingestion.services.users import (
+    UserService,
 )
 
 
@@ -73,13 +85,14 @@ async def lifespan(
         answer_service = AnswerGenerationService()
 
         app.state.answer_service = answer_service
-
+        app.state.user_service = UserService()
         app.state.conversation_answer_service = ConversationAnswerService(
             answer_service=answer_service,
         )
 
         app.state.auth_service = AuthService()
         app.state.conversation_service = ConversationService()
+        app.state.user_service = UserService()
         yield
 
 
@@ -107,6 +120,24 @@ def create_app() -> FastAPI:
     app.include_router(
         conversations_router,
         prefix="/api/v1",
+    )
+    app.include_router(
+        users_router,
+        prefix="/api/v1",
+    )
+    app.add_exception_handler(
+        UserNotFoundError,
+        user_not_found_error_handler,
+    )
+
+    app.add_exception_handler(
+        ForbiddenError,
+        forbidden_error_handler,
+    )
+
+    app.add_exception_handler(
+        InvalidCurrentPasswordError,
+        invalid_current_password_error_handler,
     )
     app.add_exception_handler(
         RetrievalExecutionError,
