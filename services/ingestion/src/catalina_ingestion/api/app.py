@@ -35,6 +35,9 @@ from catalina_ingestion.api.routes.health import (
 from catalina_ingestion.api.routes.job_control import (
     router as job_control_router,
 )
+from catalina_ingestion.api.routes.metrics import (
+    router as metrics_router,
+)
 from catalina_ingestion.api.routes.monitoring import (
     router as monitoring_router,
 )
@@ -86,6 +89,9 @@ from catalina_ingestion.services.document_admin import (
 from catalina_ingestion.services.job_control import (
     JobControlService,
 )
+from catalina_ingestion.services.metrics import (
+    MetricsService,
+)
 from catalina_ingestion.services.monitoring import (
     MonitoringService,
 )
@@ -125,6 +131,7 @@ async def lifespan(
         app.state.document_admin_service = DocumentAdminService()
 
         app.state.monitoring_service = MonitoringService()
+        app.state.metrics_service = MetricsService()
 
         app.state.job_control_service = JobControlService()
         yield
@@ -177,6 +184,10 @@ def create_app() -> FastAPI:
         prefix="/api/v1",
     )
 
+    app.include_router(
+        metrics_router,
+        prefix="/api/v1",
+    )
     app.add_exception_handler(
         RetrievalExecutionError,
         retrieval_error_handler,
