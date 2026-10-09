@@ -8,6 +8,8 @@ from catalina_ingestion.domain.exceptions import (
     ConversationNotFoundError,
     DocumentNotFoundError,
     GenerationError,
+    IndexingRunNotFoundError,
+    IngestionJobNotFoundError,
     TransientGenerationError,
 )
 from catalina_ingestion.domain.retrieval_runtime import (
@@ -241,6 +243,40 @@ async def invalid_current_password_error_handler(
 async def document_not_found_error_handler(
     request: Request,
     error: DocumentNotFoundError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=404,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def ingestion_job_not_found_error_handler(
+    request: Request,
+    error: IngestionJobNotFoundError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=404,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def indexing_run_not_found_error_handler(
+    request: Request,
+    error: IndexingRunNotFoundError,
 ) -> JSONResponse:
     del request
 

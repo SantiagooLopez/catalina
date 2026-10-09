@@ -9,6 +9,8 @@ from catalina_ingestion.api.errors import (
     document_not_found_error_handler,
     forbidden_error_handler,
     generation_error_handler,
+    indexing_run_not_found_error_handler,
+    ingestion_job_not_found_error_handler,
     invalid_current_password_error_handler,
     retrieval_error_handler,
     unexpected_error_handler,
@@ -28,6 +30,9 @@ from catalina_ingestion.api.routes.documents import (
 )
 from catalina_ingestion.api.routes.health import (
     router as health_router,
+)
+from catalina_ingestion.api.routes.monitoring import (
+    router as monitoring_router,
 )
 from catalina_ingestion.api.routes.users import (
     router as users_router,
@@ -50,6 +55,8 @@ from catalina_ingestion.domain.exceptions import (
     DocumentNotFoundError,
     ForbiddenError,
     GenerationError,
+    IndexingRunNotFoundError,
+    IngestionJobNotFoundError,
     InvalidCurrentPasswordError,
     UserNotFoundError,
 )
@@ -70,6 +77,9 @@ from catalina_ingestion.services.conversations import (
 )
 from catalina_ingestion.services.document_admin import (
     DocumentAdminService,
+)
+from catalina_ingestion.services.monitoring import (
+    MonitoringService,
 )
 from catalina_ingestion.services.users import (
     UserService,
@@ -93,14 +103,21 @@ async def lifespan(
         answer_service = AnswerGenerationService()
 
         app.state.answer_service = answer_service
-        app.state.user_service = UserService()
+
         app.state.conversation_answer_service = ConversationAnswerService(
             answer_service=answer_service,
         )
-        app.state.document_admin_service = DocumentAdminService()
+
         app.state.auth_service = AuthService()
+
         app.state.conversation_service = ConversationService()
+
         app.state.user_service = UserService()
+
+        app.state.document_admin_service = DocumentAdminService()
+
+        app.state.monitoring_service = MonitoringService()
+
         yield
 
 
@@ -121,39 +138,32 @@ def create_app() -> FastAPI:
         answers_router,
         prefix="/api/v1",
     )
+
     app.include_router(
         auth_router,
         prefix="/api/v1",
     )
+
     app.include_router(
         conversations_router,
         prefix="/api/v1",
     )
+
     app.include_router(
         users_router,
         prefix="/api/v1",
     )
+
     app.include_router(
         documents_router,
         prefix="/api/v1",
     )
-    app.add_exception_handler(
-        UserNotFoundError,
-        user_not_found_error_handler,
+
+    app.include_router(
+        monitoring_router,
+        prefix="/api/v1",
     )
 
-    app.add_exception_handler(
-        ForbiddenError,
-        forbidden_error_handler,
-    )
-    app.add_exception_handler(
-        DocumentNotFoundError,
-        document_not_found_error_handler,
-    )
-    app.add_exception_handler(
-        InvalidCurrentPasswordError,
-        invalid_current_password_error_handler,
-    )
     app.add_exception_handler(
         RetrievalExecutionError,
         retrieval_error_handler,
@@ -168,10 +178,42 @@ def create_app() -> FastAPI:
         AuthenticationError,
         authentication_error_handler,
     )
+
     app.add_exception_handler(
         ConversationNotFoundError,
         conversation_not_found_error_handler,
     )
+
+    app.add_exception_handler(
+        UserNotFoundError,
+        user_not_found_error_handler,
+    )
+
+    app.add_exception_handler(
+        ForbiddenError,
+        forbidden_error_handler,
+    )
+
+    app.add_exception_handler(
+        InvalidCurrentPasswordError,
+        invalid_current_password_error_handler,
+    )
+
+    app.add_exception_handler(
+        DocumentNotFoundError,
+        document_not_found_error_handler,
+    )
+
+    app.add_exception_handler(
+        IngestionJobNotFoundError,
+        ingestion_job_not_found_error_handler,
+    )
+
+    app.add_exception_handler(
+        IndexingRunNotFoundError,
+        indexing_run_not_found_error_handler,
+    )
+
     app.add_exception_handler(
         Exception,
         unexpected_error_handler,

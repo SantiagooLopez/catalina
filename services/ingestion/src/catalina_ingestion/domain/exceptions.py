@@ -133,3 +133,17 @@ class DocumentNotFoundError(IngestionError):
             code="DOCUMENT_NOT_FOUND",
             message="Documento no encontrado.",
         )
+class IngestionJobNotFoundError(IngestionError):
+    def __init__(self) -> None:
+        super().__init__(
+            code="INGESTION_JOB_NOT_FOUND",
+            message="Trabajo de ingesta no encontrado.",
+        )
+
+
+class IndexingRunNotFoundError(IngestionError):
+    def __init__(self) -> None:
+        super().__init__(
+            code="INDEXING_RUN_NOT_FOUND",
+            message="Ejecución de indexación no encontrada.",
+        )
