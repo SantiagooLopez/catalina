@@ -70,10 +70,31 @@ class GenerationService:
 
         text = self._normalize_citations(text)
 
-        self._validate_citations(
-            text=text,
-            allowed_citations=prompt.allowed_citations,
-        )
+        try:
+            self._validate_citations(
+                text=text,
+                allowed_citations=prompt.allowed_citations,
+            )
+        except GenerationError as error:
+            if error.code != "MISSING_GENERATION_CITATION":
+                raise
+
+            correction_prompt = self._build_citation_correction_prompt(
+                prompt=prompt,
+                previous_answer=text,
+            )
+
+            text, statistics = await self._request_with_retry(
+                client=client,
+                prompt=correction_prompt,
+            )
+
+            text = self._normalize_citations(text)
+
+            self._validate_citations(
+                text=text,
+                allowed_citations=prompt.allowed_citations,
+            )
 
         return GeneratedAnswer(
             query=query,
@@ -83,6 +104,33 @@ class GenerationService:
             model=self.settings.ollama_generation_model,
             citations=citation_tuple,
             statistics=statistics,
+        )
+
+    @staticmethod
+    def _build_citation_correction_prompt(
+        *,
+        prompt: GenerationPrompt,
+        previous_answer: str,
+    ) -> GenerationPrompt:
+        allowed = ", ".join(f"[{citation}]" for citation in prompt.allowed_citations)
+
+        user_message = (
+            f"{prompt.user_message}\n\n"
+            "RESPUESTA ANTERIOR SIN CITA VÁLIDA:\n"
+            f"{previous_answer}\n\n"
+            "CORRECCIÓN OBLIGATORIA:\n"
+            "Reescribe la respuesta manteniendo únicamente "
+            "afirmaciones respaldadas por la evidencia proporcionada. "
+            "La respuesta debe contener al menos una de las citas "
+            "permitidas y debe escribirla exactamente con corchetes. "
+            f"Citas permitidas: {allowed}. "
+            "No inventes identificadores ni utilices citas diferentes."
+        )
+
+        return GenerationPrompt(
+            system_message=prompt.system_message,
+            user_message=user_message,
+            allowed_citations=prompt.allowed_citations,
         )
 
     async def _request_with_retry(
