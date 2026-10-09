@@ -31,6 +31,44 @@ class ExistingVersion:
     ruta_archivo: str | None
 
 
+@dataclass(frozen=True, slots=True)
+class DocumentDetail:
+    id: int
+    nombre: str
+    tipo_archivo: str | None
+    categoria: str | None
+    descripcion: str | None
+    estado: str | None
+    fecha_carga: Any
+    codigo: str | None
+    idioma: str
+    origen: str | None
+    metadatos: dict[str, Any]
+    fecha_actualizacion: Any
+
+
+@dataclass(frozen=True, slots=True)
+class DocumentVersionDetail:
+    id: int
+    documento_id: int | None
+    version: str
+    nombre_archivo_original: str | None
+    extension: str | None
+    mime_type: str | None
+    tamano_bytes: int | None
+    hash_contenido: str | None
+    estado: str
+    total_paginas: int | None
+    total_secciones: int | None
+    total_chunks: int | None
+    modelo_embedding: str | None
+    dimension_embedding: int | None
+    fecha_indexacion: Any
+    fecha_actualizacion: Any
+    error_codigo: str | None
+    error_detalle: str | None
+
+
 class DocumentRepository:
     async def find_version_by_hash(
         self,
@@ -351,6 +389,237 @@ class DocumentRepository:
             raise RuntimeError("No fue posible crear el trabajo de reindexación.")
 
         return row[0]
+
+    async def list_documents(
+        self,
+        connection: AsyncConnection[Any],
+        *,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> list[DocumentDetail]:
+        if type(limit) is not int or not 1 <= limit <= 100:
+            raise ValueError("limit debe estar entre 1 y 100.")
+
+        if type(offset) is not int or offset < 0:
+            raise ValueError("offset debe ser mayor o igual a cero.")
+
+        cursor = await connection.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                tipo_archivo,
+                categoria,
+                descripcion,
+                estado,
+                fecha_carga,
+                codigo,
+                idioma,
+                origen,
+                metadatos,
+                fecha_actualizacion
+            FROM catalina.documentos
+            ORDER BY fecha_actualizacion DESC, id DESC
+            LIMIT %s
+            OFFSET %s
+            """,
+            (
+                limit,
+                offset,
+            ),
+        )
+
+        rows = await cursor.fetchall()
+
+        return [self._to_document_detail(row) for row in rows]
+
+    async def get_document(
+        self,
+        connection: AsyncConnection[Any],
+        document_id: int,
+    ) -> DocumentDetail | None:
+        if type(document_id) is not int or document_id < 1:
+            raise ValueError("document_id debe ser un entero positivo.")
+
+        cursor = await connection.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                tipo_archivo,
+                categoria,
+                descripcion,
+                estado,
+                fecha_carga,
+                codigo,
+                idioma,
+                origen,
+                metadatos,
+                fecha_actualizacion
+            FROM catalina.documentos
+            WHERE id = %s
+            LIMIT 1
+            """,
+            (document_id,),
+        )
+
+        row = await cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return self._to_document_detail(row)
+
+    async def list_versions(
+        self,
+        connection: AsyncConnection[Any],
+        *,
+        document_id: int,
+        limit: int = 50,
+        offset: int = 0,
+    ) -> list[DocumentVersionDetail]:
+        if type(document_id) is not int or document_id < 1:
+            raise ValueError("document_id debe ser un entero positivo.")
+
+        if type(limit) is not int or not 1 <= limit <= 100:
+            raise ValueError("limit debe estar entre 1 y 100.")
+
+        if type(offset) is not int or offset < 0:
+            raise ValueError("offset debe ser mayor o igual a cero.")
+
+        cursor = await connection.execute(
+            """
+            SELECT
+                id,
+                documento_id,
+                version,
+                nombre_archivo_original,
+                extension,
+                mime_type,
+                tamano_bytes,
+                hash_contenido,
+                estado,
+                total_paginas,
+                total_secciones,
+                total_chunks,
+                modelo_embedding,
+                dimension_embedding,
+                fecha_indexacion,
+                fecha_actualizacion,
+                error_codigo,
+                error_detalle
+            FROM catalina.versiones_documentos
+            WHERE documento_id = %s
+            ORDER BY fecha_creacion DESC, id DESC
+            LIMIT %s
+            OFFSET %s
+            """,
+            (
+                document_id,
+                limit,
+                offset,
+            ),
+        )
+
+        rows = await cursor.fetchall()
+
+        return [self._to_version_detail(row) for row in rows]
+
+    async def set_document_status(
+        self,
+        connection: AsyncConnection[Any],
+        *,
+        document_id: int,
+        status: str,
+    ) -> DocumentDetail | None:
+        if type(document_id) is not int or document_id < 1:
+            raise ValueError("document_id debe ser un entero positivo.")
+
+        normalized = status.strip().lower()
+
+        if normalized not in {
+            "activo",
+            "inactivo",
+        }:
+            raise ValueError("Estado documental no soportado.")
+
+        cursor = await connection.execute(
+            """
+            UPDATE catalina.documentos
+            SET
+                estado = %s,
+                fecha_actualizacion = CURRENT_TIMESTAMP
+            WHERE id = %s
+            RETURNING
+                id,
+                nombre,
+                tipo_archivo,
+                categoria,
+                descripcion,
+                estado,
+                fecha_carga,
+                codigo,
+                idioma,
+                origen,
+                metadatos,
+                fecha_actualizacion
+            """,
+            (
+                normalized,
+                document_id,
+            ),
+        )
+
+        row = await cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return self._to_document_detail(row)
+
+    @staticmethod
+    def _to_document_detail(
+        row: tuple[Any, ...],
+    ) -> DocumentDetail:
+        return DocumentDetail(
+            id=row[0],
+            nombre=row[1],
+            tipo_archivo=row[2],
+            categoria=row[3],
+            descripcion=row[4],
+            estado=row[5],
+            fecha_carga=row[6],
+            codigo=row[7],
+            idioma=row[8],
+            origen=row[9],
+            metadatos=row[10] or {},
+            fecha_actualizacion=row[11],
+        )
+
+    @staticmethod
+    def _to_version_detail(
+        row: tuple[Any, ...],
+    ) -> DocumentVersionDetail:
+        return DocumentVersionDetail(
+            id=row[0],
+            documento_id=row[1],
+            version=row[2],
+            nombre_archivo_original=row[3],
+            extension=row[4],
+            mime_type=row[5],
+            tamano_bytes=row[6],
+            hash_contenido=row[7],
+            estado=row[8],
+            total_paginas=row[9],
+            total_secciones=row[10],
+            total_chunks=row[11],
+            modelo_embedding=row[12],
+            dimension_embedding=row[13],
+            fecha_indexacion=row[14],
+            fecha_actualizacion=row[15],
+            error_codigo=row[16],
+            error_detalle=row[17],
+        )
 
     async def write_audit(
         self,

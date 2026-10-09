@@ -126,3 +126,10 @@ class InvalidCurrentPasswordError(
                 "La contraseña actual no es correcta."
             ),
         )
+
+class DocumentNotFoundError(IngestionError):
+    def __init__(self) -> None:
+        super().__init__(
+            code="DOCUMENT_NOT_FOUND",
+            message="Documento no encontrado.",
+        )

@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from catalina_ingestion.api.errors import (
     authentication_error_handler,
     conversation_not_found_error_handler,
+    document_not_found_error_handler,
     forbidden_error_handler,
     generation_error_handler,
     invalid_current_password_error_handler,
@@ -21,6 +22,9 @@ from catalina_ingestion.api.routes.auth import (
 )
 from catalina_ingestion.api.routes.conversations import (
     router as conversations_router,
+)
+from catalina_ingestion.api.routes.documents import (
+    router as documents_router,
 )
 from catalina_ingestion.api.routes.health import (
     router as health_router,
@@ -43,6 +47,7 @@ from catalina_ingestion.db.postgres import (
 from catalina_ingestion.domain.exceptions import (
     AuthenticationError,
     ConversationNotFoundError,
+    DocumentNotFoundError,
     ForbiddenError,
     GenerationError,
     InvalidCurrentPasswordError,
@@ -62,6 +67,9 @@ from catalina_ingestion.services.conversation_answers import (
 )
 from catalina_ingestion.services.conversations import (
     ConversationService,
+)
+from catalina_ingestion.services.document_admin import (
+    DocumentAdminService,
 )
 from catalina_ingestion.services.users import (
     UserService,
@@ -89,7 +97,7 @@ async def lifespan(
         app.state.conversation_answer_service = ConversationAnswerService(
             answer_service=answer_service,
         )
-
+        app.state.document_admin_service = DocumentAdminService()
         app.state.auth_service = AuthService()
         app.state.conversation_service = ConversationService()
         app.state.user_service = UserService()
@@ -125,6 +133,10 @@ def create_app() -> FastAPI:
         users_router,
         prefix="/api/v1",
     )
+    app.include_router(
+        documents_router,
+        prefix="/api/v1",
+    )
     app.add_exception_handler(
         UserNotFoundError,
         user_not_found_error_handler,
@@ -134,7 +146,10 @@ def create_app() -> FastAPI:
         ForbiddenError,
         forbidden_error_handler,
     )
-
+    app.add_exception_handler(
+        DocumentNotFoundError,
+        document_not_found_error_handler,
+    )
     app.add_exception_handler(
         InvalidCurrentPasswordError,
         invalid_current_password_error_handler,

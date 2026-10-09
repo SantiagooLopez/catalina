@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 from catalina_ingestion.domain.exceptions import (
     AuthenticationError,
     ConversationNotFoundError,
+    DocumentNotFoundError,
     GenerationError,
     TransientGenerationError,
 )
@@ -230,6 +231,23 @@ async def invalid_current_password_error_handler(
 
     return _error_response(
         status_code=400,
+        code=error.code,
+        message=error.message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def document_not_found_error_handler(
+    request: Request,
+    error: DocumentNotFoundError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    return _error_response(
+        status_code=404,
         code=error.code,
         message=error.message,
         retryable=False,
