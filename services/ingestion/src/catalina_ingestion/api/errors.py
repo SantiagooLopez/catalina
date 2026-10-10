@@ -8,6 +8,7 @@ from catalina_ingestion.domain.exceptions import (
     AuthenticationError,
     ConversationNotFoundError,
     DocumentNotFoundError,
+    FileValidationError,
     GenerationError,
     IndexingRunNotFoundError,
     IngestionJobNotFoundError,
@@ -341,6 +342,25 @@ async def request_validation_error_handler(
         status_code=422,
         code="VALIDATION_ERROR",
         message=message,
+        retryable=False,
+        request_id=request_id,
+    )
+
+
+async def file_validation_error_handler(
+    request: Request,
+    error: FileValidationError,
+) -> JSONResponse:
+    del request
+
+    request_id = str(uuid4())
+
+    status_code = 413 if error.code == "FILE_TOO_LARGE" else 400
+
+    return _error_response(
+        status_code=status_code,
+        code=error.code,
+        message=error.message,
         retryable=False,
         request_id=request_id,
     )

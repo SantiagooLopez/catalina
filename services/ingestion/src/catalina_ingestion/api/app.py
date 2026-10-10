@@ -3,11 +3,15 @@ from contextlib import AsyncExitStack, asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import (
+    CORSMiddleware,
+)
 
 from catalina_ingestion.api.errors import (
     authentication_error_handler,
     conversation_not_found_error_handler,
     document_not_found_error_handler,
+    file_validation_error_handler,
     forbidden_error_handler,
     generation_error_handler,
     indexing_run_not_found_error_handler,
@@ -20,6 +24,7 @@ from catalina_ingestion.api.errors import (
     user_not_found_error_handler,
 )
 from catalina_ingestion.api.middleware import (
+    RateLimitMiddleware,
     SecurityHeadersMiddleware,
 )
 from catalina_ingestion.api.routes.answers import (
@@ -57,6 +62,9 @@ from catalina_ingestion.clients.qdrant import (
     close_qdrant_client,
     open_qdrant_client,
 )
+from catalina_ingestion.core.config import (
+    get_settings,
+)
 from catalina_ingestion.db.postgres import (
     close_postgres_pool,
     open_postgres_pool,
@@ -65,6 +73,7 @@ from catalina_ingestion.domain.exceptions import (
     AuthenticationError,
     ConversationNotFoundError,
     DocumentNotFoundError,
+    FileValidationError,
     ForbiddenError,
     GenerationError,
     IndexingRunNotFoundError,
@@ -149,6 +158,37 @@ def create_app() -> FastAPI:
         version="0.1.0",
         lifespan=lifespan,
     )
+    settings = get_settings()
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=(settings.cors_allowed_origins),
+        allow_credentials=False,
+        allow_methods=[
+            "GET",
+            "POST",
+            "PATCH",
+            "DELETE",
+            "OPTIONS",
+        ],
+        allow_headers=[
+            "Authorization",
+            "Content-Type",
+            "X-Request-ID",
+        ],
+        expose_headers=[
+            "X-Request-ID",
+            "Retry-After",
+        ],
+    )
+
+    app.add_middleware(
+        RateLimitMiddleware,
+        window_seconds=(settings.rate_limit_window_seconds),
+        login_limit=(settings.rate_limit_login_per_window),
+        answers_limit=(settings.rate_limit_answers_per_window),
+        uploads_limit=(settings.rate_limit_uploads_per_window),
+    )
     app.add_middleware(SecurityHeadersMiddleware)
     app.include_router(
         health_router,
@@ -192,6 +232,10 @@ def create_app() -> FastAPI:
     app.include_router(
         metrics_router,
         prefix="/api/v1",
+    )
+    app.add_exception_handler(
+        FileValidationError,
+        file_validation_error_handler,
     )
     app.add_exception_handler(
         RetrievalExecutionError,

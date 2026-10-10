@@ -20,6 +20,31 @@ class Settings(BaseSettings):
     app_host: str = "127.0.0.1"
     app_port: int = Field(default=8001, ge=1, le=65535)
     log_level: str = "INFO"
+    cors_allowed_origins: list[str] = []
+
+    rate_limit_window_seconds: int = Field(
+        default=60,
+        ge=1,
+        le=3600,
+    )
+
+    rate_limit_login_per_window: int = Field(
+        default=10,
+        ge=1,
+        le=10000,
+    )
+
+    rate_limit_answers_per_window: int = Field(
+        default=20,
+        ge=1,
+        le=10000,
+    )
+
+    rate_limit_uploads_per_window: int = Field(
+        default=10,
+        ge=1,
+        le=10000,
+    )
     auth_jwt_secret: str | None = Field(
         default=None,
         min_length=32,
@@ -106,7 +131,11 @@ class Settings(BaseSettings):
     documents_root: Path = Path("/opt/catalina/documents")
     staging_directory: Path = Path("/opt/catalina/documents/staging")
     quarantine_directory: Path = Path("/opt/catalina/documents/quarantine")
-    max_file_size_mb: int = Field(default=50, ge=1)
+    max_file_size_mb: int = Field(
+        default=25,
+        ge=1,
+        le=100,
+    )
 
     allowed_extensions: list[str] = [
         ".pdf",
@@ -159,6 +188,22 @@ class Settings(BaseSettings):
 
         if normalized not in valid_levels:
             raise ValueError(f"Nivel de log inválido: {value}")
+
+        return normalized
+
+    @field_validator("cors_allowed_origins")
+    @classmethod
+    def normalize_cors_origins(
+        cls,
+        values: list[str],
+    ) -> list[str]:
+        normalized: list[str] = []
+
+        for value in values:
+            origin = value.strip().rstrip("/")
+
+            if origin and origin not in normalized:
+                normalized.append(origin)
 
         return normalized
 
