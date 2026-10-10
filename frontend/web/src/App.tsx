@@ -12,7 +12,7 @@ const errorText = (e: unknown) => e instanceof Error ? e.message : 'Ocurrió un 
 function Avatar({large = false}: {large?: boolean}) {return <span className={'avatar ' + (large ? 'large' : '')}><Bot aria-hidden="true"/></span>;}
 function Sources({items}: {items: Source[] | undefined}) {
   if (!items) return <small className="source-note">Las citas de este mensaje no están disponibles en el historial de la API.</small>;
-  if (!items.length) return <small className="source-note">Esta respuesta no incluye fuentes citadas.</small>;
+  if (!items.length) return null;
   return <details className="sources"><summary><FileText size={15}/> Consultar {items.length} fuente{items.length > 1 ? 's' : ''}</summary>{items.map(s => <div className="source" key={s.citation_id}><strong>{s.citation_id} · {s.document_name}</strong><span>Versión {s.version}{s.page_start !== null ? ` · Pág. ${s.page_start}${s.page_end !== null && s.page_end !== s.page_start ? '–' + s.page_end : ''}` : ''}</span>{s.section && <span>{s.section}</span>}</div>)}</details>;
 }
 export default function App() {
