@@ -85,11 +85,11 @@ from catalina_ingestion.domain.exceptions import (
 from catalina_ingestion.domain.retrieval_runtime import (
     RetrievalExecutionError,
 )
-from catalina_ingestion.services.chat import (
-    ChatService,
-)
 from catalina_ingestion.services.auth import (
     AuthService,
+)
+from catalina_ingestion.services.chat import (
+    ChatService,
 )
 from catalina_ingestion.services.conversation_answers import (
     ConversationAnswerService,
