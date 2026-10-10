@@ -10,6 +10,7 @@ from catalina_ingestion.services.document_identifier_resolver import (
     DocumentIdentifierResolver,
 )
 from catalina_ingestion.services.generation import GenerationService
+from catalina_ingestion.services.conversation_routing import conversational_reply
 from catalina_ingestion.services.generation_verifier import (
     GenerationVerifier,
 )
@@ -42,6 +43,12 @@ class AnswerGenerationService:
         self,
         query: RetrievalQuery,
     ) -> GeneratedAnswer:
+        reply = conversational_reply(query.query)
+        if reply is not None:
+            return GeneratedAnswer(
+                query=query.query, text=reply, generated=False,
+                reason=GenerationReason.CONVERSATIONAL, model=None, citations=(),
+            )
         context = await self.retrieval_service.build(query)
 
         if not context.enabled:

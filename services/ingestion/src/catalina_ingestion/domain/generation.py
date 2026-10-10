@@ -5,6 +5,7 @@ from catalina_ingestion.domain.rag_context import ContextSource
 
 
 class GenerationReason(StrEnum):
+    CONVERSATIONAL = "conversational"
     GENERATED = "generated"
     DOCUMENT_IDENTIFIER_RESOLVED = "document_identifier_resolved"
     INSUFFICIENT_EVIDENCE = "insufficient_evidence"
