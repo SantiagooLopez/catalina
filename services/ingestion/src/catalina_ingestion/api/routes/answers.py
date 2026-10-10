@@ -52,6 +52,7 @@ class AnswerRequest(BaseModel):
 
     query: str = Field(
         min_length=1,
+        max_length=1000,
     )
 
     @field_validator("query")

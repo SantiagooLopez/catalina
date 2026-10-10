@@ -23,6 +23,7 @@ from catalina_ingestion.domain.exceptions import (
 from catalina_ingestion.domain.generation import (
     GeneratedAnswer,
     GenerationReason,
+    GenerationStatistics,
 )
 from catalina_ingestion.domain.rag_context import (
     ContextSource,
@@ -259,6 +260,39 @@ def test_answers_rejects_blank_query_without_calling_service():
 
     assert response.status_code == 422
 
+    service.answer.assert_not_awaited()
+
+
+def test_general_chat_serializes_without_documentary_citations():
+    answer = GeneratedAnswer(
+        query="¿Cómo me llamo?", text="Te llamas Ana.", generated=True,
+        reason=GenerationReason.GENERAL_CHAT, model="llama3.2:3b", citations=(),
+        statistics=GenerationStatistics(1, 1, 1, 1, 1, 1),
+    )
+    result = ConversationAnswerResult(
+        answer=answer,
+        message=make_message(question=answer.query, answer=answer.text, model=answer.model),
+    )
+    service = SimpleNamespace(answer=AsyncMock(return_value=result))
+    client, _ = create_test_client(service)
+    response = client.post(
+        "/api/v1/answers", headers=auth_headers(),
+        json={"conversation_id": 10, "query": answer.query},
+    )
+    assert response.status_code == 200
+    assert response.json()["reason"] == "general_chat"
+    assert response.json()["citations"] == []
+    assert response.json()["text"] == "Te llamas Ana."
+
+
+def test_oversized_query_does_not_call_model():
+    service = SimpleNamespace(answer=AsyncMock())
+    client, _ = create_test_client(service)
+    response = client.post(
+        "/api/v1/answers", headers=auth_headers(),
+        json={"conversation_id": 10, "query": "a" * 1001},
+    )
+    assert response.status_code == 422
     service.answer.assert_not_awaited()
 
 

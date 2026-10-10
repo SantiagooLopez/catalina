@@ -20,6 +20,7 @@ from catalina_ingestion.domain.retrieval_runtime import (
 )
 
 GENERATION_UPSTREAM_CODES = {
+    "INVALID_CHAT_ROUTE",
     "OLLAMA_GENERATION_REJECTED",
     "INVALID_OLLAMA_GENERATION_RESPONSE",
     "UNEXPECTED_GENERATION_MODEL",

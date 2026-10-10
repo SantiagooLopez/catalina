@@ -1,3 +1,4 @@
+import json
 import re
 from collections.abc import Sequence
 from typing import Any
@@ -165,28 +166,75 @@ class GenerationService:
         client: httpx.AsyncClient,
         prompt: GenerationPrompt,
     ) -> tuple[str, GenerationStatistics]:
+        text, statistics = await self.chat(
+            messages=[
+                {"role": "system", "content": prompt.system_message},
+                {"role": "user", "content": prompt.user_message},
+            ],
+            output_schema={
+                "type": "object",
+                "properties": {
+                    "text": {"type": "string", "minLength": 1},
+                    "citations": {
+                        "type": "array", "minItems": 1,
+                        "items": {"type": "string", "enum": list(prompt.allowed_citations)},
+                    },
+                },
+                "required": ["text", "citations"], "additionalProperties": False,
+            },
+        )
+        # Accept legacy plain text only through the existing strict citation validator.
+        if not text.lstrip().startswith("{"):
+            return text, statistics
+        try:
+            result = json.loads(text)
+            answer_text = result["text"]
+            citations = result["citations"]
+            if not isinstance(answer_text, str) or not answer_text.strip():
+                raise ValueError("Texto de respuesta vacío.")
+            if not isinstance(citations, list) or not all(isinstance(c, str) for c in citations):
+                raise ValueError("Lista de citas inválida.")
+        except (ValueError, TypeError, KeyError) as error:
+            raise GenerationError(
+                "INVALID_OLLAMA_GENERATION_RESPONSE", "La respuesta estructurada no es válida.",
+            ) from error
+        unknown = [c for c in citations if c not in prompt.allowed_citations]
+        if unknown:
+            raise GenerationError(
+                "UNKNOWN_GENERATION_CITATION", "La respuesta contiene citas no autorizadas.",
+                {"unknown": unknown, "allowed": list(prompt.allowed_citations)},
+            )
+        # Render citations selected by the model, never infer or invent a missing source.
+        missing = [f"[{c}]" for c in dict.fromkeys(citations) if f"[{c}]" not in answer_text]
+        if missing:
+            answer_text = answer_text.rstrip() + " " + " ".join(missing)
+        return answer_text, statistics
+
+    async def chat(
+        self,
+        *,
+        messages: list[dict[str, str]],
+        output_schema: dict[str, Any] | None = None,
+        max_tokens: int | None = None,
+    ) -> tuple[str, GenerationStatistics]:
+        """Use the same validated Ollama transport for routing and ordinary chat."""
+        client = self.client or get_ollama_client()
+        payload: dict[str, Any] = {
+            "model": self.settings.ollama_generation_model,
+            "stream": False,
+            "keep_alive": self.settings.ollama_keep_alive,
+            "options": {
+                "temperature": self.settings.generation_temperature,
+                "num_predict": max_tokens or self.settings.generation_max_tokens,
+            },
+            "messages": messages,
+        }
+        if output_schema is not None:
+            payload["format"] = output_schema
         try:
             response = await client.post(
                 "/api/chat",
-                json={
-                    "model": (self.settings.ollama_generation_model),
-                    "stream": False,
-                    "keep_alive": self.settings.ollama_keep_alive,
-                    "options": {
-                        "temperature": (self.settings.generation_temperature),
-                        "num_predict": (self.settings.generation_max_tokens),
-                    },
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": prompt.system_message,
-                        },
-                        {
-                            "role": "user",
-                            "content": prompt.user_message,
-                        },
-                    ],
-                },
+                json=payload,
             )
         except (
             httpx.ConnectError,
@@ -221,14 +269,19 @@ class GenerationService:
             )
 
         try:
-            payload: dict[str, Any] = response.json()
+            response_payload = response.json()
         except ValueError as error:
             raise GenerationError(
                 "INVALID_OLLAMA_GENERATION_RESPONSE",
                 "Ollama devolvió una respuesta JSON inválida.",
             ) from error
 
-        return self._parse_response(payload)
+        if not isinstance(response_payload, dict):
+            raise GenerationError(
+                "INVALID_OLLAMA_GENERATION_RESPONSE",
+                "Ollama devolvió una respuesta inválida.",
+            )
+        return self._parse_response(response_payload)
 
     def _parse_response(
         self,

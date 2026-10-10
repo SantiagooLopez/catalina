@@ -43,7 +43,8 @@ El navegador llama `/api/v1`; el proxy de Vite reenvía al Debian, evitando camb
 - Renovación automática de tokens y cierre de sesión remoto.
 - Crear, listar, buscar por título, abrir, renombrar y eliminar conversaciones.
 - Paginación completa al leer conversaciones y mensajes.
-- Preguntas contra `/api/v1/answers`, con estado de espera y errores explícitos.
+- Conversación general y preguntas institucionales contra `/api/v1/answers`, con estado
+  de espera y errores explícitos. El backend decide cuándo consultar documentos.
 - Fuentes devueltas por la API: documento, versión, página y sección.
 - Modo claro/oscuro, diseño adaptable, etiquetas accesibles y foco de teclado visible.
 - Indicador de conectividad de la API en la barra lateral de la vista ampliada.
@@ -60,8 +61,9 @@ El navegador llama `/api/v1`; el proxy de Vite reenvía al Debian, evitando camb
 - La sesión no se comparte entre pestañas; la preferencia visual sí se guarda localmente.
 - Mapa interactivo, adjuntos/OCR, panel administrativo, Microsoft y logo final son etapas
   siguientes. Los accesos de sedes y reglamentos preparan preguntas para el chat.
-- El historial no implica memoria conversacional del modelo: la API recibe `query` y
-  `conversation_id`; la recuperación de contexto depende del servicio existente.
+- El backend recupera contexto reciente de la conversación: por defecto hasta ocho
+  intercambios y 8000 caracteres. Esto permite continuar un tema sin entrenar el modelo;
+  no es memoria permanente ni se comparte entre conversaciones.
 - Las fuentes tipográficas usan Google Fonts; si no hay Internet se usa sans-serif local.
 
 ## Comprobación en tu computador

@@ -70,6 +70,74 @@ def success_payload(**overrides):
 
 
 @pytest.mark.asyncio
+async def test_structured_rag_renders_only_model_selected_citations():
+    async def handler(request):
+        schema = json.loads(request.content)["format"]
+        assert schema["properties"]["citations"]["items"]["enum"] == ["S1"]
+        return httpx.Response(200, json=success_payload(message={
+            "role": "assistant",
+            "content": json.dumps({
+                "text": "El procedimiento está en la fuente.", "citations": ["S1"],
+            }),
+        }))
+
+    async with httpx.AsyncClient(
+        base_url="http://ollama.test", transport=httpx.MockTransport(handler),
+    ) as client:
+        answer = await GenerationService(settings=create_settings(), client=client).generate(
+            query="¿Cuál es el procedimiento?", prompt=create_prompt(), citations=[create_source()],
+        )
+    assert answer.text == "El procedimiento está en la fuente. [S1]"
+
+
+@pytest.mark.parametrize("selected", [["S99"], ["bad citation"], ["S1]"], ["[S1]"]])
+@pytest.mark.asyncio
+async def test_structured_rag_rejects_unallowed_source_ids(selected):
+    async def handler(request):
+        return httpx.Response(200, json=success_payload(message={
+            "role": "assistant",
+            "content": json.dumps({"text": "Una respuesta.", "citations": selected}),
+        }))
+
+    async with httpx.AsyncClient(
+        base_url="http://ollama.test", transport=httpx.MockTransport(handler),
+    ) as client:
+        with pytest.raises(GenerationError):
+            await GenerationService(settings=create_settings(), client=client).generate(
+                query="Pregunta", prompt=create_prompt(), citations=[create_source()],
+            )
+
+
+@pytest.mark.asyncio
+async def test_chat_transport_accepts_history_and_schema_without_requiring_citations():
+    messages = [
+        {"role": "system", "content": "Responde JSON"},
+        {"role": "user", "content": "Me llamo Ana"},
+        {"role": "assistant", "content": "Hola Ana"},
+        {"role": "user", "content": "¿Cómo me llamo?"},
+    ]
+    schema = {"type": "object", "properties": {"name": {"type": "string"}}}
+
+    async def handler(request):
+        payload = json.loads(request.content)
+        assert payload["messages"] == messages
+        assert payload["format"] == schema
+        assert payload["options"]["num_predict"] == 100
+        return httpx.Response(200, json=success_payload(message={
+            "role": "assistant", "content": '{"name":"Ana"}',
+        }))
+
+    async with httpx.AsyncClient(
+        base_url="http://ollama.test", transport=httpx.MockTransport(handler),
+    ) as client:
+        text, statistics = await GenerationService(settings=create_settings(), client=client).chat(
+            messages=messages, output_schema=schema, max_tokens=100,
+        )
+    assert text == '{"name":"Ana"}'
+    assert statistics.total_duration_ns == 1000
+
+
+@pytest.mark.asyncio
 async def test_generates_answer_with_expected_payload():
     async def handler(
         request: httpx.Request,

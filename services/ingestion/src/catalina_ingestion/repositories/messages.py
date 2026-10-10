@@ -17,6 +17,33 @@ _MESSAGE_COLUMNS = """
 
 
 class MessageRepository:
+    async def list_recent(
+        self,
+        connection: Any,
+        *,
+        conversation_id: int,
+        usuario_id: int,
+        limit: int = 8,
+    ) -> list[Message]:
+        """Read the latest owned turns, returned in chronological order."""
+        result = await connection.execute(
+            f"""
+            SELECT {_MESSAGE_COLUMNS}
+            FROM catalina.mensajes m
+            JOIN catalina.conversaciones c ON c.id = m.conversacion_id
+            WHERE m.conversacion_id = %s AND c.usuario_id = %s
+            ORDER BY m.fecha DESC, m.id DESC
+            LIMIT %s
+            """,
+            (
+                _validate_positive_id("conversation_id", conversation_id),
+                _validate_positive_id("usuario_id", usuario_id),
+                _validate_limit(limit),
+            ),
+        )
+        rows = await result.fetchall()
+        return [_to_message(row) for row in reversed(rows)]
+
     async def create(
         self,
         connection: Any,

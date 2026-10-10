@@ -3,12 +3,14 @@ from decimal import Decimal
 from time import perf_counter_ns
 from typing import Any
 
+from catalina_ingestion.core.config import get_settings
 from catalina_ingestion.db.postgres import (
     postgres_connection,
 )
 from catalina_ingestion.domain.conversation_answers import (
     ConversationAnswerResult,
 )
+from catalina_ingestion.domain.conversations import Message
 from catalina_ingestion.domain.exceptions import (
     ConversationNotFoundError,
 )
@@ -21,8 +23,8 @@ from catalina_ingestion.repositories.conversations import (
 from catalina_ingestion.repositories.messages import (
     MessageRepository,
 )
-from catalina_ingestion.services.answer_generation import (
-    AnswerGenerationService,
+from catalina_ingestion.services.chat import (
+    ChatService,
 )
 
 _NANOSECONDS_PER_SECOND = Decimal(1_000_000_000)
@@ -32,7 +34,7 @@ class ConversationAnswerService:
     def __init__(
         self,
         *,
-        answer_service: (AnswerGenerationService | None) = None,
+        answer_service: (ChatService | None) = None,
         conversation_repository: (ConversationRepository | None) = None,
         message_repository: (MessageRepository | None) = None,
         connection_factory: Callable[
@@ -44,7 +46,7 @@ class ConversationAnswerService:
             int,
         ] = perf_counter_ns,
     ) -> None:
-        self._answer_service = answer_service or AnswerGenerationService()
+        self._answer_service = answer_service or ChatService()
 
         self._conversations = conversation_repository or ConversationRepository()
 
@@ -61,7 +63,7 @@ class ConversationAnswerService:
         conversation_id: int,
         query: str,
     ) -> ConversationAnswerResult:
-        await self._validate_conversation(
+        history = await self._validate_conversation(
             user_id=user_id,
             conversation_id=conversation_id,
         )
@@ -71,7 +73,8 @@ class ConversationAnswerService:
         answer = await self._answer_service.answer(
             RetrievalQuery(
                 query=query,
-            )
+            ),
+            history=history,
         )
 
         finished_ns = self._clock_ns()
@@ -119,7 +122,7 @@ class ConversationAnswerService:
         *,
         user_id: int,
         conversation_id: int,
-    ) -> None:
+    ) -> list[Message]:
         async with self._connection_factory() as connection:
             conversation = await self._conversations.get_by_id(
                 connection,
@@ -127,5 +130,11 @@ class ConversationAnswerService:
                 usuario_id=user_id,
             )
 
-        if conversation is None:
-            raise ConversationNotFoundError
+            if conversation is None:
+                raise ConversationNotFoundError
+            return await self._messages.list_recent(
+                connection,
+                conversation_id=conversation_id,
+                usuario_id=user_id,
+                limit=get_settings().chat_history_turns,
+            )

@@ -86,6 +86,21 @@ def message_row(
 
 
 @pytest.mark.asyncio
+async def test_recent_history_is_owned_bounded_and_chronological():
+    connection = FakeConnection(
+        FakeResult(rows=[message_row(message_id=3), message_row(message_id=2)]),
+    )
+    messages = await MessageRepository().list_recent(
+        connection, conversation_id=10, usuario_id=7, limit=8,
+    )
+    assert [message.id for message in messages] == [2, 3]
+    query, params = connection.calls[0]
+    assert "c.usuario_id = %s" in query
+    assert "m.fecha DESC, m.id DESC" in query
+    assert params == (10, 7, 8)
+
+
+@pytest.mark.asyncio
 async def test_create_message_for_owned_conversation():
     connection = FakeConnection(FakeResult(row=message_row()))
 

@@ -6,6 +6,7 @@ from catalina_ingestion.domain.rag_context import ContextSource
 
 class GenerationReason(StrEnum):
     CONVERSATIONAL = "conversational"
+    GENERAL_CHAT = "general_chat"
     GENERATED = "generated"
     DOCUMENT_IDENTIFIER_RESOLVED = "document_identifier_resolved"
     INSUFFICIENT_EVIDENCE = "insufficient_evidence"
@@ -52,8 +53,8 @@ class GeneratedAnswer:
             raise ValueError("La consulta de generación no puede estar vacía.")
 
         if self.generated:
-            if self.reason is not GenerationReason.GENERATED:
-                raise ValueError("Una respuesta generada debe usar reason=generated.")
+            if self.reason not in (GenerationReason.GENERATED, GenerationReason.GENERAL_CHAT):
+                raise ValueError("Una respuesta generada debe usar un motivo de generación.")
 
             if not self.text.strip():
                 raise ValueError("Una respuesta generada no puede tener texto vacío.")
@@ -66,7 +67,7 @@ class GeneratedAnswer:
 
             return
 
-        if self.reason is GenerationReason.GENERATED:
+        if self.reason in (GenerationReason.GENERATED, GenerationReason.GENERAL_CHAT):
             raise ValueError("Una respuesta no generada no puede usar reason=generated.")
 
         if self.model is not None:

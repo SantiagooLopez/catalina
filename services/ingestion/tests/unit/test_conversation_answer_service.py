@@ -158,6 +158,8 @@ def build_service(
         2_500_000_000,
     ),
 ):
+    if not hasattr(messages, "list_recent"):
+        messages.list_recent = AsyncMock(return_value=[])
     connection = FakeConnection()
 
     factory = FakeConnectionFactory(connection)
@@ -234,6 +236,10 @@ async def test_generated_answer_is_persisted():
     query_argument = answer_service.answer.await_args.args[0]
 
     assert query_argument.query == generated.query
+    assert answer_service.answer.await_args.kwargs["history"] == []
+    messages.list_recent.assert_awaited_once_with(
+        connection, conversation_id=10, usuario_id=7, limit=8,
+    )
 
     (
         messages.create.assert_awaited_once_with(
@@ -330,6 +336,7 @@ async def test_missing_conversation_blocks_rag():
 
     messages.create.assert_not_awaited()
     conversations.touch.assert_not_awaited()
+    messages.list_recent.assert_not_awaited()
 
 
 @pytest.mark.asyncio
