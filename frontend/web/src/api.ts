@@ -52,6 +52,7 @@ export const api = {
   },
   async logout() { if (session) await raw('/auth/logout', 'POST', {refresh_token: session.refresh_token}); generation++; session = null; },
   health: () => raw<{status: string}>('/health'),
+  guestAnswer: (query: string) => raw<Pick<Answer, 'query' | 'text' | 'citations'>>('/guest/answers', 'POST', {query}),
   conversations: () => all<Conversation>('/conversations'),
   messages: (id: number) => all<Message>(`/conversations/${id}/messages`),
   create: (titulo: string) => request<Conversation>('/conversations', 'POST', {titulo}),

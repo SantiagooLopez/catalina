@@ -29,6 +29,7 @@ from catalina_ingestion.domain.generation import (
 from catalina_ingestion.domain.rag_context import (
     ContextSource,
 )
+from catalina_ingestion.domain.retrieval import RetrievalQuery
 from catalina_ingestion.services.auth import (
     AuthService,
 )
@@ -80,6 +81,35 @@ class SourceResponse(BaseModel):
     page_end: int | None
     section: str | None
     index_run_id: str
+
+
+class GuestAnswerRequest(BaseModel):
+    query: str = Field(min_length=1, max_length=1000)
+
+    @field_validator("query")
+    @classmethod
+    def clean_query(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("La consulta no puede estar vacía.")
+        return value.strip()
+
+
+class GuestAnswerResponse(BaseModel):
+    query: str
+    text: str
+    citations: list[SourceResponse]
+
+
+@router.post("/guest/answers", response_model=GuestAnswerResponse)
+async def guest_answer(payload: GuestAnswerRequest, request: Request) -> GuestAnswerResponse:
+    # No account, conversation identifiers or personal history are exposed or persisted.
+    service = request.app.state.answer_service
+    result = await service.answer(RetrievalQuery(query=payload.query))
+    return GuestAnswerResponse(
+        query=result.query,
+        text=result.text,
+        citations=[_source_response(source) for source in result.citations],
+    )
 
 
 class GenerationStatisticsResponse(BaseModel):
