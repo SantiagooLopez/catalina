@@ -1,7 +1,7 @@
-# Catalina Web — primera entrega de Fase 10
+# Catalina Web — portal universitario y asistente
 
-Base revisada: feature/professional-api, commit e40b73b.
-Frontend React + TypeScript + Vite. No requiere cambios al backend para las funciones incluidas.
+Frontend React + TypeScript + Vite. El widget utiliza la ruta pública de consultas
+incluida en el backend del mismo repositorio.
 
 ## Windows / PowerShell
 
@@ -36,7 +36,8 @@ El navegador llama `/api/v1`; el proxy de Vite reenvía al Debian, evitando camb
 ## Qué incluye
 
 - Portal propio inspirado en la referencia institucional, con azul y dorado.
-- Avatar provisional vectorial; no incluye aún el escudo ni el logo definitivo de Catalina.
+- Logo oficial aportado por el usuario y marca vectorial propia para Catalina.
+- Banner basado en la captura aportada; sustituir por el archivo original para mayor nitidez.
 - Widget flotante y vista ampliada en `#/chat`, conservando la conversación al alternar.
 - Login real contra `/api/v1/auth/login`, con una cuenta ya existente en Catalina.
 - Tokens solamente en memoria; se vuelve a iniciar sesión al recargar la página.
@@ -51,15 +52,19 @@ El navegador llama `/api/v1`; el proxy de Vite reenvía al Debian, evitando camb
 
 ## Limitaciones explícitas
 
-- La API actual exige sesión para preguntar: el widget puede abrirse sin sesión, pero
-  la consulta necesita login. No hay autorregistro en el contrato actual.
+- El widget permite consultas independientes sin sesión mediante `POST /api/v1/guest/answers`.
+  Comparte el límite de solicitudes por IP de respuestas autenticadas y el control de
+  concurrencia del modelo. No guarda historial en PostgreSQL ni recibe identificadores de
+  cuentas o conversaciones. Los mensajes del visitante permanecen solo en memoria de la página.
+- La vista ampliada exige sesión. No importa automáticamente las consultas del visitante
+  al historial personal. No hay autorregistro en el contrato actual.
 - `/conversations/{id}/messages` no devuelve citas. Las citas de respuestas nuevas se
   conservan en memoria durante la sesión; al recargar no es posible reconstruirlas.
 - No hay endpoint de descarga pública de documentos en el contrato recibido. Por eso
   las fuentes no ofrecen descargas ficticias.
 - Los mensajes se muestran como texto, sin interpretar HTML recibido del modelo.
 - La sesión no se comparte entre pestañas; la preferencia visual sí se guarda localmente.
-- Mapa interactivo, adjuntos/OCR, panel administrativo, Microsoft y logo final son etapas
+- Mapa interactivo, adjuntos/OCR, panel administrativo y Microsoft son etapas
   siguientes. Los accesos de sedes y reglamentos preparan preguntas para el chat.
 - El backend recupera contexto reciente de la conversación: por defecto hasta ocho
   intercambios y 8000 caracteres. Esto permite continuar un tema sin entrenar el modelo;
