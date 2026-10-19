@@ -1,0 +1,13 @@
+.catalina-mascot{display:block;object-fit:contain;flex-shrink:0;background:#fff;border-radius:22px;width:112px;height:112px}
+.avatar{background:#fff;border:1px solid #e1e9f0;border-radius:50%;padding:2px}
+.avatar img{display:block;object-fit:contain;border-radius:50%}
+.login-mascot{width:112px;height:112px;margin:0 auto 16px;border:1px solid #e1e9f0;box-shadow:0 8px 28px #183b5a08}
+.welcome-mascot{width:120px;height:120px;margin:0 auto 20px;border:1px solid #e1e9f0}
+.compact .welcome-mascot{width:84px;height:84px;margin-bottom:14px;border-radius:18px}
+.answer-label .avatar{width:27px;height:27px;padding:0}
+.catalina-emblem>.catalina-mascot{width:clamp(170px,23vw,320px);height:auto;aspect-ratio:1;border-radius:36px;box-shadow:0 18px 60px #00163240;transform:rotate(-4deg)}
+.callout-brand>.catalina-mascot{width:108px;height:108px;border-radius:23px}
+.map-place-empty>.map-guide-mascot{width:100px;height:100px;margin:0 auto;border:1px solid #e1e9f0}
+.map-chat-title>img{background:#fff;border-radius:50%;border:1px solid #e1e9f0;padding:2px;object-fit:contain}
+.institutional-nav button img,.campus-shortcuts>button img{background:#fff;border-radius:50%;object-fit:contain}
+@media(max-width:560px){.login-mascot{width:96px;height:96px}.welcome-mascot{width:100px;height:100px}.callout-brand>.catalina-mascot{width:80px;height:80px;border-radius:17px}}
