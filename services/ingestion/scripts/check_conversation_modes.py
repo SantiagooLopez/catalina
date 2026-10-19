@@ -56,7 +56,9 @@ async def main(followup_only=False):
             before = len(rag.queries)
             started = perf_counter()
             answer = await chat.answer(RetrievalQuery(query=question), history=history)
-            actual = "university" if len(rag.queries) > before else "general"
+            actual = "university" if (
+                len(rag.queries) > before or answer.reason is GenerationReason.CAMPUS_LOCATION
+            ) else "general"
             passed = actual == expected
             if expected == "general":
                 passed = passed and answer.reason == GenerationReason.GENERAL_CHAT

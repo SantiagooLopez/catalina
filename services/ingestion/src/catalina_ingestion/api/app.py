@@ -33,6 +33,7 @@ from catalina_ingestion.api.routes.answers import (
 from catalina_ingestion.api.routes.auth import (
     router as auth_router,
 )
+from catalina_ingestion.api.routes.campus import router as campus_router
 from catalina_ingestion.api.routes.conversations import (
     router as conversations_router,
 )
@@ -199,6 +200,7 @@ def create_app() -> FastAPI:
         answers_router,
         prefix="/api/v1",
     )
+    app.include_router(campus_router, prefix="/api/v1")
 
     app.include_router(
         auth_router,

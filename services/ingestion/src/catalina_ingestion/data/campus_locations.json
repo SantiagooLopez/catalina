@@ -1,0 +1,40 @@
+{
+  "reviewed_at": "2026-10-18",
+  "reference_image": "/maps/campus-reference.png",
+  "reference_width": 812,
+  "reference_height": 440,
+  "google_maps_url": "https://www.google.com/maps/search/universidad+catolica/@4.6338976,-74.0693095,17.56z",
+  "sources": {
+    "contacts": {"label": "Contactos y ubicaciones · Universidad Católica", "url": "https://www.ucatolica.edu.co/portal/nuestra-universidad/contactos-y-ubicaciones/"},
+    "directory": {"label": "Directorio de unidades · Universidad Católica", "url": "https://www.ucatolica.edu.co/portal/nuestra-universidad/contactos-y-ubicaciones/directorio-de-unidades/"},
+    "languages": {"label": "Instituto de Lenguas · Universidad Católica", "url": "https://www.ucatolica.edu.co/portal/internacionalizacion/instituto-de-lenguas/"},
+    "reference": {"label": "Captura y enlace de Google Maps aportados por el usuario", "url": "https://www.google.com/maps/search/universidad+catolica/@4.6338976,-74.0693095,17.56z"},
+    "pending": {"label": "Pendiente de confirmación", "url": null}
+  },
+  "locations": [
+    {"id": "claustro", "name": "Sede El Claustro", "category": "sede", "aliases": ["claustro", "el claustro", "sede claustro", "sede el claustro"], "address": "Diagonal 46 A # 15 B – 10, Bogotá", "source_id": "contacts", "reference_point": {"x": 0.328, "y": 0.493}, "note": "Marcador orientativo de sede. El directorio de unidades publica también el número 15 B – 12; acceso exacto por confirmar."},
+    {"id": "carrera-13", "name": "Sede Carrera 13", "category": "sede", "aliases": ["sede carrera 13", "sede de carrera 13", "campus carrera 13"], "address": "Carrera 13 # 47 – 49, Bogotá", "source_id": "contacts", "note": "El directorio publica también # 47 – 50. Marcador y acceso exacto por confirmar."},
+    {"id": "sede-4", "name": "Sede 4", "category": "sede", "aliases": ["sede 4", "sede cuatro"], "address": "Carrera 13 # 47 – 30, Bogotá", "source_id": "contacts", "note": "Dirección publicada; marcador en la referencia pendiente de confirmar."},
+    {"id": "las-torres", "name": "Sede Las Torres", "category": "sede", "aliases": ["las torres", "sede las torres", "sede torres"], "address": "Avenida Caracas # 46 – 72, Bogotá", "source_id": "contacts", "note": "Dirección publicada; marcador en la referencia pendiente de confirmar."},
+    {"id": "psicologia", "name": "Facultad de Psicología", "category": "facultad", "aliases": ["psicologia", "facultad de psicologia", "facultad psicologia"], "address": "Avenida Caracas # 46 – 22, Bogotá", "source_id": "contacts", "reference_point": {"x": 0.554, "y": 0.730}, "note": "Referencia exterior de la facultad; no identifica oficinas interiores."},
+    {"id": "servicios-psicologicos", "name": "Unidad de Servicios Psicológicos", "category": "servicio", "aliases": ["unidad de servicios psicologicos", "servicios psicologicos", "usp"], "address": "Calle 48 # 15 – 71, Bogotá", "source_id": "contacts", "reference_point": {"x": 0.293, "y": 0.186}, "note": "Ubicación orientativa tomada de la captura."},
+    {"id": "lenguas", "name": "Instituto de Lenguas", "category": "servicio", "aliases": ["instituto de lenguas", "lenguas", "idiomas", "instituto de idiomas"], "address": "Carrera 13 # 47 – 49, Edificio Fuentes, Bogotá", "source_id": "languages", "parent_id": "carrera-13", "reference_point": {"x": 0.579, "y": 0.410}, "note": "Referencia del edificio visible en la captura."},
+    {"id": "capilla", "name": "Capilla Universidad Católica", "category": "referencia", "aliases": ["capilla", "capilla universidad catolica"], "address": null, "source_id": "reference", "reference_point": {"x": 0.259, "y": 0.375}, "note": "Visible en la captura. Dirección y acceso peatonal exactos por confirmar."},
+    {"id": "liceo-referencia", "name": "Liceo Universidad Católica · referencia", "category": "referencia", "aliases": ["liceo", "liceo universidad catolica"], "address": null, "source_id": "reference", "reference_point": {"x": 0.347, "y": 0.595}, "note": "Confirma si este marcador corresponde a primaria o a bachillerato."},
+    {"id": "liceo-primaria", "name": "Liceo · Primaria", "category": "sede", "aliases": ["liceo primaria", "primaria"], "address": "Diagonal 46 A # 15 B – 17, Bogotá", "source_id": "contacts", "note": "Marcador pendiente de confirmar."},
+    {"id": "liceo-bachillerato", "name": "Liceo · Bachillerato", "category": "sede", "aliases": ["liceo bachillerato", "bachillerato"], "address": "Carrera 15 # 46 – 69/67, Bogotá", "source_id": "contacts", "note": "Marcador pendiente de confirmar."},
+    {"id": "extension", "name": "Casa Extensión", "category": "servicio", "aliases": ["casa extension", "direccion de extension", "extension"], "address": "Diagonal 46 # 15 B – 18, Bogotá", "source_id": "contacts", "note": "Marcador pendiente de confirmar."},
+    {"id": "consultorio-juridico", "name": "Consultorio Jurídico", "category": "servicio", "aliases": ["consultorio juridico", "consultorio de derecho"], "address": "Carrera 13 # 46 – 61, Bogotá", "source_id": "contacts", "note": "Marcador pendiente de confirmar."},
+    {"id": "bienestar", "name": "Bienestar Institucional", "category": "dependencia", "aliases": ["bienestar", "bienestar institucional", "bienestar universitario"], "address": null, "source_id": "directory", "parent_id": "claustro", "note": "El directorio lo ubica en El Claustro. Piso y oficina pendientes de confirmar."},
+    {"id": "ingenieria", "name": "Facultad de Ingeniería", "category": "facultad", "aliases": ["ingenieria", "facultad de ingenieria"], "address": null, "source_id": "directory", "parent_id": "claustro", "note": "Se muestra la referencia de su sede. Oficina exacta por confirmar."},
+    {"id": "diseno", "name": "Facultad de Diseño", "category": "facultad", "aliases": ["facultad de diseno", "facultad diseno"], "address": null, "source_id": "directory", "parent_id": "claustro", "note": "Se muestra la referencia de su sede. Oficina exacta por confirmar."},
+    {"id": "ciencias-basicas", "name": "Ciencias Básicas", "category": "dependencia", "aliases": ["ciencias basicas"], "address": null, "source_id": "directory", "parent_id": "claustro", "note": "Oficina exacta por confirmar."},
+    {"id": "internacionales", "name": "Relaciones Internacionales", "category": "dependencia", "aliases": ["relaciones internacionales", "oficina de relaciones internacionales"], "address": null, "source_id": "directory", "parent_id": "claustro", "note": "Oficina exacta por confirmar."},
+    {"id": "derecho", "name": "Facultad de Derecho", "category": "facultad", "aliases": ["facultad de derecho", "facultad derecho"], "address": null, "source_id": "directory", "parent_id": "carrera-13", "note": "Oficina y marcador de la sede pendientes de confirmar."},
+    {"id": "biblioteca-central", "name": "Biblioteca Central · Carrera 13", "category": "servicio", "aliases": ["biblioteca", "biblioteca central", "biblioteca carrera 13"], "address": null, "source_id": "directory", "parent_id": "carrera-13", "note": "Acceso y marcador pendientes de confirmar."},
+    {"id": "biblioteca-sede-4", "name": "Biblioteca · Sede 4", "category": "servicio", "aliases": ["biblioteca", "biblioteca sede 4", "biblioteca de sede 4", "biblioteca de la sede 4"], "address": null, "source_id": "directory", "parent_id": "sede-4", "note": "Acceso y marcador pendientes de confirmar."},
+    {"id": "registro-academico", "name": "Registro y Control Académico", "category": "pendiente", "aliases": ["registro academico", "registro y control", "registro y control academico"], "address": null, "source_id": "pending", "note": "Necesitamos que confirmes sede, piso y oficina antes de ubicar esta dependencia."},
+    {"id": "admisiones", "name": "Admisiones", "category": "pendiente", "aliases": ["admisiones", "oficina de admisiones"], "address": null, "source_id": "pending", "note": "Ubicación pendiente de confirmación."},
+    {"id": "tesoreria", "name": "Tesorería", "category": "pendiente", "aliases": ["tesoreria", "oficina de tesoreria"], "address": null, "source_id": "pending", "note": "Ubicación pendiente de confirmación."}
+  ]
+}

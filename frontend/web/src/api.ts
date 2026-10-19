@@ -1,14 +1,16 @@
 import type { Session, User, Conversation, Message, Page, Answer } from './types';
+import type {CampusCatalog, CampusReply} from './campusTypes';
 let session: Session | null = null;
 let refreshing: Promise<void> | null = null;
 let generation = 0;
+let campusRequest: Promise<CampusCatalog> | null = null;
 export class ApiError extends Error { constructor(message: string, public status: number) { super(message); } }
-async function raw<T>(path: string, method = 'GET', body?: unknown, token?: string): Promise<T> {
+async function raw<T>(path: string, method = 'GET', body?: unknown, token?: string, timeoutMs = 240000): Promise<T> {
   let response: Response;
   try {
     response = await fetch('/api/v1' + path, {
       method, headers: { ...(body !== undefined ? {'Content-Type': 'application/json'} : {}), ...(token ? {Authorization: `Bearer ${token}`} : {}) },
-      body: body === undefined ? undefined : JSON.stringify(body), signal: AbortSignal.timeout(240000), cache: 'no-store'
+      body: body === undefined ? undefined : JSON.stringify(body), signal: AbortSignal.timeout(timeoutMs), cache: 'no-store'
     });
   } catch { throw new ApiError('No se pudo completar la conexión. Comprueba Debian y tu red. Si enviaste una pregunta, revisa el historial antes de repetirla.', 0); }
   if (response.status === 204) return undefined as T;
@@ -46,13 +48,18 @@ async function all<T>(path: string): Promise<T[]> {
   }
 }
 export const api = {
+  campusLocations: () => {
+    if (!campusRequest) campusRequest = raw<CampusCatalog>('/campus/locations', 'GET', undefined, undefined, 12000).catch(error => {campusRequest=null;throw error;});
+    return campusRequest;
+  },
+  campusQuestion: (query:string, selected_id:string|null) => raw<CampusReply>('/campus/query', 'POST', {query, selected_id}, undefined, 15000),
   async login(email: string, password: string): Promise<User> {
     const data = await raw<Session>('/auth/login', 'POST', {email, password});
     generation++; session = data; return data.user;
   },
   async logout() { if (session) await raw('/auth/logout', 'POST', {refresh_token: session.refresh_token}); generation++; session = null; },
   health: () => raw<{status: string}>('/health'),
-  guestAnswer: (query: string) => raw<Pick<Answer, 'query' | 'text' | 'citations' | 'reason' | 'generated'>>('/guest/answers', 'POST', {query}),
+  guestAnswer: (query: string) => raw<Pick<Answer, 'query' | 'text' | 'citations' | 'reason' | 'generated' | 'locations'>>('/guest/answers', 'POST', {query}),
   conversations: () => all<Conversation>('/conversations'),
   messages: (id: number) => all<Message>(`/conversations/${id}/messages`),
   create: (titulo: string) => request<Conversation>('/conversations', 'POST', {titulo}),

@@ -11,6 +11,7 @@ class GenerationReason(StrEnum):
     CACHED = "cached"
     DOCUMENT_OVERVIEW = "document_overview"
     DOCUMENT_EXCERPT = "document_excerpt"
+    CAMPUS_LOCATION = "campus_location"
     DOCUMENT_IDENTIFIER_RESOLVED = "document_identifier_resolved"
     INSUFFICIENT_EVIDENCE = "insufficient_evidence"
     INSUFFICIENT_EVIDENCE_AFTER_BUDGET = "insufficient_evidence_after_budget"
@@ -50,6 +51,7 @@ class GeneratedAnswer:
     model: str | None
     citations: tuple[ContextSource, ...]
     statistics: GenerationStatistics | None = None
+    locations: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
         if not self.query.strip():

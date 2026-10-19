@@ -18,6 +18,7 @@ from catalina_ingestion.domain.exceptions import GenerationError, TransientGener
 from catalina_ingestion.domain.generation import GeneratedAnswer, GenerationReason
 from catalina_ingestion.domain.retrieval import RetrievalQuery
 from catalina_ingestion.services.answer_generation import AnswerGenerationService
+from catalina_ingestion.services.campus import directory_answer
 from catalina_ingestion.services.conversation_routing import conversational_reply
 from catalina_ingestion.services.generation import GenerationService
 
@@ -130,6 +131,9 @@ class ChatService:
     async def answer(
         self, query: RetrievalQuery, *, history: Sequence[Message] = (),
     ) -> GeneratedAnswer:
+        location = directory_answer(query.query)
+        if location is not None:
+            return location
         reply = conversational_reply(query.query)
         if reply is not None:
             return self._direct(query.query, reply)
@@ -167,6 +171,9 @@ class ChatService:
         if route.route == "university":
             # Rewriting resolves references, while display and persistence retain the user's text.
             search_query = route.search_query.strip()
+            location = directory_answer(search_query)
+            if location is not None:
+                return replace(location, query=query.query)
             result = await self.rag_service.answer(replace(query, query=search_query))
             logger.info("chat_completed route=university")
             return replace(result, query=query.query)

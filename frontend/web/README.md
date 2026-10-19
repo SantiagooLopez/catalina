@@ -36,6 +36,7 @@ El navegador llama `/api/v1`; el proxy de Vite reenvía al Debian, evitando camb
 ## Qué incluye
 
 - Portal propio inspirado en la referencia institucional, con azul y dorado.
+- Mapa de referencia interactivo en la vista ampliada: consulta `CAMPUS_MAP.md`.
 - Logo oficial aportado por el usuario y marca vectorial propia para Catalina.
 - Banner basado en la captura aportada; sustituir por el archivo original para mayor nitidez.
 - Widget flotante y vista ampliada en `#/chat`, conservando la conversación al alternar.

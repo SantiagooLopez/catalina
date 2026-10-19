@@ -101,6 +101,7 @@ class GuestAnswerResponse(BaseModel):
     generated: bool
     reason: GenerationReason
     model: str | None
+    locations: list[str] = Field(default_factory=list)
 
 
 @router.post("/guest/answers", response_model=GuestAnswerResponse)
@@ -115,6 +116,7 @@ async def guest_answer(payload: GuestAnswerRequest, request: Request) -> GuestAn
         generated=result.generated,
         reason=result.reason,
         model=result.model,
+        locations=list(result.locations),
     )
 
 
@@ -137,6 +139,7 @@ class AnswerResponse(BaseModel):
     model: str | None
     citations: list[SourceResponse]
     statistics: GenerationStatisticsResponse | None
+    locations: list[str] = Field(default_factory=list)
 
 
 def _get_auth_service(
@@ -217,6 +220,7 @@ def build_answer_response(
         model=answer.model,
         citations=[_source_response(source) for source in answer.citations],
         statistics=_statistics_response(answer.statistics),
+        locations=list(answer.locations),
     )
 
 

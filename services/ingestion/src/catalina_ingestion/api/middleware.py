@@ -156,7 +156,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
                 self.login_limit,
             )
 
-        if path in ("/api/v1/answers", "/api/v1/guest/answers"):
+        if path in ("/api/v1/answers", "/api/v1/guest/answers", "/api/v1/campus/query"):
             return (
                 "answers",
                 self.answers_limit,
