@@ -18,7 +18,7 @@ from catalina_ingestion.services.chat import ChatService
 
 def test_catalog_marks_reference_pixels_and_unknown_positions_explicitly():
     data = public_catalog()
-    assert data["reference_width"] == 1200
+    assert data["reference_width"] == 760
     places = {place["id"]: place for place in data["locations"]}
     assert places["bienestar"]["anchor_id"] == "claustro"
     assert places["bienestar"]["reference_point"] is None
@@ -121,7 +121,23 @@ def test_user_confirmed_buildings_have_independent_positions():
     for key in ("sede-4", "biblioteca-sede-4", "carrera-13", "las-torres", "derecho"):
         assert places[key].reference_point is not None
         assert places[key].source_id == "confirmed"
-    assert places["derecho"].parent_id is None
+    assert places["derecho"].parent_id == "las-torres"
     assert places["derecho"].address is None
     assert "construcción" in places["carrera-13"].note
     assert places["biblioteca-sede-4"].reference_point != places["sede-4"].reference_point
+
+
+def test_colored_campus_blocks_and_hierarchical_numbers_match_confirmed_plan():
+    places = {p.id: p for p in campus_catalog().locations}
+    assert len(places["liceo-referencia"].reference_areas) == 2
+    assert places["claustro"].map_label == "5"
+    assert places["capilla"].parent_id == "claustro"
+    assert places["capilla"].map_label == "5.2"
+    assert places["auditorio-sede-4"].parent_id == "sede-4"
+    assert places["auditorio-sede-4"].map_label == "1.2"
+    assert places["polideportivo"].parent_id == "las-torres"
+    assert places["polideportivo"].map_label == "3.3"
+    assert places["polideportivo"].reference_areas
+    answer = directory_answer("¿Dónde quedan las canchas de fútbol?")
+    assert answer.locations == ("polideportivo",)
+    assert "Las Torres" in answer.text

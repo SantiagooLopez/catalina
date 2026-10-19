@@ -31,6 +31,9 @@ class CampusLocation(BaseModel):
     source_id: str
     parent_id: str | None = None
     reference_point: ReferencePoint | None = None
+    map_label: str | None = Field(default=None, pattern=r"^\d+(?:\.\d+)?$")
+    reference_areas: list[list[ReferencePoint]] = Field(default_factory=list)
+    map_color: str = Field(default="#087faa", pattern=r"^#[0-9a-fA-F]{6}$")
     note: str
 
 

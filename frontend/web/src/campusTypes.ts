@@ -3,6 +3,7 @@ export interface CampusPlace {
   id:string; name:string; category:string; aliases:string[]; address:string|null;
   parent_id:string|null; parent_name:string|null; reference_point:CampusPoint|null;
   resolved_address:string|null; anchor_id:string|null; note:string;
+  map_label?:string|null; reference_areas?:CampusPoint[][]; map_color?:string;
   source:{label:string; url:string|null};
 }
 export interface CampusCatalog {

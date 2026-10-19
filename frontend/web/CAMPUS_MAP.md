@@ -16,10 +16,15 @@ como un esquema sin escala. Las posiciones se expresan como fracciones de ese pl
 acercarlo y seleccionar marcadores. No se descargan mosaicos ni se usa una API de pago.
 La captura original se utilizó como referencia de distribución, no como fondo del mapa.
 
-El usuario confirmó los puntos 1 Sede 4, 2 Biblioteca de Sede 4, 3 Carrera 13 en construcción,
-4 Las Torres y 5 Facultad de Derecho. Estos cinco marcadores conservan esa numeración.
-Derecho tiene un punto propio y ya no hereda una ubicación de Carrera 13. Su dirección
-postal queda pendiente; no se extrapola una dirección a partir del dibujo.
+El plano sigue los bloques trazados por el usuario: 1 Sede 4 (1.1 Biblioteca, 1.2 Auditorio),
+2 Carrera 13 (2.1 Lenguas), 3 Las Torres (3.1 Psicología, 3.2 Derecho, 3.3 Polideportivo),
+4 Liceo (dos bloques) y 5 El Claustro (5.1 Servicios Psicológicos, 5.2 Capilla).
+Las áreas completas son polígonos seleccionables. El Polideportivo incluye una cancha
+dibujada. Caracas es roja; el corredor de Carrera 13, azul; las demás calles, oscuras.
+Los nombres solo aparecen al pasar el mouse o seleccionar una ubicación. En la vista
+general pequeña se muestran los números de sede; acercar el zoom revela las dependencias.
+El mapa permite zoom centrado, pero no arrastre, desplazamiento por teclado ni box-zoom.
+Las consultas resaltan el punto y su sede sin desplazar el plano automáticamente.
 
 Google Maps se abre mediante enlaces externos de búsqueda o indicaciones basados en las
 direcciones publicadas. El sistema no calcula rutas peatonales, distancias o accesos internos.

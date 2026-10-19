@@ -1,8 +1,8 @@
 {
   "reviewed_at": "2026-10-18",
   "reference_image": "/maps/campus-plan.svg",
-  "reference_width": 1200,
-  "reference_height": 700,
+  "reference_width": 760,
+  "reference_height": 550,
   "google_maps_url": "https://www.google.com/maps/search/universidad+catolica/@4.6338976,-74.0693095,17.56z",
   "sources": {
     "contacts": {
@@ -42,12 +42,34 @@
         "sede el claustro"
       ],
       "address": "Diagonal 46 A # 15 B – 10, Bogotá",
-      "source_id": "contacts",
+      "source_id": "confirmed",
+      "note": "El área roja completa representa El Claustro. Incluye la Unidad de Servicios Psicológicos y la Capilla; acceso exacto por confirmar.",
+      "map_label": "5",
       "reference_point": {
-        "x": 0.28,
-        "y": 0.46
+        "x": 0.27631578947368424,
+        "y": 0.3290909090909091
       },
-      "note": "Marcador orientativo de sede. El directorio de unidades publica también el número 15 B – 12; acceso exacto por confirmar."
+      "map_color": "#ea5261",
+      "reference_areas": [
+        [
+          {
+            "x": 0.2118421052631579,
+            "y": 0.23272727272727273
+          },
+          {
+            "x": 0.325,
+            "y": 0.26181818181818184
+          },
+          {
+            "x": 0.30394736842105263,
+            "y": 0.45636363636363636
+          },
+          {
+            "x": 0.19342105263157894,
+            "y": 0.38
+          }
+        ]
+      ]
     },
     {
       "id": "carrera-13",
@@ -61,10 +83,32 @@
       "address": "Carrera 13 # 47 – 49, Bogotá",
       "source_id": "confirmed",
       "note": "Edificio de Carrera 13 identificado por el usuario como actualmente en construcción. El directorio publica variantes # 47 – 49 y # 47 – 50; confirmar el acceso antes de acudir.",
+      "map_label": "2",
       "reference_point": {
-        "x": 0.65,
-        "y": 0.43
-      }
+        "x": 0.5236842105263158,
+        "y": 0.39454545454545453
+      },
+      "map_color": "#f5ae25",
+      "reference_areas": [
+        [
+          {
+            "x": 0.46842105263157896,
+            "y": 0.3018181818181818
+          },
+          {
+            "x": 0.6013157894736842,
+            "y": 0.33454545454545453
+          },
+          {
+            "x": 0.5789473684210527,
+            "y": 0.4763636363636364
+          },
+          {
+            "x": 0.44342105263157894,
+            "y": 0.4509090909090909
+          }
+        ]
+      ]
     },
     {
       "id": "sede-4",
@@ -77,10 +121,32 @@
       "address": "Carrera 13 # 47 – 30, Bogotá",
       "source_id": "confirmed",
       "note": "Ubicación de Sede 4 confirmada por el usuario. El marcador representa el edificio; no una puerta específica.",
+      "map_label": "1",
       "reference_point": {
-        "x": 0.78,
-        "y": 0.38
-      }
+        "x": 0.6421052631578947,
+        "y": 0.43272727272727274
+      },
+      "map_color": "#147bc1",
+      "reference_areas": [
+        [
+          {
+            "x": 0.6052631578947368,
+            "y": 0.34545454545454546
+          },
+          {
+            "x": 0.7065789473684211,
+            "y": 0.37272727272727274
+          },
+          {
+            "x": 0.6802631578947368,
+            "y": 0.52
+          },
+          {
+            "x": 0.5789473684210527,
+            "y": 0.49636363636363634
+          }
+        ]
+      ]
     },
     {
       "id": "las-torres",
@@ -93,11 +159,33 @@
       ],
       "address": "Avenida Caracas # 46 – 72, Bogotá",
       "source_id": "confirmed",
-      "note": "Sede Las Torres identificada por el usuario al costado oriental de la Avenida Caracas.",
+      "note": "El bloque morado completo representa Las Torres. Incluye Psicología, Derecho y el Polideportivo.",
+      "map_label": "3",
       "reference_point": {
-        "x": 0.565,
-        "y": 0.635
-      }
+        "x": 0.4723684210526316,
+        "y": 0.5054545454545455
+      },
+      "map_color": "#9856e8",
+      "reference_areas": [
+        [
+          {
+            "x": 0.44342105263157894,
+            "y": 0.46
+          },
+          {
+            "x": 0.5763157894736842,
+            "y": 0.4890909090909091
+          },
+          {
+            "x": 0.5526315789473685,
+            "y": 0.6618181818181819
+          },
+          {
+            "x": 0.42105263157894735,
+            "y": 0.6272727272727273
+          }
+        ]
+      ]
     },
     {
       "id": "psicologia",
@@ -109,12 +197,16 @@
         "facultad psicologia"
       ],
       "address": "Avenida Caracas # 46 – 22, Bogotá",
-      "source_id": "contacts",
+      "source_id": "confirmed",
+      "note": "Facultad de Psicología dentro de Sede Las Torres, junto a Derecho, según el plano confirmado por el usuario.",
+      "map_label": "3.1",
       "reference_point": {
-        "x": 0.526,
-        "y": 0.72
+        "x": 0.4631578947368421,
+        "y": 0.5618181818181818
       },
-      "note": "Referencia exterior de la facultad; no identifica oficinas interiores."
+      "map_color": "#9856e8",
+      "parent_id": "las-torres",
+      "reference_areas": []
     },
     {
       "id": "servicios-psicologicos",
@@ -126,12 +218,16 @@
         "usp"
       ],
       "address": "Calle 48 # 15 – 71, Bogotá",
-      "source_id": "contacts",
+      "source_id": "confirmed",
+      "note": "Unidad de Servicios Psicológicos en el área de El Claustro, según el plano confirmado por el usuario.",
+      "map_label": "5.1",
       "reference_point": {
-        "x": 0.244,
-        "y": 0.13
+        "x": 0.23157894736842105,
+        "y": 0.27090909090909093
       },
-      "note": "Ubicación orientativa tomada de la captura."
+      "map_color": "#ea5261",
+      "parent_id": "claustro",
+      "reference_areas": []
     },
     {
       "id": "lenguas",
@@ -141,16 +237,21 @@
         "instituto de lenguas",
         "lenguas",
         "idiomas",
-        "instituto de idiomas"
+        "instituto de idiomas",
+        "facultad de lenguas",
+        "facultad lenguas"
       ],
       "address": "Carrera 13 # 47 – 49, Edificio Fuentes, Bogotá",
-      "source_id": "languages",
+      "source_id": "confirmed",
       "parent_id": "carrera-13",
+      "note": "Referencia del edificio visible en la captura.",
+      "map_label": "2.1",
       "reference_point": {
-        "x": 0.553,
-        "y": 0.375
+        "x": 0.48157894736842105,
+        "y": 0.3472727272727273
       },
-      "note": "Referencia del edificio visible en la captura."
+      "map_color": "#f5ae25",
+      "reference_areas": []
     },
     {
       "id": "capilla",
@@ -161,28 +262,76 @@
         "capilla universidad catolica"
       ],
       "address": null,
-      "source_id": "reference",
+      "source_id": "confirmed",
+      "note": "Capilla dentro del área de El Claustro, según el plano confirmado por el usuario.",
+      "map_label": "5.2",
       "reference_point": {
-        "x": 0.207,
-        "y": 0.333
+        "x": 0.21710526315789475,
+        "y": 0.3490909090909091
       },
-      "note": "Visible en la captura. Dirección y acceso peatonal exactos por confirmar."
+      "map_color": "#ea5261",
+      "parent_id": "claustro",
+      "reference_areas": []
     },
     {
       "id": "liceo-referencia",
-      "name": "Liceo Universidad Católica · referencia",
+      "name": "Liceo Universidad Católica",
       "category": "referencia",
       "aliases": [
         "liceo",
         "liceo universidad catolica"
       ],
       "address": null,
-      "source_id": "reference",
+      "source_id": "confirmed",
+      "note": "Los dos bloques verdes forman el Liceo, según la confirmación del usuario. Distribución de primaria y bachillerato pendiente.",
+      "map_label": "4",
       "reference_point": {
-        "x": 0.302,
-        "y": 0.567
+        "x": 0.1986842105263158,
+        "y": 0.46545454545454545
       },
-      "note": "Confirma si este marcador corresponde a primaria o a bachillerato."
+      "map_color": "#16ad69",
+      "reference_areas": [
+        [
+          {
+            "x": 0.1881578947368421,
+            "y": 0.3927272727272727
+          },
+          {
+            "x": 0.24473684210526317,
+            "y": 0.43454545454545457
+          },
+          {
+            "x": 0.2013157894736842,
+            "y": 0.5254545454545455
+          },
+          {
+            "x": 0.15,
+            "y": 0.48363636363636364
+          }
+        ],
+        [
+          {
+            "x": 0.25,
+            "y": 0.44
+          },
+          {
+            "x": 0.3013157894736842,
+            "y": 0.4781818181818182
+          },
+          {
+            "x": 0.2881578947368421,
+            "y": 0.5909090909090909
+          },
+          {
+            "x": 0.20394736842105263,
+            "y": 0.5654545454545454
+          },
+          {
+            "x": 0.2013157894736842,
+            "y": 0.5309090909090909
+          }
+        ]
+      ]
     },
     {
       "id": "liceo-primaria",
@@ -308,11 +457,15 @@
       ],
       "address": null,
       "source_id": "confirmed",
-      "note": "Ubicación de la Facultad de Derecho confirmada por el usuario junto a Calle 46. Dirección y acceso exactos pendientes de confirmar.",
+      "note": "Facultad de Derecho dentro de Sede Las Torres, junto a Psicología. Puerta y oficina exactas por confirmar.",
+      "map_label": "3.2",
       "reference_point": {
-        "x": 0.57,
-        "y": 0.834
-      }
+        "x": 0.45921052631578946,
+        "y": 0.5981818181818181
+      },
+      "map_color": "#9856e8",
+      "parent_id": "las-torres",
+      "reference_areas": []
     },
     {
       "id": "biblioteca-central",
@@ -341,11 +494,14 @@
       "address": null,
       "source_id": "confirmed",
       "parent_id": "sede-4",
-      "note": "Biblioteca de Sede 4 identificada por el usuario en este punto, al sur del edificio principal.",
+      "note": "Biblioteca dentro del área de Sede 4, junto al auditorio, según el plano confirmado por el usuario.",
+      "map_label": "1.1",
       "reference_point": {
-        "x": 0.814,
-        "y": 0.566
-      }
+        "x": 0.6289473684210526,
+        "y": 0.3890909090909091
+      },
+      "map_color": "#147bc1",
+      "reference_areas": []
     },
     {
       "id": "registro-academico",
@@ -383,6 +539,69 @@
       "address": null,
       "source_id": "pending",
       "note": "Ubicación pendiente de confirmación."
+    },
+    {
+      "id": "auditorio-sede-4",
+      "name": "Auditorio · Sede 4",
+      "category": "servicio",
+      "aliases": [
+        "auditorio",
+        "auditorio sede 4",
+        "auditorio de sede 4",
+        "auditorio de la sede 4"
+      ],
+      "address": null,
+      "note": "Auditorio situado dentro de Sede 4, según el plano confirmado por el usuario.",
+      "map_label": "1.2",
+      "reference_point": {
+        "x": 0.65,
+        "y": 0.4909090909090909
+      },
+      "map_color": "#147bc1",
+      "parent_id": "sede-4",
+      "reference_areas": [],
+      "source_id": "confirmed"
+    },
+    {
+      "id": "polideportivo",
+      "name": "Polideportivo · Las Torres",
+      "category": "servicio",
+      "aliases": [
+        "polideportivo",
+        "canchas",
+        "canchas de futbol",
+        "cancha de futbol"
+      ],
+      "address": null,
+      "note": "Polideportivo dentro de Las Torres, confirmado por el usuario. Incluye canchas de fútbol; acceso y horarios por confirmar.",
+      "map_label": "3.3",
+      "reference_point": {
+        "x": 0.5407894736842105,
+        "y": 0.5309090909090909
+      },
+      "map_color": "#9856e8",
+      "parent_id": "las-torres",
+      "reference_areas": [
+        [
+          {
+            "x": 0.5131578947368421,
+            "y": 0.5036363636363637
+          },
+          {
+            "x": 0.5671052631578948,
+            "y": 0.5163636363636364
+          },
+          {
+            "x": 0.5513157894736842,
+            "y": 0.6309090909090909
+          },
+          {
+            "x": 0.49736842105263157,
+            "y": 0.6163636363636363
+          }
+        ]
+      ],
+      "source_id": "confirmed"
     }
   ]
 }
