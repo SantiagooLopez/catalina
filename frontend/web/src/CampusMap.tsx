@@ -30,8 +30,11 @@ export default function CampusMap({selectedId,candidateIds=[],onSelect,onBack,on
     L.control.zoom({position:'bottomleft'}).addTo(instance);
     instance.attributionControl.setPrefix(false);
     instance.attributionControl.addAttribution('Plano Catalina · posiciones de referencia');
-    L.imageOverlay(catalog.reference_image,bounds,{alt:'Mapa de referencia del entorno de la Universidad Católica de Colombia'}).addTo(instance);
-    instance.fitBounds(bounds,{padding:[18,18]});
+    const mapImage=L.imageOverlay(catalog.reference_image,bounds,{alt:'Mapa de referencia del entorno de la Universidad Católica de Colombia'}).addTo(instance);
+    const updateMapTheme=()=>mapImage.setUrl(document.documentElement.dataset.theme==='dark'?catalog.reference_image.replace(/\.svg$/,'-dark.svg'):catalog.reference_image);
+    updateMapTheme();
+    const themeObserver=new MutationObserver(updateMapTheme);themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+    instance.fitBounds(bounds,{padding:[18,18],animate:false});
     instance.setMinZoom(instance.getZoom());
     catalog.locations.forEach(place=>{
       const shapes=(place.reference_areas||[]).map(area=>{
@@ -55,16 +58,16 @@ export default function CampusMap({selectedId,candidateIds=[],onSelect,onBack,on
     });
     const updateDetail=()=>container.current?.classList.toggle('map-overview-small',instance.getZoom()<-.5);
     instance.on('zoomend',updateDetail);updateDetail();
-    const observer=new ResizeObserver(()=>{instance.invalidateSize();instance.setMinZoom(-3);instance.fitBounds(bounds,{padding:[18,18]});instance.setMinZoom(instance.getZoom());});observer.observe(container.current);
-    return()=>{observer.disconnect();markers.current.clear();areas.current.clear();instance.remove();map.current=null;};
+    const observer=new ResizeObserver(()=>{instance.invalidateSize();instance.setMinZoom(-3);instance.fitBounds(bounds,{padding:[18,18],animate:false});instance.setMinZoom(instance.getZoom());});observer.observe(container.current);
+    return()=>{observer.disconnect();themeObserver.disconnect();markers.current.clear();areas.current.clear();instance.remove();map.current=null;};
   },[catalog]);
   useEffect(()=>{
     if(!catalog||!map.current)return;
     const place=catalog.locations.find(p=>p.id===selectedId);
     for(const [id,marker] of markers.current){const active=id===place?.anchor_id;marker.getElement()?.classList.toggle('active',active);if(active)marker.openTooltip();else marker.closeTooltip();}
-    for(const [id,shapes] of areas.current){const active=id===place?.id;const parent=id===place?.parent_id;for(const shape of shapes)shape.setStyle({color:active?'#12688b':parent?'#536e78':catalog.locations.find(p=>p.id===id)?.map_color,weight:active?3:parent?2:0,fillColor:'#80bfd0',fillOpacity:active ? .15 : parent ? .06 : 0});}
+    for(const [id,shapes] of areas.current){const active=id===place?.id;const parent=id===place?.parent_id;for(const shape of shapes)shape.setStyle({color:active?'var(--accent)':parent?'var(--muted)':catalog.locations.find(p=>p.id===id)?.map_color,weight:active?3:parent?2:0,fillColor:'#80bfd0',fillOpacity:active ? .15 : parent ? .06 : 0});}
   },[catalog,selectedId]);
-  function overview(){if(catalog&&map.current)map.current.fitBounds([[0,0],[catalog.reference_height,catalog.reference_width]],{padding:[18,18]});}
+  function overview(){if(catalog&&map.current)map.current.fitBounds([[0,0],[catalog.reference_height,catalog.reference_width]],{padding:[18,18],animate:false});}
   function ask(event:FormEvent){event.preventDefault();const query=question.trim();if(!query||locked.current)return;locked.current=true;setBusy(true);setError('');const context=selectedId;void api.campusQuestion(query,context).then(answer=>{if(!live.current)return;setAnswers(rows=>[...rows,answer]);setQuestion('');if(answer.locations.length===1&&selectedRef.current===context)onSelect(answer.locations[0]);}).catch(e=>{if(live.current)setError(e instanceof Error?e.message:'No se pudo consultar el mapa.');}).finally(()=>{locked.current=false;if(live.current)setBusy(false);});}
   const shown=catalog?.locations.filter(place=>{
     const matches=normalizeCampus([place.name,...place.aliases,place.parent_name||''].join(' ')).includes(normalizeCampus(search));
