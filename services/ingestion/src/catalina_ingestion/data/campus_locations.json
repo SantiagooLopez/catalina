@@ -43,7 +43,7 @@
       ],
       "address": "Diagonal 46 A # 15 B – 10, Bogotá",
       "source_id": "confirmed",
-      "note": "El área roja completa representa El Claustro. Incluye la Unidad de Servicios Psicológicos y la Capilla; acceso exacto por confirmar.",
+      "note": "El área delimitada con el número 5 representa la Sede El Claustro. Incluye la Unidad de Servicios Psicológicos y la Capilla; acceso exacto por confirmar.",
       "map_label": "5",
       "reference_point": {
         "x": 0.27631578947368424,
@@ -159,7 +159,7 @@
       ],
       "address": "Avenida Caracas # 46 – 72, Bogotá",
       "source_id": "confirmed",
-      "note": "El bloque morado completo representa Las Torres. Incluye Psicología, Derecho y el Polideportivo.",
+      "note": "El área delimitada con el número 3 representa la Sede Las Torres. Incluye Psicología, Derecho y el Polideportivo.",
       "map_label": "3",
       "reference_point": {
         "x": 0.4723684210526316,
