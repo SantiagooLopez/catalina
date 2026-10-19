@@ -5,4 +5,5 @@ import './styles.css';
 import './redesign.css';
 import './mascot.css';
 import './theme.css';
+import './portal.css';
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);
