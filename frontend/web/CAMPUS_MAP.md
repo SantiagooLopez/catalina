@@ -20,7 +20,7 @@ El plano sigue los bloques trazados por el usuario: 1 Sede 4 (1.1 Biblioteca, 1.
 2 Carrera 13 (2.1 Lenguas), 3 Las Torres (3.1 Psicología, 3.2 Derecho, 3.3 Polideportivo),
 4 Liceo (dos bloques) y 5 El Claustro (5.1 Servicios Psicológicos, 5.2 Capilla).
 Las áreas completas son polígonos seleccionables. El Polideportivo incluye una cancha
-dibujada. Caracas es roja; el corredor de Carrera 13, azul; las demás calles, oscuras.
+dibujada. Caracas es roja; el corredor de Carrera Séptima, azul; las demás calles, oscuras.
 Los nombres solo aparecen al pasar el mouse o seleccionar una ubicación. En la vista
 general pequeña se muestran los números de sede; acercar el zoom revela las dependencias.
 El mapa permite zoom centrado, pero no arrastre, desplazamiento por teclado ni box-zoom.
