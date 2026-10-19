@@ -18,7 +18,7 @@ from catalina_ingestion.services.chat import ChatService
 
 def test_catalog_marks_reference_pixels_and_unknown_positions_explicitly():
     data = public_catalog()
-    assert data["reference_width"] == 812
+    assert data["reference_width"] == 1200
     places = {place["id"]: place for place in data["locations"]}
     assert places["bienestar"]["anchor_id"] == "claustro"
     assert places["bienestar"]["reference_point"] is None
@@ -114,3 +114,14 @@ def test_guest_location_answer_includes_map_identifiers_without_authentication()
     assert response.json()["locations"] == ["psicologia"]
     assert response.json()["reason"] == "campus_location"
     assert not response.json()["generated"]
+
+
+def test_user_confirmed_buildings_have_independent_positions():
+    places = {p.id: p for p in campus_catalog().locations}
+    for key in ("sede-4", "biblioteca-sede-4", "carrera-13", "las-torres", "derecho"):
+        assert places[key].reference_point is not None
+        assert places[key].source_id == "confirmed"
+    assert places["derecho"].parent_id is None
+    assert places["derecho"].address is None
+    assert "construcción" in places["carrera-13"].note
+    assert places["biblioteca-sede-4"].reference_point != places["sede-4"].reference_point

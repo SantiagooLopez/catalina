@@ -9,11 +9,17 @@ En el widget pequeño ofrece tarjetas para abrirlo y solicita sesión al ampliar
 
 La fuente única está en
 `services/ingestion/src/catalina_ingestion/data/campus_locations.json`.
-Las direcciones proceden de las páginas institucionales enlazadas en cada ficha. Las
-posiciones de referencia se expresan como fracciones de la captura aportada por el usuario;
-**no son coordenadas GPS ni puertas de acceso verificadas**. La imagen es una referencia
-estática de Google Maps y no se actualiza en vivo. Leaflet permite desplazarla, acercarla y
-seleccionar marcadores; no se descargan mosaicos de Google ni se usa su API de pago.
+Las direcciones proceden de las páginas institucionales enlazadas en cada ficha. El plano
+vectorial propio está en `public/maps/campus-plan.svg`: representa las calles y edificios
+como un esquema sin escala. Las posiciones se expresan como fracciones de ese plano;
+**no son coordenadas GPS ni puertas de acceso verificadas**. Leaflet permite desplazarlo,
+acercarlo y seleccionar marcadores. No se descargan mosaicos ni se usa una API de pago.
+La captura original se utilizó como referencia de distribución, no como fondo del mapa.
+
+El usuario confirmó los puntos 1 Sede 4, 2 Biblioteca de Sede 4, 3 Carrera 13 en construcción,
+4 Las Torres y 5 Facultad de Derecho. Estos cinco marcadores conservan esa numeración.
+Derecho tiene un punto propio y ya no hereda una ubicación de Carrera 13. Su dirección
+postal queda pendiente; no se extrapola una dirección a partir del dibujo.
 
 Google Maps se abre mediante enlaces externos de búsqueda o indicaciones basados en las
 direcciones publicadas. El sistema no calcula rutas peatonales, distancias o accesos internos.
