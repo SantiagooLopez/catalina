@@ -98,6 +98,9 @@ class GuestAnswerResponse(BaseModel):
     query: str
     text: str
     citations: list[SourceResponse]
+    generated: bool
+    reason: GenerationReason
+    model: str | None
 
 
 @router.post("/guest/answers", response_model=GuestAnswerResponse)
@@ -109,6 +112,9 @@ async def guest_answer(payload: GuestAnswerRequest, request: Request) -> GuestAn
         query=result.query,
         text=result.text,
         citations=[_source_response(source) for source in result.citations],
+        generated=result.generated,
+        reason=result.reason,
+        model=result.model,
     )
 
 

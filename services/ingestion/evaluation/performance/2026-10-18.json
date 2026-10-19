@@ -1,0 +1,843 @@
+{
+  "date": "2026-10-18",
+  "hardware": "Intel Core i5-7200U, 2 physical cores / 4 threads, 11 GiB RAM; CPU inference",
+  "generation_model": "llama3.2:3b",
+  "embedding_model": "embeddinggemma:latest",
+  "baseline_commit": "ee8ab56",
+  "method": "Single sequential read-only run, synthetic authenticated-style history. Backend wall clock, not browser latency. Model/prompt caches may be warm. No p95, concurrency or cold-start guarantee.",
+  "baseline": [
+    {
+      "question": "Hola",
+      "seconds": 0,
+      "answer": "¡Hola! Soy Catalina. ¿En qué te puedo ayudar hoy?",
+      "reason": "conversational",
+      "sources": [],
+      "events": []
+    },
+    {
+      "question": "¿Cuánto es 17 por 6?",
+      "seconds": 11.527,
+      "answer": "17 multiplicado por 6 es igual a 102.",
+      "reason": "general_chat",
+      "sources": [],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 7.373,
+          "input_characters": 2770,
+          "prompt_tokens": 778,
+          "prompt_seconds": 3.958,
+          "output_tokens": 21,
+          "output_seconds": 3.356,
+          "load_seconds": 0.001
+        },
+        {
+          "stage": "generation",
+          "seconds": 4.151,
+          "input_characters": 1383,
+          "prompt_tokens": 392,
+          "prompt_seconds": 2.37,
+          "output_tokens": 13,
+          "output_seconds": 1.74,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "Dime de que trata el reglamento estudiantil",
+      "seconds": 18.848,
+      "answer": "El reglamento estudiantil trata sobre los derechos y deberes de los estudiantes, así como las disposiciones variadas que rigen su relación con la Universidad. [S1]",
+      "reason": "generated",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 7.284,
+          "input_characters": 2921,
+          "prompt_tokens": 824,
+          "prompt_seconds": 3.567,
+          "output_tokens": 23,
+          "output_seconds": 3.68,
+          "load_seconds": 0.001
+        },
+        {
+          "stage": "retrieval",
+          "seconds": 0.103,
+          "enabled": true,
+          "characters": 1704,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 3,
+              "characters": 25
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 11,
+              "characters": 57
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 608
+            }
+          ]
+        },
+        {
+          "stage": "generation",
+          "seconds": 11.461,
+          "input_characters": 4990,
+          "prompt_tokens": 1332,
+          "prompt_seconds": 0.248,
+          "output_tokens": 52,
+          "output_seconds": 11.146,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "¿Qué dice el reglamento estudiantil sobre las faltas disciplinarias?",
+      "seconds": 123.891,
+      "answer": "Según el Reglamento del Estudiante, las faltas disciplinarias se clasifican en graves y leves, y se consideran faltas graves aquellas que violan la Constitución, la Ley, los Estatutos y los Reglamentos de la Universidad, como la apropiación de bienes ajenos, la impedida el libre acceso a los servicios académicos, la aplicación del reglamento, el ejercicio de los derechos o el cumplimiento de los deberes de los miembros de la comunidad universitaria, o que pongan en riesgo la seguridad, la integridad personal o moral, la libertad, la intimidad y el honor sexual de estudiantes, profesores, personal administrativo o visitantes de la Universidad. [S1] [S3]",
+      "reason": "generated",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 10.107,
+          "input_characters": 3223,
+          "prompt_tokens": 904,
+          "prompt_seconds": 5.128,
+          "output_tokens": 30,
+          "output_seconds": 4.918,
+          "load_seconds": 0.001
+        },
+        {
+          "stage": "retrieval",
+          "seconds": 0.167,
+          "enabled": true,
+          "characters": 4108,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 3,
+              "characters": 25
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 39,
+              "characters": 2063
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 42,
+              "characters": 1016
+            }
+          ]
+        },
+        {
+          "stage": "generation",
+          "seconds": 113.616,
+          "input_characters": 7418,
+          "prompt_tokens": 2001,
+          "prompt_seconds": 63.16,
+          "output_tokens": 180,
+          "output_seconds": 50.388,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "¿Y sobre los derechos de los estudiantes?",
+      "seconds": 85.731,
+      "answer": "Los estudiantes tienen derecho a cursar el programa académico de formación en el cual se encuentra matriculado y utilizar los recursos dispuestos por la Universidad para adelantarlo. [S1] [S3]",
+      "reason": "generated",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Marco Institucional de Bienestar Universitario"
+      ],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 17.784,
+          "input_characters": 3995,
+          "prompt_tokens": 1104,
+          "prompt_seconds": 13.32,
+          "output_tokens": 20,
+          "output_seconds": 4.379,
+          "load_seconds": 0.001
+        },
+        {
+          "stage": "retrieval",
+          "seconds": 0.118,
+          "enabled": true,
+          "characters": 3316,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 11,
+              "characters": 57
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 3,
+              "characters": 25
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 11,
+              "characters": 1825
+            },
+            {
+              "citation": "S4",
+              "document": "Marco Institucional de Bienestar Universitario",
+              "page": 4,
+              "characters": 40
+            }
+          ]
+        },
+        {
+          "stage": "generation",
+          "seconds": 67.829,
+          "input_characters": 6442,
+          "prompt_tokens": 1770,
+          "prompt_seconds": 53.208,
+          "output_tokens": 57,
+          "output_seconds": 14.539,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "¿Cuánto cuesta la matrícula en el año 2099?",
+      "seconds": 11.588,
+      "answer": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+      "reason": "insufficient_evidence",
+      "sources": [],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 11.453,
+          "input_characters": 4301,
+          "prompt_tokens": 1189,
+          "prompt_seconds": 5.692,
+          "output_tokens": 29,
+          "output_seconds": 5.682,
+          "load_seconds": 0.001
+        },
+        {
+          "stage": "retrieval",
+          "seconds": 0.134,
+          "enabled": false,
+          "characters": 0
+        }
+      ]
+    },
+    {
+      "question": "Ahora dame tres consejos generales para estudiar mejor",
+      "seconds": 70.938,
+      "answer": "Claro, aquí te dejo tres consejos generales para estudiar mejor:\n\n1. **Crea un ambiente de estudio adecuado**: Busca un lugar tranquilo y libre de distracciones donde puedas estudiar sin interrupciones. Asegúrate de tener todos los materiales necesarios y de tener una buena iluminación y ventilación.\n\n2. **Divide el material de estudio en bloques manejables**: En lugar de intentar estudiar todo el material de una vez, divide tus notas y tareas en bloques más pequeños y manejables. Esto te ayudará a mantener el enfoque y a evitar la sobrecarga mental.\n\n3. **Practica la retención y la reproducción activa**: En lugar de solo leer y repetir, intenta recordar y reproducir el material de estudio de manera activa. Puedes hacer preguntas a ti mismo, crear conceptos, hacer ejercicios o incluso hablar con alguien sobre el tema. Esto te ayudará a retener la información de manera más efectiva.",
+      "reason": "general_chat",
+      "sources": [],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 8.978,
+          "input_characters": 4516,
+          "prompt_tokens": 1239,
+          "prompt_seconds": 4.785,
+          "output_tokens": 21,
+          "output_seconds": 4.176,
+          "load_seconds": 0.002
+        },
+        {
+          "stage": "generation",
+          "seconds": 61.96,
+          "input_characters": 2774,
+          "prompt_tokens": 793,
+          "prompt_seconds": 22.461,
+          "output_tokens": 227,
+          "output_seconds": 39.446,
+          "load_seconds": 0.001
+        }
+      ]
+    }
+  ],
+  "optimized_extractive_mode": [
+    {
+      "question": "Hola",
+      "seconds": 0,
+      "answer": "¡Hola! Soy Catalina. ¿En qué te puedo ayudar hoy?",
+      "reason": "conversational",
+      "sources": [],
+      "events": []
+    },
+    {
+      "question": "¿Cuánto es 17 por 6?",
+      "seconds": 2.148,
+      "answer": "17 multiplicado por 6 es 102.",
+      "reason": "general_chat",
+      "sources": [],
+      "events": [
+        {
+          "stage": "generation",
+          "seconds": 2.147,
+          "input_characters": 775,
+          "prompt_tokens": 231,
+          "prompt_seconds": 0.781,
+          "output_tokens": 11,
+          "output_seconds": 1.319,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "Dime de que trata el reglamento estudiantil",
+      "seconds": 0.122,
+      "answer": "El Reglamento del Estudiante (versión 406-2026) organiza la información del estudiante. Entre los temas de sus capítulos se encuentran:\n\n• Del campo de aplicación y definición de la calidad de estudiante y egresado no graduado. [S1]\n• De los derechos y deberes de los estudiantes. [S2]\n• De los procesos de inscripción, admisión, reingreso, transferencia interna, transferencia externa, titulación en dos programas, doble titulación, homologación y validación. [S3]\n• De los periodos académicos. [S4]\n• De la matrícula. [S5]\n• De la carga académica. [S6]\n• De la evaluación, las calificaciones y los promedios. [S7]\n• De la representación estudiantil. [S15]\n• De los estímulos. [S9]\n• Del régimen disciplinario. [S10]\n• De los egresados y del título. [S11]\n• Disposiciones varias. [S12]\n\nEsta es una visión de su estructura. Los requisitos, derechos o sanciones concretos deben explicarse a partir de sus artículos, no solo de sus títulos.",
+      "reason": "document_overview",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "retrieval",
+          "seconds": 0.121,
+          "enabled": true,
+          "characters": 6403,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 99
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 57
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 185
+            },
+            {
+              "citation": "S4",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 39
+            },
+            {
+              "citation": "S5",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 27
+            },
+            {
+              "citation": "S6",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 34
+            },
+            {
+              "citation": "S7",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 66
+            },
+            {
+              "citation": "S8",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 14
+            },
+            {
+              "citation": "S9",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 29
+            },
+            {
+              "citation": "S10",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 37
+            },
+            {
+              "citation": "S11",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 42
+            },
+            {
+              "citation": "S12",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 34
+            },
+            {
+              "citation": "S13",
+              "document": "Reglamento del Estudiante",
+              "page": 9,
+              "characters": 78
+            },
+            {
+              "citation": "S14",
+              "document": "Reglamento del Estudiante",
+              "page": 14,
+              "characters": 141
+            },
+            {
+              "citation": "S15",
+              "document": "Reglamento del Estudiante",
+              "page": 36,
+              "characters": 47
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "¿Qué dice el reglamento estudiantil sobre las faltas disciplinarias?",
+      "seconds": 0.143,
+      "answer": "Estos son los pasajes pertinentes del Reglamento del Estudiante (versión 406-2026), citados textualmente:\n\n“Artículo 57. Faltas disciplinarias Constituyen faltas disciplinarias las violaciones a la Constitución, la Ley, los Estatutos y a los Reglamentos de la Universidad.\n\nA. DE LAS FALTAS DISCIPLINARIAS” [S1]\n\n“Artículo 59. Faltas graves Se consideran faltas graves las siguientes:\n\n1. Apropiarse de bienes ajenos, ya sean de propiedad de la Institución, de los estudiantes, de los profesores o de cualquier otra persona, constituye una infracción grave. Cuando se trate de la sustracción de bienes materiales, además de la sanción correspondiente, se exigirá la reparación o reposición del bien” [S1]\n\n“Artículo 60. Faltas leves. Se consideran faltas leves aquellas que están relacionadas con el incumplimiento de los deberes del estudiante establecidos en el presente Reglamento y que no se encuentran expresamente señaladas como faltas graves. Asimismo, constituyen faltas leves el incumplimiento de otras disposiciones debidamente aprobadas y divulgadas por la Universidad antes de la ocurrencia de la falta.” [S2]",
+      "reason": "document_excerpt",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "retrieval",
+          "seconds": 0.143,
+          "enabled": true,
+          "characters": 2852,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 39,
+              "characters": 583
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 42,
+              "characters": 408
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 46,
+              "characters": 768
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "¿Y sobre los derechos de los estudiantes?",
+      "seconds": 5.123,
+      "answer": "Estos son los pasajes pertinentes del Reglamento del Estudiante (versión 406-2026), citados textualmente:\n\n“1. Cursar el programa académico de formación en el cual se encuentra matriculado y utilizar los recursos dispuestos por la Universidad para adelantarlo.” [S1]\n\n“2. Recibir oportunamente el carné o el medio establecido institucionalmente, que le identifican como estudiante de la Universidad.” [S1]\n\n“3. Elegir y ser elegido como representante del programa académico o de los estudiantes regulares de pregrado ante los órganos de carácter colegiado y asesores de la Universidad, de acuerdo con los Estatutos de la Universidad y las demás normativas y disposiciones institucionales aplicables.” [S1]\n\n“4. Hacer uso adecuado de los servicios y recursos que tiene a su disposición la Institución para el proceso educativo.” [S1]\n\n“5. Presentar, con respeto y por escrito, solicitudes y sugerencias de orden académico y disciplinario, siguiendo el conducto regular y dentro de los términos establecidos. Asimismo, se debe garantizar la recepción de respuesta a dichas solicitudes dentro de los plazos legales y reglamentarios.” [S1]",
+      "reason": "document_excerpt",
+      "sources": [
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "routing",
+          "seconds": 4.988,
+          "input_characters": 1239,
+          "prompt_tokens": 359,
+          "prompt_seconds": 0.182,
+          "output_tokens": 34,
+          "output_seconds": 4.787,
+          "load_seconds": 0.001
+        },
+        {
+          "stage": "retrieval",
+          "seconds": 0.134,
+          "enabled": true,
+          "characters": 2834,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 11,
+              "characters": 1773
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 36,
+              "characters": 334
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question": "¿Cuánto cuesta la matrícula en el año 2099?",
+      "seconds": 0.112,
+      "answer": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+      "reason": "insufficient_evidence",
+      "sources": [],
+      "events": [
+        {
+          "stage": "retrieval",
+          "seconds": 0.112,
+          "enabled": false,
+          "characters": 0
+        }
+      ]
+    },
+    {
+      "question": "Ahora dame tres consejos generales para estudiar mejor",
+      "seconds": 11.562,
+      "answer": "* Establece un horario de estudio regular y mantén la disciplina.\n* Divide el material de estudio en secciones manejables y prioriza los conceptos más difíciles.\n* Revisa y repasa constantemente, incluso después de haber terminado el material de estudio.",
+      "reason": "general_chat",
+      "sources": [],
+      "events": [
+        {
+          "stage": "generation",
+          "seconds": 11.561,
+          "input_characters": 946,
+          "prompt_tokens": 267,
+          "prompt_seconds": 2.98,
+          "output_tokens": 60,
+          "output_seconds": 8.565,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "¿Qué dice el reglamento estudiantil sobre las faltas disciplinarias?",
+      "seconds": 0.133,
+      "answer": "Estos son los pasajes pertinentes del Reglamento del Estudiante (versión 406-2026), citados textualmente:\n\n“Artículo 57. Faltas disciplinarias Constituyen faltas disciplinarias las violaciones a la Constitución, la Ley, los Estatutos y a los Reglamentos de la Universidad.\n\nA. DE LAS FALTAS DISCIPLINARIAS” [S1]\n\n“Artículo 59. Faltas graves Se consideran faltas graves las siguientes:\n\n1. Apropiarse de bienes ajenos, ya sean de propiedad de la Institución, de los estudiantes, de los profesores o de cualquier otra persona, constituye una infracción grave. Cuando se trate de la sustracción de bienes materiales, además de la sanción correspondiente, se exigirá la reparación o reposición del bien” [S1]\n\n“Artículo 60. Faltas leves. Se consideran faltas leves aquellas que están relacionadas con el incumplimiento de los deberes del estudiante establecidos en el presente Reglamento y que no se encuentran expresamente señaladas como faltas graves. Asimismo, constituyen faltas leves el incumplimiento de otras disposiciones debidamente aprobadas y divulgadas por la Universidad antes de la ocurrencia de la falta.” [S2]",
+      "reason": "document_excerpt",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "retrieval",
+          "seconds": 0.132,
+          "enabled": true,
+          "characters": 2852,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 39,
+              "characters": 583
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 42,
+              "characters": 408
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 46,
+              "characters": 768
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "separate_generated_mode": [
+    {
+      "question": "Dime de que trata el reglamento estudiantil",
+      "seconds": 100.205,
+      "answer": "El Reglamento del Estudiante de la Universidad Católica de Colombia aborda varios aspectos clave relacionados con la vida académica de los estudiantes. A continuación, se presentan algunos de los temas distintos presentes en la evidencia: \n\n La definición de calidad de estudiante y egresado no graduado se establece en el Capítulo I [S1]. \n\n Los derechos y deberes de los estudiantes se detallan en el Capítulo II [S2]. \n\n Los procesos de inscripción, admisión, reingreso, transferencia interna, transferencia externa, titulación en dos programas, doble titulación, homologación y validación se presentan en el Capítulo III (S4, S14). \n\n Los periodos académicos se definen en el Capítulo IV [S5]. [S1] [S2] [S4] [S14]",
+      "reason": "generated",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "retrieval",
+          "seconds": 0.116,
+          "enabled": true,
+          "characters": 6403,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 99
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 57
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 185
+            },
+            {
+              "citation": "S4",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 39
+            },
+            {
+              "citation": "S5",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 27
+            },
+            {
+              "citation": "S6",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 34
+            },
+            {
+              "citation": "S7",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 66
+            },
+            {
+              "citation": "S8",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 14
+            },
+            {
+              "citation": "S9",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 29
+            },
+            {
+              "citation": "S10",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 37
+            },
+            {
+              "citation": "S11",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 42
+            },
+            {
+              "citation": "S12",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 34
+            },
+            {
+              "citation": "S13",
+              "document": "Reglamento del Estudiante",
+              "page": 9,
+              "characters": 78
+            },
+            {
+              "citation": "S14",
+              "document": "Reglamento del Estudiante",
+              "page": 14,
+              "characters": 141
+            },
+            {
+              "citation": "S15",
+              "document": "Reglamento del Estudiante",
+              "page": 36,
+              "characters": 47
+            }
+          ]
+        },
+        {
+          "stage": "generation",
+          "seconds": 100.084,
+          "input_characters": 3347,
+          "prompt_tokens": 1111,
+          "prompt_seconds": 54.699,
+          "output_tokens": 224,
+          "output_seconds": 45.364,
+          "load_seconds": 0.001
+        }
+      ]
+    },
+    {
+      "question": "Dime de que trata el reglamento estudiantil",
+      "seconds": 0.174,
+      "answer": "El Reglamento del Estudiante de la Universidad Católica de Colombia aborda varios aspectos clave relacionados con la vida académica de los estudiantes. A continuación, se presentan algunos de los temas distintos presentes en la evidencia: \n\n La definición de calidad de estudiante y egresado no graduado se establece en el Capítulo I [S1]. \n\n Los derechos y deberes de los estudiantes se detallan en el Capítulo II [S2]. \n\n Los procesos de inscripción, admisión, reingreso, transferencia interna, transferencia externa, titulación en dos programas, doble titulación, homologación y validación se presentan en el Capítulo III (S4, S14). \n\n Los periodos académicos se definen en el Capítulo IV [S5]. [S1] [S2] [S4] [S14]",
+      "reason": "cached",
+      "sources": [
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante",
+        "Reglamento del Estudiante"
+      ],
+      "events": [
+        {
+          "stage": "retrieval",
+          "seconds": 0.173,
+          "enabled": true,
+          "characters": 6403,
+          "sources": [
+            {
+              "citation": "S1",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 99
+            },
+            {
+              "citation": "S2",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 57
+            },
+            {
+              "citation": "S3",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 185
+            },
+            {
+              "citation": "S4",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 39
+            },
+            {
+              "citation": "S5",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 27
+            },
+            {
+              "citation": "S6",
+              "document": "Reglamento del Estudiante",
+              "page": 4,
+              "characters": 34
+            },
+            {
+              "citation": "S7",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 66
+            },
+            {
+              "citation": "S8",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 14
+            },
+            {
+              "citation": "S9",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 29
+            },
+            {
+              "citation": "S10",
+              "document": "Reglamento del Estudiante",
+              "page": 5,
+              "characters": 37
+            },
+            {
+              "citation": "S11",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 42
+            },
+            {
+              "citation": "S12",
+              "document": "Reglamento del Estudiante",
+              "page": 6,
+              "characters": 34
+            },
+            {
+              "citation": "S13",
+              "document": "Reglamento del Estudiante",
+              "page": 9,
+              "characters": 78
+            },
+            {
+              "citation": "S14",
+              "document": "Reglamento del Estudiante",
+              "page": 14,
+              "characters": 141
+            },
+            {
+              "citation": "S15",
+              "document": "Reglamento del Estudiante",
+              "page": 36,
+              "characters": 47
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,7 @@ from catalina_ingestion.services.action_anchor_reranker import (
     ActionAnchorReranker,
 )
 from catalina_ingestion.services.evidence import EvidenceRetrievalService
+from catalina_ingestion.services.evidence_expansion import EvidenceExpansionService
 from catalina_ingestion.services.grounding import GroundingGuard
 from catalina_ingestion.services.rag_context import RagContextService
 from catalina_ingestion.services.retrieval_selection import (
@@ -181,6 +182,7 @@ class ManagedRetrievalService:
         try:
             async with deadline:
                 result = await self.context_service.build(query)
+                result = await EvidenceExpansionService().expand(result)
 
             logger.info(
                 "retrieval_completed request_id=%s elapsed_ms=%.1f enabled=%s",

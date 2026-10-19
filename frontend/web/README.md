@@ -67,8 +67,11 @@ El navegador llama `/api/v1`; el proxy de Vite reenvía al Debian, evitando camb
 - Mapa interactivo, adjuntos/OCR, panel administrativo y Microsoft son etapas
   siguientes. Los accesos de sedes y reglamentos preparan preguntas para el chat.
 - El backend recupera contexto reciente de la conversación: por defecto hasta ocho
-  intercambios y 8000 caracteres. Esto permite continuar un tema sin entrenar el modelo;
+  intercambios y 4000 caracteres. Esto permite continuar un tema sin entrenar el modelo;
   no es memoria permanente ni se comparte entre conversaciones.
+- El chat muestra segundos de espera y la duración de las respuestas nuevas. Las consultas
+  documentales pueden devolver una vista del índice o pasajes textuales, sin generar una
+  paráfrasis de la norma con el modelo. Las explicaciones abiertas siguen usando Ollama.
 - Las fuentes tipográficas usan Google Fonts; si no hay Internet se usa sans-serif local.
 
 ## Comprobación en tu computador

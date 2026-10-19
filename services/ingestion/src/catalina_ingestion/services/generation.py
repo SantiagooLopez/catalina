@@ -1,6 +1,8 @@
 import json
+import logging
 import re
 from collections.abc import Sequence
+from time import perf_counter
 from typing import Any
 
 import httpx
@@ -174,14 +176,15 @@ class GenerationService:
             output_schema={
                 "type": "object",
                 "properties": {
-                    "text": {"type": "string", "minLength": 1},
+                    "text": {"type": "string", "minLength": 1, "maxLength": 700},
                     "citations": {
-                        "type": "array", "minItems": 1,
+                        "type": "array", "minItems": 1, "maxItems": 4,
                         "items": {"type": "string", "enum": list(prompt.allowed_citations)},
                     },
                 },
                 "required": ["text", "citations"], "additionalProperties": False,
             },
+            max_tokens=min(self.settings.generation_max_tokens, 384),
         )
         # Accept legacy plain text only through the existing strict citation validator.
         if not text.lstrip().startswith("{"):
@@ -218,6 +221,7 @@ class GenerationService:
         max_tokens: int | None = None,
     ) -> tuple[str, GenerationStatistics]:
         """Use the same validated Ollama transport for routing and ordinary chat."""
+        started = perf_counter()
         client = self.client or get_ollama_client()
         payload: dict[str, Any] = {
             "model": self.settings.ollama_generation_model,
@@ -281,7 +285,15 @@ class GenerationService:
                 "INVALID_OLLAMA_GENERATION_RESPONSE",
                 "Ollama devolvió una respuesta inválida.",
             )
-        return self._parse_response(response_payload)
+        text, statistics = self._parse_response(response_payload)
+        logging.getLogger("uvicorn.error").info(
+            "ollama_timing total_ms=%.1f load_ms=%.1f prompt_tokens=%d prompt_ms=%.1f "
+            "output_tokens=%d output_ms=%.1f",
+            (perf_counter() - started) * 1000, statistics.load_duration_ns / 1e6,
+            statistics.prompt_eval_count, statistics.prompt_eval_duration_ns / 1e6,
+            statistics.eval_count, statistics.eval_duration_ns / 1e6,
+        )
+        return text, statistics
 
     def _parse_response(
         self,

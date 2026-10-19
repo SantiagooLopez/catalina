@@ -14,7 +14,7 @@ from catalina_ingestion.domain.generation import (
     GenerationStatistics,
 )
 from catalina_ingestion.domain.retrieval import RetrievalQuery
-from catalina_ingestion.services.chat import ChatService, bounded_history
+from catalina_ingestion.services.chat import ChatService, bounded_history, direct_route
 
 
 def settings():
@@ -45,12 +45,12 @@ def service(*responses):
 
 @pytest.mark.asyncio
 async def test_general_chat_receives_history_without_retrieval():
-    chat, generation, rag = service(decision(), "Te llamas Ana.")
+    chat, generation, rag = service("Te llamas Ana.")
     result = await chat.answer(RetrievalQuery(query="¿Cómo me llamo?"), history=[turn()])
     assert result.reason is GenerationReason.GENERAL_CHAT
     assert result.generated and not result.citations
     assert result.model == settings().ollama_generation_model
-    sent = generation.chat.await_args_list[1].kwargs["messages"]
+    sent = generation.chat.await_args_list[0].kwargs["messages"]
     assert sent[1:3] == [
         {"role": "user", "content": "Me llamo Ana"},
         {"role": "assistant", "content": "Mucho gusto, Ana"},
@@ -88,7 +88,7 @@ async def test_explicit_university_query_cannot_bypass_documents():
     )
     await chat.answer(RetrievalQuery(query=query))
     rag.answer.assert_awaited_once()
-    assert generation.chat.await_count == 1
+    generation.chat.assert_not_awaited()
 
 
 @pytest.mark.asyncio
@@ -97,9 +97,13 @@ async def test_explicit_university_query_cannot_bypass_documents():
     "Explícame qué es la religión católica",
 ])
 async def test_general_topics_are_not_overridden_by_institutional_words(query):
-    chat, generation, rag = service(decision("general", query), "Una respuesta general.")
+    responses = ("Una respuesta general.",) if direct_route(query) else (
+        decision("general", query), "Una respuesta general.",
+    )
+    chat, generation, rag = service(*responses)
     answer = await chat.answer(RetrievalQuery(query=query))
     assert answer.reason is GenerationReason.GENERAL_CHAT
+    assert answer.text == "Una respuesta general."
     rag.answer.assert_not_awaited()
 
 
@@ -139,11 +143,63 @@ async def test_greeting_needs_neither_ollama_nor_retrieval():
     rag.answer.assert_not_awaited()
 
 
+@pytest.mark.asyncio
+async def test_greeting_does_not_wait_for_generation_slots():
+    chat, generation, _ = service()
+    for _ in range(chat.settings.chat_max_concurrent):
+        await chat._slots.acquire()
+    result = await chat.answer(RetrievalQuery(query="Hola"))
+    assert result.reason is GenerationReason.CONVERSATIONAL
+    generation.chat.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_explicit_regulation_question_avoids_model_routing():
+    query = "Dime de que trata el reglamento estudiantil"
+    chat, generation, rag = service()
+    rag.answer.return_value = GeneratedAnswer(
+        query=query, text="Sin evidencia.", generated=False,
+        reason=GenerationReason.INSUFFICIENT_EVIDENCE, model=None, citations=(),
+    )
+    await chat.answer(RetrievalQuery(query=query))
+    generation.chat.assert_not_awaited()
+    rag.answer.assert_awaited_once()
+
+
 def test_history_keeps_latest_complete_pairs_in_order():
     history = [turn("a", "b"), turn("c", "d"), turn("e", "f")]
     messages = bounded_history(history, turns=2, characters=4)
     assert [m["content"] for m in messages] == ["c", "d", "e", "f"]
     assert [m["content"] for m in bounded_history(history, turns=3, characters=2)] == ["e", "f"]
+
+
+def test_multi_digit_arithmetic_does_not_need_classification():
+    route = direct_route("¿Cuánto es 17 por 6?")
+    assert route is not None and route.route == "general"
+
+
+@pytest.mark.asyncio
+async def test_new_general_topic_does_not_resend_unrelated_documentary_history():
+    chat, generation, rag = service("Tres consejos claros.")
+    await chat.answer(
+        RetrievalQuery(query="Ahora dame tres consejos generales para estudiar mejor"),
+        history=[turn("¿Qué dice el reglamento?", "Un pasaje jurídico muy largo")],
+    )
+    sent = generation.chat.await_args.kwargs["messages"]
+    assert len(sent) == 2
+    assert "45 palabras" in sent[0]["content"]
+    rag.answer.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_personalized_advice_retains_relevant_history():
+    chat, generation, _ = service("Una recomendación personal.")
+    await chat.answer(
+        RetrievalQuery(query="Dame tres consejos generales para mi rutina"),
+        history=[turn("Trabajo de noche", "Lo tendré en cuenta")],
+    )
+    sent = generation.chat.await_args.kwargs["messages"]
+    assert sent[1]["content"] == "Trabajo de noche"
 
 
 @pytest.mark.asyncio

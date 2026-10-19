@@ -10,6 +10,7 @@ def guest_client():
     app = create_app()
     service = SimpleNamespace(answer=AsyncMock(return_value=SimpleNamespace(
         query="Hola", text="Hola, ¿cómo estás?", citations=(),
+        generated=False, reason="conversational", model=None,
     )))
     app.state.answer_service = service
     return TestClient(app), service
@@ -21,6 +22,7 @@ def test_guest_can_ask_without_account_or_conversation():
     assert response.status_code == 200
     assert response.json() == {
         "query": "Hola", "text": "Hola, ¿cómo estás?", "citations": [],
+        "generated": False, "reason": "conversational", "model": None,
     }
     assert service.answer.await_args.args[0].query == "Hola"
     assert service.answer.await_args.kwargs == {}

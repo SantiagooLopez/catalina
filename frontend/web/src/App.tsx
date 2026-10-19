@@ -9,6 +9,16 @@ const prompts = [
   {icon: FileText, title:'Reglamento y calendario', text:'¿Qué documentos puedo consultar sobre el reglamento y el calendario académico?'}
 ];
 const errorText = (e: unknown) => e instanceof Error ? e.message : 'Ocurrió un error. Inténtalo nuevamente.';
+function responseLabel(kind?: string) {
+  if (kind === 'document_overview') return 'Vista del índice · extracción documental';
+  if (kind === 'document_excerpt') return 'Pasajes textuales · extracción documental';
+  if (kind === 'generated' || kind === 'general_chat') return 'Generada por Ollama';
+  if (kind === 'cached') return 'Respuesta de Ollama reutilizada';
+  if (kind === 'conversational') return 'Respuesta directa · saludo';
+  if (kind === 'document_identifier_resolved') return 'Identificador tomado del documento';
+  if (kind) return 'Consulta documental · evidencia insuficiente';
+  return 'Historial · método de respuesta no disponible';
+}
 function Avatar({large = false}: {large?: boolean}) {return <span className={'avatar ' + (large ? 'large' : '')}><img src="/brand/catalina.svg" alt=""/></span>;}
 function Sources({items, text}: {items: Source[] | undefined; text: string}) {
   if (!items) return /\[S\d+\]/.test(text) ? <small className="source-note">Las citas de este mensaje no están disponibles en el historial de la API.</small> : null;
@@ -27,12 +37,14 @@ export default function App() {
   const [slide, setSlide] = useState(0);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [draft, setDraft] = useState(''); const [search, setSearch] = useState('');
+  const [elapsed, setElapsed] = useState(0);
   const [busy, setBusy] = useState(false); const [pending, setPending] = useState('');
   const [error, setError] = useState(''); const [health, setHealth] = useState('Comprobando conexión…');
   const [dark, setDark] = useState(() => {try {return localStorage.getItem('catalina-theme') === 'dark';} catch {return false;}});
   const [sidebar, setSidebar] = useState(false);
   const bottom = useRef<HTMLDivElement>(null); const launcher = useRef<HTMLButtonElement>(null);
   const chatHeading = useRef<HTMLHeadingElement>(null);
+  const responseKinds = useRef(new Map<number, string>());
   const citations = useRef(new Map<number, Source[]>());
   const epoch = useRef(0); const locked = useRef(false);
   useEffect(() => {const update = () => setFull(location.hash === '#/chat'); window.addEventListener('hashchange', update);return () => window.removeEventListener('hashchange', update);}, []);
@@ -41,9 +53,15 @@ export default function App() {
   useEffect(() => {bottom.current?.scrollIntoView({behavior:'smooth', block:'end'});}, [messages, guestMessages, pending]);
   useEffect(() => {if (open || full) chatHeading.current?.focus();}, [open, full]);
   useEffect(() => {
-    const expired = () => {epoch.current++; setUser(null); setMessages([]); setConversations([]);setActive(null);citations.current.clear();setError('Tu sesión terminó. Inicia sesión nuevamente.');};
+    const expired = () => {epoch.current++; setUser(null); setMessages([]); setConversations([]);setActive(null);citations.current.clear();responseKinds.current.clear();setError('Tu sesión terminó. Inicia sesión nuevamente.');};
     window.addEventListener('catalina:expired', expired);return () => window.removeEventListener('catalina:expired', expired);
   }, []);
+  useEffect(() => {
+    if (!pending) {setElapsed(0);return;}
+    const started = performance.now();
+    const timer = window.setInterval(() => setElapsed(Math.floor((performance.now() - started) / 1000)), 1000);
+    return () => window.clearInterval(timer);
+  }, [pending]);
   async function checkHealth() {setHealth('Comprobando conexión…');try {await api.health();setHealth('API conectada');}catch {setHealth('Sin conexión con la API');}}
   async function action(task: () => Promise<void>) {
     if (locked.current) return;
@@ -61,15 +79,16 @@ export default function App() {
   });}
   function loadConversation(id: number) {void action(async () => {
     const current = epoch.current;const rows = await api.messages(id);if (current !== epoch.current) return;
-    setMessages(rows.map(m => ({...m,citations:citations.current.get(m.id)})));setActive(id);setDraft('');setSidebar(false);
+    setMessages(rows.map(m => ({...m,citations:citations.current.get(m.id),responseKind:responseKinds.current.get(m.id)})));setActive(id);setDraft('');setSidebar(false);
   });}
   function send(event: FormEvent) {event.preventDefault();const query = draft.trim();if (!query || (full && !user)) return;
     if (!user) {
       void action(async () => {
         setPending(query);
+      const started = performance.now();
         try {
           const answer = await api.guestAnswer(query);
-          setGuestMessages(rows => [...rows, {id: Date.now(), conversacion_id: 0, pregunta: query, respuesta: answer.text, fecha: new Date().toISOString(), citations: answer.citations}]);
+          setGuestMessages(rows => [...rows, {id: Date.now(), conversacion_id: 0, pregunta: query, respuesta: answer.text, fecha: new Date().toISOString(), citations: answer.citations, responseKind: answer.reason, responseSeconds: (performance.now() - started) / 1000}]);
           setDraft('');
         } finally {setPending('');}
       });
@@ -79,10 +98,11 @@ export default function App() {
       const current = epoch.current;let id = active;
       if (id === null) {const conversation = await api.create(query.slice(0,160));if(current !== epoch.current) return;id = conversation.id;setActive(id);setConversations(c => [conversation, ...c]);}
       setPending(query);
+      const started = performance.now();
       try {
         const answer = await api.answer(id, query);if(current !== epoch.current) return;
-        citations.current.set(answer.message_id, answer.citations);
-        setMessages(rows => [...rows, {id:answer.message_id,conversacion_id:id!,pregunta:answer.query,respuesta:answer.text,fecha:new Date().toISOString(),citations:answer.citations}]);setDraft('');await refreshHistory();
+        citations.current.set(answer.message_id, answer.citations);responseKinds.current.set(answer.message_id, answer.reason);
+        setMessages(rows => [...rows, {id:answer.message_id,conversacion_id:id!,pregunta:answer.query,respuesta:answer.text,fecha:new Date().toISOString(),citations:answer.citations,responseKind:answer.reason,responseSeconds:(performance.now()-started)/1000}]);setDraft('');await refreshHistory();
       } finally {setPending('');}
     });
   }
@@ -98,7 +118,7 @@ export default function App() {
     <div className="chat-body">
       {!user && full ? <div className="login-panel"><Avatar large/><span className="eyebrow">BIENVENIDO A CATALINA</span><h3>Tu espacio.<br/>Tu conversación.</h3><p>Inicia sesión para continuar en el chat ampliado y guardar tus conversaciones. Puedes volver al portal para hacer consultas rápidas sin registro.</p><form onSubmit={login}><label htmlFor="email">Correo electrónico</label><input id="email" type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)} disabled={busy}/><label htmlFor="password">Contraseña</label><input id="password" type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} disabled={busy}/><button className="primary" disabled={busy}>{busy ? 'Ingresando…' : 'Iniciar sesión'}<ArrowRight size={18}/></button></form><small>Usa una cuenta ya creada en Catalina. El acceso con Microsoft se incorporará más adelante.</small></div> : <>
       {!visibleMessages.length && !pending && <div className="welcome"><Avatar large/><span className="eyebrow">UN ESPACIO PARA TUS PREGUNTAS</span><h3>Hola, {user ? user.nombre.split(' ')[0] : 'qué gusto verte'}.<br/>¿En qué te puedo ayudar?</h3><p>Conversemos, resolvamos tus dudas y consultemos documentos cuando necesites información de tu universidad.</p><div className="prompt-grid">{prompts.map(({icon:Icon,title,text})=><button key={title} disabled={busy} onClick={()=>setDraft(text)}><Icon size={21}/><span>{title}</span><ArrowUpRight size={16}/></button>)}</div></div>}
-      <div className="messages" role="log" aria-label="Mensajes de la conversación" aria-live="polite">{visibleMessages.map(m=><article className="exchange" key={m.id}><div className="question">{m.pregunta}</div><div className="answer"><div className="answer-label"><Bot size={17}/> CATALINA</div><div className="answer-text">{m.respuesta}</div><Sources items={m.citations} text={m.respuesta}/></div></article>)}{pending && <article className="exchange"><div className="question">{pending}</div><div className="thinking" role="status"><span/>Catalina está preparando tu respuesta…</div></article>}<div ref={bottom}/></div>
+      <div className="messages" role="log" aria-label="Mensajes de la conversación" aria-live="polite">{visibleMessages.map(m=><article className="exchange" key={m.id}><div className="question">{m.pregunta}</div><div className="answer"><div className="answer-label"><Bot size={17}/> CATALINA</div><div className="response-kind">{responseLabel(m.responseKind)}</div><div className="answer-text">{m.respuesta}</div><small className="response-time">{m.responseSeconds !== undefined ? `Respuesta en ${m.responseSeconds.toFixed(1)} s` : ''}</small><Sources items={m.citations} text={m.respuesta}/></div></article>)}{pending && <article className="exchange"><div className="question">{pending}</div><div className="thinking" role="status"><span/>Catalina está preparando tu respuesta… {elapsed > 0 && <small>{elapsed} s</small>}</div></article>}<div ref={bottom}/></div>
       </>}
     </div>
     {error && <div className="error" role="alert">{error}</div>}
@@ -106,7 +126,7 @@ export default function App() {
     <footer className="chat-footer"><ShieldCheck size={13}/> {!user && !full ? 'Sin registro · Preguntas independientes' : 'Información institucional con fuentes'}{!full && user && <button onClick={goFull}>Ver historial <ArrowRight size={12}/></button>}</footer>
   </section>;
   return <>
-    {full ? <div className="workspace"><aside className={'sidebar ' + (sidebar?'visible':'')}><button className="back" onClick={goPortal}><ChevronLeft size={17}/> Volver al portal</button><div className="brand"><Avatar/><div><strong>CATALINA</strong><small>Asistente virtual</small></div></div><button className="new-chat" disabled={busy || !user} onClick={newChat}><Plus size={18}/> Nueva conversación</button><div className="history-title"><History size={15}/> TUS CONVERSACIONES</div><label className="search"><Search size={16}/><input aria-label="Buscar conversaciones" placeholder="Buscar…" value={search} onChange={e=>setSearch(e.target.value)}/></label><nav className="history-list" aria-label="Historial">{conversations.filter(c=>c.titulo.toLocaleLowerCase().includes(search.toLocaleLowerCase())).map(c=><button key={c.id} className={active===c.id?'selected':''} disabled={busy} onClick={()=>loadConversation(c.id)}><MessageCircle size={16}/><span>{c.titulo}</span></button>)}{!conversations.length && <p>{user?'Aquí aparecerán tus conversaciones.':'Inicia sesión para consultar tu historial.'}</p>}</nav>{user && <div className="user-box"><span className="initial">{user.nombre.charAt(0)}</span><div><strong>{user.nombre}</strong><small>{user.email}</small></div><button className="icon-btn" disabled={busy} aria-label="Cerrar sesión" onClick={()=>void action(async()=>{await api.logout();epoch.current++;setUser(null);setMessages([]);setConversations([]);setActive(null);citations.current.clear();})}><LogOut size={18}/></button></div>}<button className="connection" onClick={checkHealth}><span className={health==='API conectada'?'dot online':'dot'}/>{health}<RefreshCw size={12}/></button></aside><main className="main-chat"><button className="mobile-history" onClick={()=>setSidebar(!sidebar)}><History size={17}/>{sidebar?'Ocultar historial':'Ver historial'}</button>{chat}</main></div> : <div className="portal">
+    {full ? <div className="workspace"><aside className={'sidebar ' + (sidebar?'visible':'')}><button className="back" onClick={goPortal}><ChevronLeft size={17}/> Volver al portal</button><div className="brand"><Avatar/><div><strong>CATALINA</strong><small>Asistente virtual</small></div></div><button className="new-chat" disabled={busy || !user} onClick={newChat}><Plus size={18}/> Nueva conversación</button><div className="history-title"><History size={15}/> TUS CONVERSACIONES</div><label className="search"><Search size={16}/><input aria-label="Buscar conversaciones" placeholder="Buscar…" value={search} onChange={e=>setSearch(e.target.value)}/></label><nav className="history-list" aria-label="Historial">{conversations.filter(c=>c.titulo.toLocaleLowerCase().includes(search.toLocaleLowerCase())).map(c=><button key={c.id} className={active===c.id?'selected':''} disabled={busy} onClick={()=>loadConversation(c.id)}><MessageCircle size={16}/><span>{c.titulo}</span></button>)}{!conversations.length && <p>{user?'Aquí aparecerán tus conversaciones.':'Inicia sesión para consultar tu historial.'}</p>}</nav>{user && <div className="user-box"><span className="initial">{user.nombre.charAt(0)}</span><div><strong>{user.nombre}</strong><small>{user.email}</small></div><button className="icon-btn" disabled={busy} aria-label="Cerrar sesión" onClick={()=>void action(async()=>{await api.logout();epoch.current++;setUser(null);setMessages([]);setConversations([]);setActive(null);citations.current.clear();responseKinds.current.clear();})}><LogOut size={18}/></button></div>}<button className="connection" onClick={checkHealth}><span className={health==='API conectada'?'dot online':'dot'}/>{health}<RefreshCw size={12}/></button></aside><main className="main-chat"><button className="mobile-history" onClick={()=>setSidebar(!sidebar)}><History size={17}/>{sidebar?'Ocultar historial':'Ver historial'}</button>{chat}</main></div> : <div className="portal">
       <div className="institutional-bar"><div className="service-links"><a href="https://www.ucatolica.edu.co/portal/" target="_blank" rel="noreferrer">SERVICIOS<br/>INSTITUCIONALES</a><a className="paw" href="https://www.ucatolica.edu.co/portal/" target="_blank" rel="noreferrer">PAW 3.0</a><a href="https://www.ucatolica.edu.co/portal/" target="_blank" rel="noreferrer">CAMPUS VIRTUAL</a><a className="financial" href="https://www.ucatolica.edu.co/portal/" target="_blank" rel="noreferrer">APOYO FINANCIERO</a></div><div className="institutional-links"><a href="#informacion">TRANSPARENCIA Y ACCESO A LA INFORMACIÓN</a><a href="#consultas">ATENCIÓN Y SERVICIOS</a><a href="https://www.ucatolica.edu.co/portal/" target="_blank" rel="noreferrer">BIBLIOTECA <BookOpen size={12}/></a></div></div>
       <header className="institutional-header"><a className="official-logo" href="#/" aria-label="Universidad Católica de Colombia, inicio"><img src="/brand/universidad-catolica.png" alt="Universidad Católica de Colombia · Vigilada Mineducación"/></a><div className="header-divider"/><div className="identity-caption"><ShieldCheck size={30}/><span>Educación que<br/><strong>transforma vidas</strong></span></div><button className="menu-toggle" aria-label="Abrir navegación" aria-expanded={mobileMenu} onClick={()=>setMobileMenu(!mobileMenu)}><Compass size={23}/></button><nav className={mobileMenu ? 'institutional-nav visible' : 'institutional-nav'} aria-label="Navegación principal">{['Nuestra universidad','Oferta académica','Admisiones','Facultades','Investigaciones','Vida universitaria'].map(label=><a key={label} href="https://www.ucatolica.edu.co/portal/" target="_blank" rel="noreferrer">{label}</a>)}<button onClick={()=>{setOpen(true);setMobileMenu(false);}}>CATALINA <img src="/brand/catalina.svg" alt=""/></button></nav></header>
       <main><section className={'campus-hero slide-'+slide} aria-label="Actualidad universitaria">

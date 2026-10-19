@@ -119,9 +119,10 @@ class Settings(BaseSettings):
     )
 
     chat_history_turns: int = Field(default=8, ge=1, le=30)
-    chat_history_characters: int = Field(default=8000, ge=1000, le=30000)
+    chat_history_characters: int = Field(default=4000, ge=1000, le=30000)
     chat_max_concurrent: int = Field(default=2, ge=1, le=20)
     chat_timeout_seconds: int = Field(default=220, ge=10, le=600)
+    document_response_mode: str = Field(default="extractive", pattern="^(generated|extractive)$")
 
     embedding_dimension: int = Field(default=768, gt=0)
     embedding_batch_size: int = Field(default=8, ge=1)
