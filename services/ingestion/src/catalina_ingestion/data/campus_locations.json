@@ -49,7 +49,7 @@
         "x": 0.27631578947368424,
         "y": 0.3290909090909091
       },
-      "map_color": "#ea5261",
+      "map_color": "#536e78",
       "reference_areas": [
         [
           {
@@ -88,7 +88,7 @@
         "x": 0.5236842105263158,
         "y": 0.39454545454545453
       },
-      "map_color": "#f5ae25",
+      "map_color": "#536e78",
       "reference_areas": [
         [
           {
@@ -126,7 +126,7 @@
         "x": 0.6421052631578947,
         "y": 0.43272727272727274
       },
-      "map_color": "#147bc1",
+      "map_color": "#536e78",
       "reference_areas": [
         [
           {
@@ -165,7 +165,7 @@
         "x": 0.4723684210526316,
         "y": 0.5054545454545455
       },
-      "map_color": "#9856e8",
+      "map_color": "#536e78",
       "reference_areas": [
         [
           {
@@ -204,7 +204,7 @@
         "x": 0.4631578947368421,
         "y": 0.5618181818181818
       },
-      "map_color": "#9856e8",
+      "map_color": "#536e78",
       "parent_id": "las-torres",
       "reference_areas": []
     },
@@ -225,7 +225,7 @@
         "x": 0.23157894736842105,
         "y": 0.27090909090909093
       },
-      "map_color": "#ea5261",
+      "map_color": "#536e78",
       "parent_id": "claustro",
       "reference_areas": []
     },
@@ -250,7 +250,7 @@
         "x": 0.48157894736842105,
         "y": 0.3472727272727273
       },
-      "map_color": "#f5ae25",
+      "map_color": "#536e78",
       "reference_areas": []
     },
     {
@@ -269,7 +269,7 @@
         "x": 0.21710526315789475,
         "y": 0.3490909090909091
       },
-      "map_color": "#ea5261",
+      "map_color": "#536e78",
       "parent_id": "claustro",
       "reference_areas": []
     },
@@ -283,13 +283,13 @@
       ],
       "address": null,
       "source_id": "confirmed",
-      "note": "Los dos bloques verdes forman el Liceo, según la confirmación del usuario. Distribución de primaria y bachillerato pendiente.",
+      "note": "Los dos bloques delimitados representan el espacio compartido por Liceo Primaria y Liceo Bachillerato, confirmado por el usuario.",
       "map_label": "4",
       "reference_point": {
         "x": 0.1986842105263158,
         "y": 0.46545454545454545
       },
-      "map_color": "#16ad69",
+      "map_color": "#536e78",
       "reference_areas": [
         [
           {
@@ -338,8 +338,10 @@
         "primaria"
       ],
       "address": "Diagonal 46 A # 15 B – 17, Bogotá",
-      "source_id": "contacts",
-      "note": "Marcador pendiente de confirmar."
+      "source_id": "confirmed",
+      "note": "Comparte el espacio del Liceo (los dos bloques del plano), según confirmación del usuario. Acceso y distribución interna por confirmar.",
+      "map_color": "#536e78",
+      "parent_id": "liceo-referencia"
     },
     {
       "id": "liceo-bachillerato",
@@ -350,21 +352,10 @@
         "bachillerato"
       ],
       "address": "Carrera 15 # 46 – 69/67, Bogotá",
-      "source_id": "contacts",
-      "note": "Marcador pendiente de confirmar."
-    },
-    {
-      "id": "extension",
-      "name": "Casa Extensión",
-      "category": "servicio",
-      "aliases": [
-        "casa extension",
-        "direccion de extension",
-        "extension"
-      ],
-      "address": "Diagonal 46 # 15 B – 18, Bogotá",
-      "source_id": "contacts",
-      "note": "Marcador pendiente de confirmar."
+      "source_id": "confirmed",
+      "note": "Comparte el espacio del Liceo (los dos bloques del plano), según confirmación del usuario. Acceso y distribución interna por confirmar.",
+      "map_color": "#536e78",
+      "parent_id": "liceo-referencia"
     },
     {
       "id": "consultorio-juridico",
@@ -374,9 +365,11 @@
         "consultorio juridico",
         "consultorio de derecho"
       ],
-      "address": "Carrera 13 # 46 – 61, Bogotá",
-      "source_id": "contacts",
-      "note": "Marcador pendiente de confirmar."
+      "address": null,
+      "source_id": "confirmed",
+      "note": "En el mismo espacio de la Facultad de Derecho, dentro de Las Torres, según confirmación del usuario. Oficina exacta por confirmar.",
+      "map_color": "#536e78",
+      "parent_id": "derecho"
     },
     {
       "id": "bienestar",
@@ -390,7 +383,8 @@
       "address": null,
       "source_id": "directory",
       "parent_id": "claustro",
-      "note": "El directorio lo ubica en El Claustro. Piso y oficina pendientes de confirmar."
+      "note": "El directorio lo ubica en El Claustro. Piso y oficina pendientes de confirmar.",
+      "map_color": "#536e78"
     },
     {
       "id": "ingenieria",
@@ -403,7 +397,8 @@
       "address": null,
       "source_id": "directory",
       "parent_id": "claustro",
-      "note": "Se muestra la referencia de su sede. Oficina exacta por confirmar."
+      "note": "Se muestra la referencia de su sede. Oficina exacta por confirmar.",
+      "map_color": "#536e78"
     },
     {
       "id": "diseno",
@@ -416,7 +411,8 @@
       "address": null,
       "source_id": "directory",
       "parent_id": "claustro",
-      "note": "Se muestra la referencia de su sede. Oficina exacta por confirmar."
+      "note": "Se muestra la referencia de su sede. Oficina exacta por confirmar.",
+      "map_color": "#536e78"
     },
     {
       "id": "ciencias-basicas",
@@ -428,7 +424,8 @@
       "address": null,
       "source_id": "directory",
       "parent_id": "claustro",
-      "note": "Oficina exacta por confirmar."
+      "note": "Oficina exacta por confirmar.",
+      "map_color": "#536e78"
     },
     {
       "id": "internacionales",
@@ -441,7 +438,8 @@
       "address": null,
       "source_id": "directory",
       "parent_id": "claustro",
-      "note": "Oficina exacta por confirmar."
+      "note": "Oficina exacta por confirmar.",
+      "map_color": "#536e78"
     },
     {
       "id": "derecho",
@@ -459,7 +457,7 @@
         "x": 0.45921052631578946,
         "y": 0.5981818181818181
       },
-      "map_color": "#9856e8",
+      "map_color": "#536e78",
       "parent_id": "las-torres",
       "reference_areas": []
     },
@@ -475,7 +473,8 @@
       "address": null,
       "source_id": "directory",
       "parent_id": "carrera-13",
-      "note": "Acceso y marcador pendientes de confirmar."
+      "note": "Acceso y marcador pendientes de confirmar.",
+      "map_color": "#536e78"
     },
     {
       "id": "biblioteca-sede-4",
@@ -496,45 +495,53 @@
         "x": 0.6289473684210526,
         "y": 0.3890909090909091
       },
-      "map_color": "#147bc1",
+      "map_color": "#536e78",
       "reference_areas": []
     },
     {
       "id": "registro-academico",
       "name": "Registro y Control Académico",
-      "category": "pendiente",
+      "category": "dependencia",
       "aliases": [
         "registro academico",
         "registro y control",
-        "registro y control academico"
+        "registro y control academico",
+        "registro",
+        "registro y control académico"
       ],
       "address": null,
-      "source_id": "pending",
-      "note": "Necesitamos que confirmes sede, piso y oficina antes de ubicar esta dependencia."
+      "source_id": "confirmed",
+      "note": "Ubicación confirmada por el usuario en Sede Las Torres. Piso y oficina exactos por confirmar.",
+      "map_color": "#536e78",
+      "parent_id": "las-torres"
     },
     {
       "id": "admisiones",
       "name": "Admisiones",
-      "category": "pendiente",
+      "category": "dependencia",
       "aliases": [
         "admisiones",
         "oficina de admisiones"
       ],
       "address": null,
-      "source_id": "pending",
-      "note": "Ubicación pendiente de confirmación."
+      "source_id": "confirmed",
+      "note": "Ubicación confirmada por el usuario en Sede Las Torres. Piso y oficina exactos por confirmar.",
+      "map_color": "#536e78",
+      "parent_id": "las-torres"
     },
     {
       "id": "tesoreria",
       "name": "Tesorería",
-      "category": "pendiente",
+      "category": "dependencia",
       "aliases": [
         "tesoreria",
         "oficina de tesoreria"
       ],
       "address": null,
-      "source_id": "pending",
-      "note": "Ubicación pendiente de confirmación."
+      "source_id": "confirmed",
+      "note": "Ubicación confirmada por el usuario en Sede Las Torres. Piso y oficina exactos por confirmar.",
+      "map_color": "#536e78",
+      "parent_id": "las-torres"
     },
     {
       "id": "auditorio-sede-4",
@@ -553,7 +560,7 @@
         "x": 0.65,
         "y": 0.4909090909090909
       },
-      "map_color": "#147bc1",
+      "map_color": "#536e78",
       "parent_id": "sede-4",
       "reference_areas": [],
       "source_id": "confirmed"
@@ -575,7 +582,7 @@
         "x": 0.5407894736842105,
         "y": 0.5309090909090909
       },
-      "map_color": "#9856e8",
+      "map_color": "#536e78",
       "parent_id": "las-torres",
       "reference_areas": [
         [

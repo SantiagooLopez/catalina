@@ -23,8 +23,8 @@ def test_catalog_marks_reference_pixels_and_unknown_positions_explicitly():
     assert places["bienestar"]["anchor_id"] == "claustro"
     assert places["bienestar"]["reference_point"] is None
     assert places["bienestar"]["resolved_address"] == places["claustro"]["address"]
-    assert places["tesoreria"]["anchor_id"] is None
-    assert places["tesoreria"]["resolved_address"] is None
+    assert places["tesoreria"]["anchor_id"] == "las-torres"
+    assert places["tesoreria"]["resolved_address"] == places["las-torres"]["address"]
     assert "lat" not in places["claustro"]
     assert len({p.id for p in campus_catalog().locations}) == len(campus_catalog().locations)
 
@@ -53,11 +53,11 @@ def test_only_location_requests_use_directory_in_regular_chat():
     assert not answer.generated
 
 
-def test_pending_location_never_invents_an_address():
+def test_confirmed_treasury_uses_torres_but_keeps_office_pending():
     answer = directory_answer("¿Dónde queda Tesorería?")
     assert answer.locations == ("tesoreria",)
-    assert "pendiente" in answer.text
-    assert "Carrera" not in answer.text and "Diagonal" not in answer.text
+    assert "Las Torres" in answer.text
+    assert "confirmar" in answer.text
 
 
 def test_unknown_campus_place_is_pending_but_other_locations_keep_normal_routing():
@@ -141,3 +141,18 @@ def test_colored_campus_blocks_and_hierarchical_numbers_match_confirmed_plan():
     answer = directory_answer("¿Dónde quedan las canchas de fútbol?")
     assert answer.locations == ("polideportivo",)
     assert "Las Torres" in answer.text
+
+
+def test_confirmed_shared_locations_resolve_nested_faculty_and_campus():
+    places = {p["id"]: p for p in public_catalog()["locations"]}
+    assert "extension" not in places
+    for key in ("liceo-primaria", "liceo-bachillerato"):
+        assert places[key]["anchor_id"] == "liceo-referencia"
+    for key in ("registro-academico", "admisiones", "tesoreria"):
+        assert places[key]["anchor_id"] == "las-torres"
+    assert places["consultorio-juridico"]["parent_id"] == "derecho"
+    assert places["consultorio-juridico"]["anchor_id"] == "derecho"
+    assert places["consultorio-juridico"]["resolved_address"] == places["las-torres"]["address"]
+    answer = directory_answer("¿Dónde queda el consultorio jurídico?")
+    assert "Las Torres" in answer.text
+    assert places["las-torres"]["address"] in answer.text

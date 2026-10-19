@@ -94,16 +94,30 @@ def match_locations(query: str) -> list[CampusLocation]:
             if not any(alias != other and alias in other for _, other in hits)]
 
 
+def inherited_location(
+    place: CampusLocation, by_id: dict[str, CampusLocation],
+) -> tuple[str | None, str | None]:
+    address = place.address
+    anchor_id = place.id if place.reference_point else None
+    parent = by_id.get(place.parent_id)
+    while parent is not None:
+        address = address or parent.address
+        if anchor_id is None and parent.reference_point:
+            anchor_id = parent.id
+        parent = by_id.get(parent.parent_id)
+    return address, anchor_id
+
+
 def public_catalog() -> dict:
     catalog = campus_catalog()
     data = catalog.model_dump()
     by_id = {place.id: place for place in catalog.locations}
     for item, place in zip(data["locations"], catalog.locations, strict=True):
         parent = by_id.get(place.parent_id)
-        item["resolved_address"] = place.address or (parent.address if parent else None)
+        address, anchor_id = inherited_location(place, by_id)
+        item["resolved_address"] = address
         item["parent_name"] = parent.name if parent else None
-        anchor = place if place.reference_point else parent
-        item["anchor_id"] = anchor.id if anchor and anchor.reference_point else None
+        item["anchor_id"] = anchor_id
         item["source"] = catalog.sources[place.source_id].model_dump()
     return data
 
@@ -156,7 +170,7 @@ def directory_answer(
         paragraphs = []
         for place in matches:
             parent = by_id.get(place.parent_id)
-            address = place.address or (parent.address if parent else None)
+            address, _ = inherited_location(place, by_id)
             paragraph = place.name
             if parent:
                 paragraph += f" · {parent.name}"
