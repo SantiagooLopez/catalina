@@ -14,8 +14,8 @@ un h1, secciones con títulos identificables y menú móvil con estado aria-expa
 
 `public/brand/campus-editorial.png` es una ilustración conceptual generada para este portal,
 no una fotografía de las instalaciones de la universidad. La portada lo identifica así.
-La imagen es decorativa; títulos y acciones están en HTML. El logo institucional y las
-cinco imágenes de Catalina siguen siendo los recursos aportados por el usuario.
+La imagen es decorativa; títulos y acciones están en HTML. Las
+versiones actuales de Catalina usan símbolos propios, sin escudos institucionales. El nombre de la universidad se conserva como referencia textual.
 
 Flujos conservados: consulta rápida sin sesión, pregunta sugerida que rellena el chat,
 acceso autenticado al espacio ampliado y al mapa, historial y cambio de tema.

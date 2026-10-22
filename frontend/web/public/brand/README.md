@@ -1,14 +1,11 @@
-# Catalina · imágenes del personaje
+# Identidad independiente de Catalina
 
-Las cinco imágenes PNG fueron aportadas por el usuario el 18 de octubre de 2026.
-Se conservan tal como se entregaron, con su fondo blanco y sus proporciones.
+La marca catalina-mark.svg y las poses vectoriales de Catalina usan una conversación como
+símbolo propio. No incluyen escudos, cruces institucionales ni logos de la universidad.
 
-- `catalina-face.png`: avatar, cabecera del chat, respuestas, accesos y favicon.
-- `catalina-wave.png`: bienvenida de conversación y banner del portal.
-- `catalina-standing.png`: acceso al espacio de conversaciones.
-- `catalina-profile.png`: guía del mapa cuando no hay una ubicación seleccionada.
-- `catalina-turn.png`: presentación del asistente en el portal.
+Se retiraron de los recursos públicos el logo institucional, el banner de referencia y
+las imágenes anteriores del personaje que incorporaban elementos del escudo.
+El nombre de la universidad se mantiene como referencia textual de la información consultada.
+La cabecera y el pie identifican a Catalina como un proyecto académico independiente.
 
-`Mascot.tsx` centraliza las poses decorativas, con dimensiones reservadas y carga diferida.
-Los nombres y botones próximos aportan el texto accesible; las ilustraciones no repiten
-ese contenido en lectores de pantalla. El logo institucional de la universidad es independiente.
+campus-editorial.png es una ilustración conceptual de la portada, no una fotografía oficial.

@@ -1,4 +1,14 @@
 /* Shared surface tokens must follow the portal's original palette in the cascade. */
+.compact .chat-header{background:linear-gradient(110deg,#12345f,#075b82);color:#fff;padding:17px 18px;gap:11px;border-bottom:1px solid #ffffff25}
+.compact .chat-header h2{color:#fff;font-size:19px;font-weight:800;letter-spacing:-.3px;line-height:1.35}
+.compact .chat-header>div>span{display:block;color:#d0e8f5;font-size:10px;margin-top:3px;line-height:1.5}
+.compact .chat-header>.avatar{width:43px;height:43px;padding:2px;border:1px solid #ffffff75;background:#fff;box-shadow:0 2px 8px #00213b20}
+.compact .chat-header .header-actions{gap:5px;align-items:center}
+.compact .chat-header .icon-btn{width:32px;height:34px;min-width:32px;padding:7px;color:#f0f8ff;background:#ffffff12;border:1px solid #ffffff30;border-radius:8px}
+.compact .chat-header .icon-btn:hover{background:#ffffff28;color:#fff;border-color:#ffffff70}
+.compact .chat-header .icon-btn:focus-visible{outline-color:#ffda83;outline-offset:2px}
+.compact .chat-header .icon-btn svg{width:17px;height:17px}
+@media(max-width:380px){.compact .chat-header{padding:15px 12px;gap:8px}.compact .chat-header>.avatar{width:38px;height:38px}.compact .chat-header h2{font-size:18px}.compact .chat-header .header-actions{gap:3px}.compact .chat-header .icon-btn{width:29px;min-width:29px;height:32px;padding:6px}}
 :root{color-scheme:light;--bg:#ffffff;--soft:#f4f7fb;--ink:#21334b;--muted:#566981;--line:#dbe3ed;--sidebar:#f3f6fb;--accent:#006b99;--surface-raised:#fff;--hover:#eaf1f8;--action:#26366c;--action-text:#fff;--focus:#087fae;--shadow:0 12px 36px #223c5a0b;--map-bg:#efF2ee}
 :root[data-theme=dark]{color-scheme:dark;--bg:#12202e;--soft:#1a2b3d;--ink:#e8eff8;--muted:#adbed1;--line:#30465b;--sidebar:#101c2b;--accent:#7ed5f3;--surface-raised:#1b2e42;--hover:#253e55;--action:#a7c8fa;--action-text:#10233f;--focus:#7ed5f3;--shadow:0 12px 36px #030a142b;--map-bg:#122430;background:#12202e;color:#e8eff8}
 body{color:var(--ink);background:var(--bg)}
