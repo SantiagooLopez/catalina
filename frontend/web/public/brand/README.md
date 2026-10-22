@@ -1,16 +1,15 @@
-# Identidad independiente de Catalina
+# Imágenes de Catalina elegidas por el usuario
 
-Recursos activos:
-- catalina-feminine.png: personaje femenino 3D, con falda azul y blanca, saludando.
-- catalina-avatar.png: rostro del mismo personaje para avatares y favicon.
+Recursos activos: catalina-selected-standing.png, catalina-selected-wave.png,
+catalina-selected-profile.png y catalina-selected-turn.png.
+Son las cuatro imágenes aportadas el 21 de octubre de 2026; se conservan sin modificaciones.
 
-Ilustraciones originales generadas para Catalina a partir de una dirección visual propia.
-No contienen escudos, cruces institucionales ni logos de la universidad.
-Las referencias aportadas se usaron como orientación de estilo, no como recursos del sitio.
-Las imágenes conservan transparencia y se adaptan a ambos temas.
+La frontal se usa en el acceso, el saludo en la bienvenida y portada, el perfil en el mapa
+sin selección y la pose girada en la presentación. Los avatares muestran el rostro de la
+frontal mediante encuadre CSS; el archivo original no se recorta ni se modifica.
 
-Las versiones SVG previas no se usan en la interfaz actual.
-El nombre de la universidad se mantiene como referencia textual de la información consultada.
-La cabecera y el pie identifican a Catalina como un proyecto académico independiente.
+No se usan las ilustraciones 3D ni las poses SVG anteriores en la interfaz actual.
+El nombre de la universidad se mantiene como referencia textual; la cabecera y el pie
+identifican a Catalina como proyecto académico independiente.
 
 campus-editorial.png es una ilustración conceptual, no una fotografía oficial.

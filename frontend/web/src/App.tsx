@@ -23,7 +23,7 @@ function responseLabel(kind?: string) {
   if (kind) return 'Consulta documental · evidencia insuficiente';
   return 'Historial · método de respuesta no disponible';
 }
-function Avatar({large = false}: {large?: boolean}) {return <span className={'avatar ' + (large ? 'large' : '')}><img src="/brand/catalina-avatar.png" alt=""/></span>;}
+function Avatar({large = false}: {large?: boolean}) {return <span className={'avatar ' + (large ? 'large' : '')}><img src="/brand/catalina-selected-standing.png" alt=""/></span>;}
 function Sources({items, text}: {items: Source[] | undefined; text: string}) {
   if (!items) return /\[S\d+\]/.test(text) ? <small className="source-note">Las citas de este mensaje no están disponibles en el historial de la API.</small> : null;
   if (!items.length) return null;
