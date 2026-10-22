@@ -1,11 +1,16 @@
 # Identidad independiente de Catalina
 
-La marca catalina-mark.svg y las poses vectoriales de Catalina usan una conversación como
-símbolo propio. No incluyen escudos, cruces institucionales ni logos de la universidad.
+Recursos activos:
+- catalina-feminine.png: personaje femenino 3D, con falda azul y blanca, saludando.
+- catalina-avatar.png: rostro del mismo personaje para avatares y favicon.
 
-Se retiraron de los recursos públicos el logo institucional, el banner de referencia y
-las imágenes anteriores del personaje que incorporaban elementos del escudo.
+Ilustraciones originales generadas para Catalina a partir de una dirección visual propia.
+No contienen escudos, cruces institucionales ni logos de la universidad.
+Las referencias aportadas se usaron como orientación de estilo, no como recursos del sitio.
+Las imágenes conservan transparencia y se adaptan a ambos temas.
+
+Las versiones SVG previas no se usan en la interfaz actual.
 El nombre de la universidad se mantiene como referencia textual de la información consultada.
 La cabecera y el pie identifican a Catalina como un proyecto académico independiente.
 
-campus-editorial.png es una ilustración conceptual de la portada, no una fotografía oficial.
+campus-editorial.png es una ilustración conceptual, no una fotografía oficial.
