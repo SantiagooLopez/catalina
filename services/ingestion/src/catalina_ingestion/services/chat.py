@@ -68,7 +68,8 @@ def explicitly_institutional(query: str) -> bool:
     institutional_topic = re.search(
         r"\b(?:universidad catolica|ucc|mi universidad|la universidad|nuestra universidad|"
         r"reglamento|calendario academico|bienestar universitario|registro academico|"
-        r"certificado de estudios|certificado estudiantil|sede|sedes|"
+        r"certificado de estudios|certificado estudiantil|certificado academico|"
+        r"constancia academica|paw 2\.0|sede|sedes|"
         r"matricula|matriculas|inscripcion|inscripciones|homologacion|"
         r"cancelar (?:una |la )?materia|semestre|creditos academicos)\b",
         text,

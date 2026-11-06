@@ -49,15 +49,15 @@ async function all<T>(path: string): Promise<T[]> {
 }
 export const api = {
   campusLocations: () => {
-    if (!campusRequest) campusRequest = raw<CampusCatalog>('/campus/locations', 'GET', undefined, undefined, 12000).catch(error => {campusRequest=null;throw error;});
+    if (!campusRequest) campusRequest = request<CampusCatalog>('/campus/locations').catch(error => {campusRequest=null;throw error;});
     return campusRequest;
   },
-  campusQuestion: (query:string, selected_id:string|null) => raw<CampusReply>('/campus/query', 'POST', {query, selected_id}, undefined, 15000),
+  campusQuestion: (query:string, selected_id:string|null) => request<CampusReply>('/campus/query', 'POST', {query, selected_id}),
   async login(email: string, password: string): Promise<User> {
     const data = await raw<Session>('/auth/login', 'POST', {email, password});
-    generation++; session = data; return data.user;
+    generation++; session = data; campusRequest = null; return data.user;
   },
-  async logout() { if (session) await raw('/auth/logout', 'POST', {refresh_token: session.refresh_token}); generation++; session = null; },
+  async logout() { if (session) await raw('/auth/logout', 'POST', {refresh_token: session.refresh_token}); generation++; session = null; campusRequest = null; },
   health: () => raw<{status: string}>('/health'),
   guestAnswer: (query: string) => raw<Pick<Answer, 'query' | 'text' | 'citations' | 'reason' | 'generated' | 'locations'>>('/guest/answers', 'POST', {query}),
   conversations: () => all<Conversation>('/conversations'),

@@ -1,0 +1,87 @@
+{
+  "fecha_utc": "2026-10-28T22:21:35.745944+00:00",
+  "servidor": "catalina-server",
+  "consulta": {
+    "query": "¿Qué reglamento rige actualmente a los estudiantes de la Universidad Católica de Colombia?",
+    "top_k": 5,
+    "candidate_k": 20,
+    "score_threshold": 0.5,
+    "filters": null
+  },
+  "duracion_segundos": 1.439,
+  "resultado": {
+    "query": "¿Qué reglamento rige actualmente a los estudiantes de la Universidad Católica de Colombia?",
+    "enabled": true,
+    "reason": "ready",
+    "text": "{\"sources\": [{\"source\": {\"citation_id\": \"S1\", \"point_id\": \"38401e91-d653-5452-96ac-5d76d4b10bc6\", \"document_id\": 6, \"document_version_id\": 6, \"document_name\": \"Reglamento del Estudiante\", \"version\": \"406-2026\", \"page_start\": 2, \"page_end\": 2, \"section\": \"ACUERDA:\", \"index_run_id\": \"58e2f18b-90cd-49fb-9bab-788f885725d7\"}, \"text\": \"ACUERDA:\\n\\nArtículo primero . Aprobar y adoptar un nuevo Reglamento del Estudiante que regirá a partir del primero (01) de septiembre de 2026 para la población Estudiantil de la Universidad Católica de Colombia. Artículo segundo. El texto del nuevo Reglamento del Estudiante se anexará al presente Acuerdo. Artículo tercero. El presente Acuerdo deroga todas las disposiciones que le sean contrarias y rige a partir del primero (01) de septiembre de 2026.\\n\\nComuníquese y cúmplase.\\n\\nDado en Bogotá, a los cinco (05) días del mes de marzo de 2026.\"}, {\"source\": {\"citation_id\": \"S2\", \"point_id\": \"da2e4354-4a9c-5dc9-a987-574d0e9cfd35\", \"document_id\": 6, \"document_version_id\": 6, \"document_name\": \"Reglamento del Estudiante\", \"version\": \"406-2026\", \"page_start\": 11, \"page_end\": 11, \"section\": \"Acuerdo No. 406 del 05 de marzo de 2026\", \"index_run_id\": \"58e2f18b-90cd-49fb-9bab-788f885725d7\"}, \"text\": \"Artículo 5. Derechos Además de los consagrados como derechos fundamentales en la Constitución Política de Colombia, son derechos de los estudiantes:\\n\\n1. Acatar y cumplir la Ley, normas estatutarias, políticas, reglamentos y procedimientos de la Universidad. 2. Actuar de manera individual o en escenarios colectivos de acuerdo con las normas de la moral, la ética, los valores, la cultura y las buenas costumbres. 3. Mantener un trato respetuoso con los profesores, el personal administrativo, las directivas, los demás miembros de la comunidad universitaria y los terceros que\"}, {\"source\": {\"citation_id\": \"S3\", \"point_id\": \"2279ef5d-80b4-5722-baf2-06449e9e7280\", \"document_id\": 6, \"document_version_id\": 6, \"document_name\": \"Reglamento del Estudiante\", \"version\": \"406-2026\", \"page_start\": 2, \"page_end\": 2, \"section\": \"FRANCISCO JOSÉ GÓMEZ ORTIZ\", \"index_run_id\": \"58e2f18b-90cd-49fb-9bab-788f885725d7\"}, \"text\": \"FRANCISCO JOSÉ GÓMEZ ORTIZ\\n\\nPresidente\\n\\nSERGIO MARTÍNEZ LONDOÑO Secretario General\\n\\nAcuerdo 406 del 05 de marzo de 2026 Página 2 de 2\"}]}",
+    "sources": [
+      {
+        "citation_id": "S1",
+        "point_id": "38401e91-d653-5452-96ac-5d76d4b10bc6",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 2,
+        "page_end": 2,
+        "section": "ACUERDA:",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S2",
+        "point_id": "da2e4354-4a9c-5dc9-a987-574d0e9cfd35",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 11,
+        "page_end": 11,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S3",
+        "point_id": "2279ef5d-80b4-5722-baf2-06449e9e7280",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 2,
+        "page_end": 2,
+        "section": "FRANCISCO JOSÉ GÓMEZ ORTIZ",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      }
+    ],
+    "character_count": 2300,
+    "omitted_by_budget": 0,
+    "assessment": {
+      "evidence_sufficient": true,
+      "reasons": [
+        "passed_retrieval_checks"
+      ],
+      "evaluated_chunks": 4,
+      "relevant_chunks": 4,
+      "document_count": 2,
+      "character_count": 4491,
+      "best_score": 0.6980418,
+      "policy": {
+        "minimum_chunk_score": 0.5,
+        "minimum_best_score": 0.54,
+        "minimum_chunks": 1,
+        "minimum_documents": 1,
+        "minimum_characters": 80
+      }
+    },
+    "grounding": {
+      "supported": true,
+      "failures": [],
+      "policy": {
+        "require_years": true,
+        "require_locations": true,
+        "require_services": true,
+        "require_identifiers": true,
+        "require_regulation_scope": true
+      }
+    }
+  }
+}

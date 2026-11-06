@@ -1,0 +1,63 @@
+{
+  "captura_utc": "2026-10-28T23:17:01.490Z",
+  "backend_passed": 502,
+  "backend_warnings": 2,
+  "frontend_passed": 3,
+  "frontend_failed": 0,
+  "total_pytest_node": 505,
+  "verificaciones_interfaz": [
+    {
+      "file": "ui-identidad.txt",
+      "result": {
+        "errors": [],
+        "independentIdentity": true,
+        "compactTitleContrast": true,
+        "mobileOverflow": false
+      }
+    },
+    {
+      "file": "ui-portal.txt",
+      "result": {
+        "errors": [],
+        "checks": [
+          {
+            "width": 390,
+            "overflow": false
+          },
+          {
+            "width": 768,
+            "overflow": false
+          },
+          {
+            "width": 1440,
+            "overflow": false
+          }
+        ],
+        "guestPrompt": true,
+        "mapLoginGate": true,
+        "darkToggle": true
+      }
+    },
+    {
+      "file": "ui-temas.txt",
+      "result": {
+        "errors": [],
+        "contrastChecks": 18,
+        "minimumContrast": 6.687617116950311,
+        "failures": []
+      }
+    },
+    {
+      "file": "ui-mapa.txt",
+      "result": {
+        "errors": [],
+        "markers": 13,
+        "selectedContext": "bienestar",
+        "autoOpenedFromLocationAnswer": true,
+        "mobileOverflow": false,
+        "fixtures": "Authentication and API fixtures; no real account or conversation created"
+      }
+    }
+  ],
+  "compilacion_correcta": true
+}

@@ -13,6 +13,8 @@ from catalina_ingestion.domain.rag_context import RagContext
 from catalina_ingestion.domain.retrieval import RetrievalQuery
 from catalina_ingestion.services.conversation_routing import conversational_reply
 from catalina_ingestion.services.document_excerpt import resolve_excerpt
+from catalina_ingestion.services.calendar_dates import resolve_class_end, resolve_calendar_event
+from catalina_ingestion.services.procedure_excerpt import resolve_certificate_procedure
 from catalina_ingestion.services.document_identifier_resolver import (
     DocumentIdentifierResolution,
     DocumentIdentifierResolver,
@@ -78,6 +80,12 @@ class AnswerGenerationService:
             )
 
         if self.document_response_mode == "extractive":
+            calendar = resolve_class_end(context) or resolve_calendar_event(context)
+            if calendar is not None:
+                return calendar
+            procedure = resolve_certificate_procedure(context)
+            if procedure is not None:
+                return procedure
             overview = resolve_overview(context)
             if overview is not None:
                 return overview

@@ -1,0 +1,51 @@
+{
+  "url": "http://127.0.0.1:5173/api/v1/guest/answers",
+  "status": 200,
+  "question": "¿Qué reglamento rige actualmente a los estudiantes de la Universidad Católica de Colombia?",
+  "body": {
+    "query": "¿Qué reglamento rige actualmente a los estudiantes de la Universidad Católica de Colombia?",
+    "text": "El reglamento que rige actualmente a los estudiantes de la Universidad Católica de Colombia es el Reglamento del Estudiante, identificador/versión documental 406-2026. Este reglamento fue aprobado y adoptado por el Acuerdo 406 del 05 de marzo de 2026. Según el artículo 5 del documento, los estudiantes tienen derechos como acatar y cumplir la ley, actuar de manera respetuosa y mantener un trato respetuoso con los demás miembros de la comunidad universitaria. El reglamento rige a partir del 01 de septiembre de 2026. [S1], [S2], [S3]",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "38401e91-d653-5452-96ac-5d76d4b10bc6",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 2,
+        "page_end": 2,
+        "section": "ACUERDA:",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S2",
+        "point_id": "da2e4354-4a9c-5dc9-a987-574d0e9cfd35",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 11,
+        "page_end": 11,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S3",
+        "point_id": "2279ef5d-80b4-5722-baf2-06449e9e7280",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 2,
+        "page_end": 2,
+        "section": "FRANCISCO JOSÉ GÓMEZ ORTIZ",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      }
+    ],
+    "generated": false,
+    "reason": "cached",
+    "model": null,
+    "locations": []
+  }
+}

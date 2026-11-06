@@ -1,0 +1,360 @@
+{
+  "source_workbook": "Evaluación de experiencia, eficacia y utilidad del prototipo Catalina.xlsx",
+  "records": 30,
+  "unique_ids": 30,
+  "start": "2026-10-27 14:15:40",
+  "end": "2026-10-28 07:31:54",
+  "profiles": {
+    "Estudiante de pregrado": 26,
+    "Estudiante de posgrado": 1,
+    "Personal administrativo": 2,
+    "Docente": 1
+  },
+  "dimensions": [
+    {
+      "name": "Eficacia",
+      "items": [
+        {
+          "column": 13,
+          "question": "Eficacia.Catalina logró responder las consultas para las cuales existía información disponible.",
+          "n": 30,
+          "mean": 4.166666666666667,
+          "counts": {
+            "4": 25,
+            "5": 5
+          }
+        },
+        {
+          "column": 14,
+          "question": "Eficacia.Las respuestas obtenidas correspondieron con lo que necesitaba consultar.",
+          "n": 30,
+          "mean": 4.633333333333334,
+          "counts": {
+            "5": 19,
+            "4": 11
+          }
+        },
+        {
+          "column": 15,
+          "question": "Eficacia.La información presentada por Catalina fue clara y comprensible.",
+          "n": 30,
+          "mean": 4.333333333333333,
+          "counts": {
+            "4": 18,
+            "5": 11,
+            "3": 1
+          }
+        },
+        {
+          "column": 16,
+          "question": "Eficacia.Las respuestas fueron pertinentes respecto a las preguntas realizadas.",
+          "n": 30,
+          "mean": 4.333333333333333,
+          "counts": {
+            "4": 20,
+            "5": 10
+          }
+        },
+        {
+          "column": 17,
+          "question": "Eficacia.Las fuentes mostradas permitieron identificar de dónde provenía la información.",
+          "n": 30,
+          "mean": 4.3,
+          "counts": {
+            "4": 19,
+            "5": 10,
+            "3": 1
+          }
+        },
+        {
+          "column": 18,
+          "question": "Eficacia.Cuando Catalina no contó con información suficiente, lo comunicó adecuadamente.",
+          "n": 30,
+          "mean": 4.333333333333333,
+          "counts": {
+            "4": 20,
+            "5": 10
+          }
+        }
+      ],
+      "item_response_n": 180,
+      "participant_n": 30,
+      "mean": 4.35,
+      "favorable_n": 178,
+      "favorable_percent": 98.88888888888889
+    },
+    {
+      "name": "Facilidad de uso y utilidad",
+      "items": [
+        {
+          "column": 19,
+          "question": "Facilidad de uso y utilidad\n.Fue fácil aprender a utilizar Catalina.",
+          "n": 30,
+          "mean": 4.5,
+          "counts": {
+            "4": 15,
+            "5": 15
+          }
+        },
+        {
+          "column": 20,
+          "question": "Facilidad de uso y utilidad\n.Pude realizar mis consultas sin dificultad.",
+          "n": 30,
+          "mean": 4.433333333333334,
+          "counts": {
+            "4": 15,
+            "5": 14,
+            "3": 1
+          }
+        },
+        {
+          "column": 21,
+          "question": "Facilidad de uso y utilidad\n.Catalina me permitió encontrar información institucional de manera más rápida.",
+          "n": 30,
+          "mean": 4.3,
+          "counts": {
+            "5": 10,
+            "4": 19,
+            "3": 1
+          }
+        },
+        {
+          "column": 22,
+          "question": "Facilidad de uso y utilidad\n.Catalina facilita el acceso a información de la Universidad.",
+          "n": 30,
+          "mean": 4.433333333333334,
+          "counts": {
+            "5": 13,
+            "4": 17
+          }
+        },
+        {
+          "column": 23,
+          "question": "Facilidad de uso y utilidad\n.Catalina podría reducir la necesidad de buscar información en diferentes páginas, documentos o dependencias.",
+          "n": 30,
+          "mean": 4.366666666666666,
+          "counts": {
+            "5": 11,
+            "4": 19
+          }
+        }
+      ],
+      "item_response_n": 150,
+      "participant_n": 30,
+      "mean": 4.406666666666666,
+      "favorable_n": 148,
+      "favorable_percent": 98.66666666666667
+    },
+    {
+      "name": "Valor agregado y necesidad",
+      "items": [
+        {
+          "column": 24,
+          "question": "Valor agregado y necesidad\n.Catalina aporta un valor adicional a los medios de información que actualmente ofrece la Universidad.",
+          "n": 30,
+          "mean": 4.533333333333333,
+          "counts": {
+            "5": 16,
+            "4": 14
+          }
+        },
+        {
+          "column": 25,
+          "question": "Valor agregado y necesidad\n.Considero necesario contar con una herramienta como Catalina en la Universidad.",
+          "n": 30,
+          "mean": 4.166666666666667,
+          "counts": {
+            "4": 25,
+            "5": 5
+          }
+        },
+        {
+          "column": 26,
+          "question": "Valor agregado y necesidad\n.Catalina responde a una necesidad real relacionada con la búsqueda de información institucional.",
+          "n": 30,
+          "mean": 4.3,
+          "counts": {
+            "4": 21,
+            "5": 9
+          }
+        },
+        {
+          "column": 27,
+          "question": "Valor agregado y necesidad\n.Catalina podría ahorrar tiempo a los miembros de la comunidad universitaria.",
+          "n": 30,
+          "mean": 4.466666666666667,
+          "counts": {
+            "5": 14,
+            "4": 16
+          }
+        },
+        {
+          "column": 28,
+          "question": "Valor agregado y necesidad\n.Catalina puede mejorar la experiencia de las personas al consultar información institucional.",
+          "n": 30,
+          "mean": 4.533333333333333,
+          "counts": {
+            "5": 17,
+            "3": 1,
+            "4": 12
+          }
+        }
+      ],
+      "item_response_n": 150,
+      "participant_n": 30,
+      "mean": 4.4,
+      "favorable_n": 149,
+      "favorable_percent": 99.33333333333333
+    },
+    {
+      "name": "Aceptación institucional",
+      "items": [
+        {
+          "column": 29,
+          "question": "Aceptación institucional\n.Catalina sería una buena herramienta para la Universidad Católica de Colombia.",
+          "n": 30,
+          "mean": 4.5,
+          "counts": {
+            "5": 15,
+            "4": 15
+          }
+        },
+        {
+          "column": 30,
+          "question": "Aceptación institucional\n.Considero conveniente implementar Catalina como servicio institucional.",
+          "n": 30,
+          "mean": 4.433333333333334,
+          "counts": {
+            "4": 17,
+            "5": 13
+          }
+        },
+        {
+          "column": 31,
+          "question": "Aceptación institucional\n.Si Catalina estuviera disponible oficialmente, la utilizaría para futuras consultas.",
+          "n": 30,
+          "mean": 4.366666666666666,
+          "counts": {
+            "5": 11,
+            "4": 19
+          }
+        },
+        {
+          "column": 32,
+          "question": "Aceptación institucional\n.Recomendaría Catalina a otros miembros de la comunidad universitaria.",
+          "n": 30,
+          "mean": 4.466666666666667,
+          "counts": {
+            "5": 14,
+            "4": 16
+          }
+        },
+        {
+          "column": 33,
+          "question": "Aceptación institucional\n.La Universidad debería continuar desarrollando y mejorando esta herramienta.",
+          "n": 30,
+          "mean": 4.333333333333333,
+          "counts": {
+            "4": 20,
+            "5": 10
+          }
+        }
+      ],
+      "item_response_n": 150,
+      "participant_n": 30,
+      "mean": 4.42,
+      "favorable_n": 150,
+      "favorable_percent": 100.0
+    }
+  ],
+  "tasks": [
+    {
+      "task": "T1 Reglamento",
+      "n": 30,
+      "complete": 17,
+      "partial": 12,
+      "no": 1
+    },
+    {
+      "task": "T2 Procedimiento",
+      "n": 30,
+      "complete": 17,
+      "partial": 13,
+      "no": 0
+    },
+    {
+      "task": "T3 Ubicación",
+      "n": 30,
+      "complete": 18,
+      "partial": 12,
+      "no": 0
+    },
+    {
+      "task": "T4 Servicio",
+      "n": 30,
+      "complete": 12,
+      "partial": 18,
+      "no": 0
+    }
+  ],
+  "t1_t4_total": {
+    "n": 120,
+    "complete": 64,
+    "partial": 55,
+    "no": 1
+  },
+  "t5": {
+    "Si": 14,
+    "Parcialmente": 16
+  },
+  "global": [
+    {
+      "name": "Experiencia global",
+      "valid_n": 25,
+      "missing_n": 5,
+      "mean": 4.44,
+      "favorable_n": 22,
+      "favorable_percent": 88.0,
+      "counts": {
+        "4": 8,
+        "5": 14,
+        "3": 3
+      }
+    },
+    {
+      "name": "Conveniencia de implementación",
+      "valid_n": 25,
+      "missing_n": 5,
+      "mean": 4.6,
+      "favorable_n": 23,
+      "favorable_percent": 92.0,
+      "counts": {
+        "5": 17,
+        "4": 6,
+        "3": 2
+      }
+    }
+  ],
+  "reset_comments": {
+    "n": 14,
+    "denominator": 30,
+    "percent": 46.666666666666664,
+    "anonymous_row_numbers": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      12,
+      13,
+      15,
+      17,
+      20,
+      22,
+      24,
+      26,
+      28
+    ],
+    "coding_rule": "Comentario con limpiar, reiniciar, vaciar, borrar, nuevo chat o nueva conversación; revisión de propuestas de gestión del historial."
+  }
+}

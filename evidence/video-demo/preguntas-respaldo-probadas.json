@@ -1,0 +1,160 @@
+[
+  {
+    "question": "¿Cuándo es la semana de receso del segundo semestre de 2026?",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026:\n\nSemana de receso académica: del 05 octubre de 2026 al 10 octubre de 2026. [S1]\n\nEsta fecha corresponde a la actividad indicada; no equivale necesariamente a la terminación de clases.",
+    "api_seconds": 0.199,
+    "reason": "document_excerpt",
+    "locations": [],
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "82f7fdcc-9a18-5b09-b384-fac137fa8d4e",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ]
+  },
+  {
+    "question": "¿Cuándo son las evaluaciones finales de programas de 16 semanas del segundo semestre de 2026?",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026:\n\nEvaluación final de programas de 16 semanas: del 23 noviembre de 2026 al 05 diciembre de 2026. [S1]\n\nEsta fecha corresponde a la actividad indicada; no equivale necesariamente a la terminación de clases.",
+    "api_seconds": 0.189,
+    "reason": "document_excerpt",
+    "locations": [],
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "82f7fdcc-9a18-5b09-b384-fac137fa8d4e",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ]
+  },
+  {
+    "question": "¿Cuándo son las evaluaciones finales de programas de 17 semanas del segundo semestre de 2026?",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026:\n\nEvaluación final de programas de 17 semanas: del 30 noviembre de 2026 al 05 diciembre de 2026. [S1]\n\nEsta fecha corresponde a la actividad indicada; no equivale necesariamente a la terminación de clases.",
+    "api_seconds": 0.165,
+    "reason": "document_excerpt",
+    "locations": [],
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "82f7fdcc-9a18-5b09-b384-fac137fa8d4e",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ]
+  },
+  {
+    "question": "¿Cuándo es la evaluación del segundo corte del segundo semestre de 2026?",
+    "text": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+    "api_seconds": 0.143,
+    "reason": "insufficient_evidence",
+    "locations": [],
+    "citations": []
+  },
+  {
+    "question": "¿Cuándo es el cierre del sistema de información del segundo semestre de 2026?",
+    "text": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+    "api_seconds": 0.143,
+    "reason": "insufficient_evidence",
+    "locations": [],
+    "citations": []
+  },
+  {
+    "question": "¿Dónde puedo hacer trámites de Psicología?",
+    "text": "Facultad de Psicología · Sede Las Torres\nDirección publicada: Avenida Caracas # 46 – 22, Bogotá.\nFacultad de Psicología dentro de Sede Las Torres, junto a Derecho, según el plano confirmado por el usuario.\nPara orientación sobre trámites propios de tu programa, dirígete a la Facultad de Psicología. Confirma allí el área y los requisitos del trámite específico; este directorio no verifica horarios ni garantiza que todos los trámites se resuelvan en esa oficina.",
+    "api_seconds": 0.031,
+    "reason": "campus_location",
+    "locations": [
+      "psicologia"
+    ],
+    "citations": []
+  },
+  {
+    "question": "¿Dónde queda la sede El Claustro?",
+    "text": "Sede El Claustro\nDirección publicada: Diagonal 46 A # 15 B – 10, Bogotá.\nEl área delimitada con el número 5 representa la Sede El Claustro. Incluye la Unidad de Servicios Psicológicos y la Capilla; acceso exacto por confirmar.",
+    "api_seconds": 0.033,
+    "reason": "campus_location",
+    "locations": [
+      "claustro"
+    ],
+    "citations": []
+  },
+  {
+    "question": "¿Dónde queda la sede Las Torres?",
+    "text": "Sede Las Torres\nDirección publicada: Avenida Caracas # 46 – 72, Bogotá.\nEl área delimitada con el número 3 representa la Sede Las Torres. Incluye Psicología, Derecho y el Polideportivo.",
+    "api_seconds": 0.032,
+    "reason": "campus_location",
+    "locations": [
+      "las-torres"
+    ],
+    "citations": []
+  },
+  {
+    "question": "¿Dónde queda la Facultad de Derecho?",
+    "text": "Facultad de Derecho · Sede Las Torres\nDirección publicada: Avenida Caracas # 46 – 72, Bogotá.\nFacultad de Derecho dentro de Sede Las Torres, junto a Psicología. Puerta y oficina exactas por confirmar.",
+    "api_seconds": 0.033,
+    "reason": "campus_location",
+    "locations": [
+      "derecho"
+    ],
+    "citations": []
+  },
+  {
+    "question": "¿Dónde queda el auditorio de Sede 4?",
+    "text": "Auditorio · Sede 4 · Sede 4\nDirección publicada: Carrera 13 # 47 – 30, Bogotá.\nAuditorio situado dentro de Sede 4, según el plano confirmado por el usuario.",
+    "api_seconds": 0.033,
+    "reason": "campus_location",
+    "locations": [
+      "auditorio-sede-4"
+    ],
+    "citations": []
+  },
+  {
+    "question": "¿Cómo solicito una constancia académica por PAW 2.0?",
+    "text": "El documento Registro y Control Académico describe el procedimiento para certificados y constancias académicas:\n\nProcedimiento:\n\n1. Ingresar a PAW 2.0 y seleccionar el perfil de estudiantes.\n\n2. Desde el menú de procesos, ingresar a la opción de solicitud de certificados y constancias utilizando las credenciales institucionales correspondientes.\n\n3. Verificar los datos y seleccionar el certificado o constancia requerida.\n\n4. Realizar el pago del recibo generado por el sistema.\n\nDespués del pago, el documento solicitado es enviado posteriormente al correo electrónico del solicitante con firma digital.\n\nLa página institucional informa un plazo de hasta ocho días hábiles para la entrega de estos documentos. [S1]\n\nConfirma las condiciones vigentes con la dependencia antes de realizar el trámite.",
+    "api_seconds": 25.38,
+    "reason": "document_excerpt",
+    "locations": [],
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "218ac3bd-f6c8-572f-8b89-77c01a2a2e8f",
+        "document_id": 9,
+        "document_version_id": 9,
+        "document_name": "Registro y Control Académico",
+        "version": "snapshot-2026",
+        "page_start": 1,
+        "page_end": 1,
+        "section": "Procedimiento:",
+        "index_run_id": "40ccfbc8-a34b-4741-ab48-61658e0faf9c"
+      }
+    ]
+  },
+  {
+    "question": "¿Cuánto puede tardar la entrega de un certificado académico solicitado en línea?",
+    "text": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+    "api_seconds": 10.105,
+    "reason": "insufficient_evidence",
+    "locations": [],
+    "citations": []
+  }
+]

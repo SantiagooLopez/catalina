@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:5173/api/v1/guest/answers",
+  "status": 200,
+  "question": "¿Qué acuerdo modificó el calendario académico de pregrado de 2026?",
+  "body": {
+    "query": "¿Qué acuerdo modificó el calendario académico de pregrado de 2026?",
+    "text": "El acuerdo identificado en la fuente institucional principal corresponde al identificador documental 050-2026. [S1]",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "56e9a33f-3a16-58ce-a091-de387893b140",
+        "document_id": 11,
+        "document_version_id": 11,
+        "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+        "version": "050-2026",
+        "page_start": 1,
+        "page_end": 1,
+        "section": "1992 y de las establecidas en el artículo 25 de los Estatutos de la Universidad y CONSIDERANDO:",
+        "index_run_id": "9d774a75-2326-4750-aa64-dfe415bc97ac"
+      }
+    ],
+    "generated": false,
+    "reason": "document_identifier_resolved",
+    "model": null,
+    "locations": []
+  }
+}

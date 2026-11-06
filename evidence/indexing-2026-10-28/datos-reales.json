@@ -1,0 +1,23 @@
+{
+  "captura_utc": "2026-10-28T21:59:16.159625+00:00",
+  "servidor": "catalina-server",
+  "documento": "registro-control-academico",
+  "version_id": 9,
+  "version": "snapshot-2026",
+  "ejecucion_id": "40ccfbc8-a34b-4741-ab48-61658e0faf9c",
+  "estado": "activa",
+  "coleccion": "documentos_universidad",
+  "modelo": "embeddinggemma:latest",
+  "dimension": 768,
+  "esperados": 13,
+  "indexados": 13,
+  "activacion": "2026-09-14 02:24:38.138845+00:00",
+  "finalizacion": "2026-09-14 02:24:38.138845+00:00",
+  "fragmentos_postgres": 13,
+  "dimensiones_qdrant": {
+    "default": 768
+  },
+  "puntos_qdrant_ejecucion": 13,
+  "conteos_coinciden": true,
+  "dimension_coincide": true
+}

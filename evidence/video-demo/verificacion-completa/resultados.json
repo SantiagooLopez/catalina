@@ -1,0 +1,477 @@
+[
+  {
+    "mode": "guest",
+    "query": "¿Dónde me puedo matricular?",
+    "display_seconds": 9.056,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "public_guidance",
+    "text": "Si eres aspirante, empieza por el portal oficial de Admisiones: https://admisiones.ucatolica.edu.co/. Elige el programa y sigue el proceso de inscripción y admisión; la matrícula se formaliza después de cumplir los requisitos. Puedes pedir orientación en admisiones@ucatolica.edu.co. Si ya eres estudiante, consulta el PAW y confirma tu trámite con Registro y Control Académico. Para documentos y ubicaciones dentro de Catalina, inicia sesión.",
+    "citations": [],
+    "locations": []
+  },
+  {
+    "mode": "guest",
+    "query": "¿Qué carreras tiene la universidad?",
+    "display_seconds": 7.063,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "public_guidance",
+    "text": "La oferta pública de pregrado incluye Arquitectura, Derecho, Economía, Psicología, Administración de Empresas e Inteligencia de Negocios, Ingeniería Civil, Ingeniería Industrial, Ingeniería de Sistemas y Computación e Ingeniería de Datos e Inteligencia Artificial. Consulta cada programa, sus requisitos y disponibilidad en el portal oficial: https://admisiones.ucatolica.edu.co/pregrado/.",
+    "citations": [],
+    "locations": []
+  },
+  {
+    "mode": "guest",
+    "query": "¿Cuánto cuesta la matrícula?",
+    "display_seconds": 9.047,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "public_guidance",
+    "text": "Para conocer el valor de matrícula y los costos aplicables a tu caso, acércate a Registro y Control Académico para recibir orientación y confirmar el trámite con el área correspondiente. No puedo cotizar un valor sin una tarifa oficial vigente. También puedes solicitar orientación en https://admisiones.ucatolica.edu.co/.",
+    "citations": [],
+    "locations": []
+  },
+  {
+    "mode": "guest",
+    "query": "¿Dónde puedo hacer trámites de Psicología?",
+    "display_seconds": 6.061,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "authentication_required",
+    "text": "Para consultar documentos institucionales, trámites o ubicaciones del campus, inicia sesión en Mi espacio o amplía el chat. Sin sesión puedo explicarte qué es Catalina y cómo utilizar esta página.",
+    "citations": [],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Cuándo finalizan las clases del segundo semestre de 2026?",
+    "display_seconds": 9.408,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_excerpt",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026 las clases de pregrado terminan así:\n\n• Programas de 16 semanas: 21 noviembre de 2026.\n• Programas de 17 semanas: 28 noviembre de 2026. [S3]\n\nEstas fechas corresponden a la terminación de clases; las evaluaciones finales y el cierre del período son actividades distintas. Confirma la duración de tu programa.",
+    "citations": [
+      {
+        "citation_id": "S3",
+        "point_id": "4ab4b750-a27e-5a8b-9191-c67e658bf567",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Cuándo son las evaluaciones finales de programas de 16 semanas del segundo semestre de 2026?",
+    "display_seconds": 7.046,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_excerpt",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026:\n\nEvaluación final de programas de 16 semanas: del 23 noviembre de 2026 al 05 diciembre de 2026. [S1]\n\nEsta fecha corresponde a la actividad indicada; no equivale necesariamente a la terminación de clases.",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "82f7fdcc-9a18-5b09-b384-fac137fa8d4e",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Cuándo son las evaluaciones finales de programas de 17 semanas del segundo semestre de 2026?",
+    "display_seconds": 6.072,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_excerpt",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026:\n\nEvaluación final de programas de 17 semanas: del 30 noviembre de 2026 al 05 diciembre de 2026. [S1]\n\nEsta fecha corresponde a la actividad indicada; no equivale necesariamente a la terminación de clases.",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "82f7fdcc-9a18-5b09-b384-fac137fa8d4e",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Cuándo es la semana de receso del segundo semestre de 2026?",
+    "display_seconds": 7.044,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_excerpt",
+    "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026:\n\nSemana de receso académica: del 05 octubre de 2026 al 10 octubre de 2026. [S1]\n\nEsta fecha corresponde a la actividad indicada; no equivale necesariamente a la terminación de clases.",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "82f7fdcc-9a18-5b09-b384-fac137fa8d4e",
+        "document_id": 7,
+        "document_version_id": 7,
+        "document_name": "Calendario Académico de Pregrado 2026",
+        "version": "046-2025",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "(Incluye Graduaciones Posgrados)",
+        "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Cómo solicito una constancia académica por PAW 2.0?",
+    "display_seconds": 9.054,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_excerpt",
+    "text": "El documento Registro y Control Académico describe el procedimiento para certificados y constancias académicas:\n\nProcedimiento:\n\n1. Ingresar a PAW 2.0 y seleccionar el perfil de estudiantes.\n\n2. Desde el menú de procesos, ingresar a la opción de solicitud de certificados y constancias utilizando las credenciales institucionales correspondientes.\n\n3. Verificar los datos y seleccionar el certificado o constancia requerida.\n\n4. Realizar el pago del recibo generado por el sistema.\n\nDespués del pago, el documento solicitado es enviado posteriormente al correo electrónico del solicitante con firma digital.\n\nLa página institucional informa un plazo de hasta ocho días hábiles para la entrega de estos documentos. [S1]\n\nConfirma las condiciones vigentes con la dependencia antes de realizar el trámite.",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "218ac3bd-f6c8-572f-8b89-77c01a2a2e8f",
+        "document_id": 9,
+        "document_version_id": 9,
+        "document_name": "Registro y Control Académico",
+        "version": "snapshot-2026",
+        "page_start": 1,
+        "page_end": 1,
+        "section": "Procedimiento:",
+        "index_run_id": "40ccfbc8-a34b-4741-ab48-61658e0faf9c"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Dónde puedo hacer trámites de Psicología?",
+    "display_seconds": 7.05,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "campus_location",
+    "text": "Facultad de Psicología · Sede Las Torres\nDirección publicada: Avenida Caracas # 46 – 22, Bogotá.\nFacultad de Psicología dentro de Sede Las Torres, junto a Derecho, según el plano confirmado por el usuario.\nPara orientación sobre trámites propios de tu programa, dirígete a la Facultad de Psicología. Confirma allí el área y los requisitos del trámite específico; este directorio no verifica horarios ni garantiza que todos los trámites se resuelvan en esa oficina.",
+    "citations": [],
+    "locations": [
+      "psicologia"
+    ]
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Dónde queda la sede El Claustro?",
+    "display_seconds": 9.053,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "campus_location",
+    "text": "Sede El Claustro\nDirección publicada: Diagonal 46 A # 15 B – 10, Bogotá.\nEl área delimitada con el número 5 representa la Sede El Claustro. Incluye la Unidad de Servicios Psicológicos y la Capilla; acceso exacto por confirmar.",
+    "citations": [],
+    "locations": [
+      "claustro"
+    ]
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Dónde queda el auditorio de Sede 4?",
+    "display_seconds": 7.045,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "campus_location",
+    "text": "Auditorio · Sede 4 · Sede 4\nDirección publicada: Carrera 13 # 47 – 30, Bogotá.\nAuditorio situado dentro de Sede 4, según el plano confirmado por el usuario.",
+    "citations": [],
+    "locations": [
+      "auditorio-sede-4"
+    ]
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Cuál es el menú de almuerzo de la cafetería de la Universidad Católica de Colombia para el 15 de noviembre de 2026 y cuánto cuesta?",
+    "display_seconds": 9.057,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "insufficient_evidence",
+    "text": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+    "citations": [],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "Hola",
+    "display_seconds": 7.057,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "conversational",
+    "text": "¡Hola! Soy Catalina. ¿En qué te puedo ayudar hoy?",
+    "citations": [],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Qué acuerdo modificó el calendario académico de pregrado de 2026?",
+    "display_seconds": 6.047,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_identifier_resolved",
+    "text": "El acuerdo identificado en la fuente institucional principal corresponde al identificador documental 050-2026. [S1]",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "56e9a33f-3a16-58ce-a091-de387893b140",
+        "document_id": 11,
+        "document_version_id": 11,
+        "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+        "version": "050-2026",
+        "page_start": 1,
+        "page_end": 1,
+        "section": "1992 y de las establecidas en el artículo 25 de los Estatutos de la Universidad y CONSIDERANDO:",
+        "index_run_id": "9d774a75-2326-4750-aa64-dfe415bc97ac"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "Dime de qué trata el reglamento estudiantil",
+    "display_seconds": 7.045,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "document_overview",
+    "text": "El Reglamento del Estudiante (versión 406-2026) organiza la información del estudiante. Entre los temas de sus capítulos se encuentran:\n\n• Del campo de aplicación y definición de la calidad de estudiante y egresado no graduado. [S1]\n• De los derechos y deberes de los estudiantes. [S2]\n• De los procesos de inscripción, admisión, reingreso, transferencia interna, transferencia externa, titulación en dos programas, doble titulación, homologación y validación. [S3]\n• De los periodos académicos. [S4]\n• De la matrícula. [S5]\n• De la carga académica. [S6]\n• De la evaluación, las calificaciones y los promedios. [S7]\n• De la representación estudiantil. [S15]\n• De los estímulos. [S9]\n• Del régimen disciplinario. [S10]\n• De los egresados y del título. [S11]\n• Disposiciones varias. [S12]\n\nEsta es una visión de su estructura. Los requisitos, derechos o sanciones concretos deben explicarse a partir de sus artículos, no solo de sus títulos.",
+    "citations": [
+      {
+        "citation_id": "S1",
+        "point_id": "2023031d-6fd5-5704-be1e-23c8a4f52a8d",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S2",
+        "point_id": "81f38f42-a31d-5f40-878f-268ffab5b3c0",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S3",
+        "point_id": "76aec2b3-e4c7-5853-86bf-c5874bcba1b5",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S4",
+        "point_id": "11892007-f215-5ebf-bb3e-0687b74e0b4f",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S5",
+        "point_id": "7764264e-d6f1-58d7-8fad-0a65047b7f7e",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S6",
+        "point_id": "b7f12b10-8603-50e2-a70c-bdfe6547cef0",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 4,
+        "page_end": 4,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S7",
+        "point_id": "e0b138ea-9774-5e3b-bc0a-b811084dfbb7",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S9",
+        "point_id": "4e0b68f4-daaa-5bca-98ee-4d7200a94bbe",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S10",
+        "point_id": "76a0fc3c-0788-5c22-8c73-b201c22c9e11",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 5,
+        "page_end": 5,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S11",
+        "point_id": "93bef055-30b0-504a-820e-b97f1e7c9dc3",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 6,
+        "page_end": 6,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S12",
+        "point_id": "59e6f263-2419-5425-b875-6021495ac34d",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 6,
+        "page_end": 6,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      },
+      {
+        "citation_id": "S15",
+        "point_id": "0f0cf61f-3392-5d2c-9044-695fbec18858",
+        "document_id": 6,
+        "document_version_id": 6,
+        "document_name": "Reglamento del Estudiante",
+        "version": "406-2026",
+        "page_start": 36,
+        "page_end": 36,
+        "section": "Acuerdo No. 406 del 05 de marzo de 2026",
+        "index_run_id": "58e2f18b-90cd-49fb-9bab-788f885725d7"
+      }
+    ],
+    "locations": []
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Dónde queda la sede Las Torres?",
+    "display_seconds": 9.06,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "campus_location",
+    "text": "Sede Las Torres\nDirección publicada: Avenida Caracas # 46 – 72, Bogotá.\nEl área delimitada con el número 3 representa la Sede Las Torres. Incluye Psicología, Derecho y el Polideportivo.",
+    "citations": [],
+    "locations": [
+      "las-torres"
+    ]
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Dónde queda la Facultad de Derecho?",
+    "display_seconds": 7.061,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "campus_location",
+    "text": "Facultad de Derecho · Sede Las Torres\nDirección publicada: Avenida Caracas # 46 – 72, Bogotá.\nFacultad de Derecho dentro de Sede Las Torres, junto a Psicología. Puerta y oficina exactas por confirmar.",
+    "citations": [],
+    "locations": [
+      "derecho"
+    ]
+  },
+  {
+    "mode": "authenticated",
+    "query": "¿Dónde queda la biblioteca de Sede 4?",
+    "display_seconds": 9.06,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "campus_location",
+    "text": "Biblioteca · Sede 4 · Sede 4\nDirección publicada: Carrera 13 # 47 – 30, Bogotá.\nBiblioteca dentro del área de Sede 4, junto al auditorio, según el plano confirmado por el usuario.",
+    "citations": [],
+    "locations": [
+      "biblioteca-sede-4"
+    ]
+  },
+  {
+    "mode": "after_logout",
+    "query": "¿Dónde queda la biblioteca de Sede 4?",
+    "display_seconds": 7.052,
+    "content_pass": true,
+    "pacing_pass": true,
+    "status": 200,
+    "reason": "authentication_required",
+    "text": "Para consultar documentos institucionales, trámites o ubicaciones del campus, inicia sesión en Mi espacio o amplía el chat. Sin sesión puedo explicarte qué es Catalina y cómo utilizar esta página.",
+    "citations": [],
+    "locations": []
+  }
+]

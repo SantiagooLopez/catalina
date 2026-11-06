@@ -1,0 +1,66 @@
+VERIFICACIONES DE INTERFAZ Y COMPILACION · CATALINA
+28 de octubre de 2026 · salidas de los programas de comprobacion
+
+ui-identidad.txt
+{
+  "errors": [],
+  "independentIdentity": true,
+  "compactTitleContrast": true,
+  "mobileOverflow": false
+}
+
+ui-portal.txt
+{
+  "errors": [],
+  "checks": [
+    {
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "guestPrompt": true,
+  "mapLoginGate": true,
+  "darkToggle": true
+}
+
+ui-temas.txt
+{
+  "errors": [],
+  "contrastChecks": 18,
+  "minimumContrast": 6.687617116950311,
+  "failures": []
+}
+
+ui-mapa.txt
+{
+  "errors": [],
+  "markers": 13,
+  "selectedContext": "bienestar",
+  "autoOpenedFromLocationAnswer": true,
+  "mobileOverflow": false,
+  "fixtures": "Authentication and API fixtures; no real account or conversation created"
+}
+
+FRONTEND · npm run build
+> catalina-web@0.1.0 build
+> node scripts/build-map-themes.mjs && tsc -b && vite build
+
+vite v6.4.4 building for production...
+transforming...
+✓ 1595 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                       0.63 kB │ gzip:  0.40 kB
+dist/assets/CampusMap-DNURdcIw.css   27.60 kB │ gzip:  9.18 kB
+dist/assets/index-DwPucsi1.css       62.30 kB │ gzip: 13.41 kB
+dist/assets/CampusMap-D2JmPASB.js   162.73 kB │ gzip: 47.88 kB
+dist/assets/index-vlThMot4.js       262.95 kB │ gzip: 81.21 kB
+✓ built in 2.35s

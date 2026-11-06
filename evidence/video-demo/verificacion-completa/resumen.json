@@ -1,0 +1,8 @@
+{
+  "casos": 22,
+  "respaldo_publico": 2,
+  "alcance": "Pruebas reales en navegador sobre enlace público. Se comprobaron textos esperados, fuentes documentales, ubicaciones y bloqueo sin sesión; las pausas son presentación, no latencia del modelo.",
+  "maximo_segundos": 9.408,
+  "minimo_segundos": 6.047,
+  "casos_principales_y_autenticados_aprobados": 20
+}

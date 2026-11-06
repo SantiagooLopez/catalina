@@ -28,3 +28,13 @@
 Thumbs.db
 .vscode/
 .idea/
+
+# Credenciales, herramientas locales y temporales de documentación
+.ssh/
+.ssh-local/
+*.pem
+*.key
+**/.chart-data-*/
+**/.finalize-*/
+evidence/**/build/
+evidence/**/node_modules/

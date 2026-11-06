@@ -1,0 +1,14 @@
+{
+  "url": "http://127.0.0.1:5173/api/v1/guest/answers",
+  "status": 200,
+  "question": "¿Cuál es el menú de almuerzo de la cafetería de la Universidad Católica de Colombia para el 15 de noviembre de 2026 y cuánto cuesta?",
+  "body": {
+    "query": "¿Cuál es el menú de almuerzo de la cafetería de la Universidad Católica de Colombia para el 15 de noviembre de 2026 y cuánto cuesta?",
+    "text": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+    "citations": [],
+    "generated": false,
+    "reason": "insufficient_evidence",
+    "model": null,
+    "locations": []
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "name": "Catalina RAG Institutional Evaluation Corpus",
+  "description": "Corpus controlado con fuentes oficiales de la Universidad Católica de Colombia para evaluar recuperación, evidencia, abstención, vigencia y trazabilidad.",
+  "institution": "Universidad Católica de Colombia",
+  "evaluation_period": "2026",
+  "documents": [
+    {
+      "corpus_id": "DOC001",
+      "code": "reglamento-estudiantil",
+      "name": "Reglamento del Estudiante",
+      "version": "406-2026",
+      "category": "reglamentos",
+      "source_type": "official_pdf",
+      "local_file": "reglamento_estudiantil_406_2026.pdf",
+      "status": "ready"
+    },
+    {
+      "corpus_id": "DOC002",
+      "code": "calendario-academico-pregrado-2026",
+      "name": "Calendario Académico de Pregrado 2026",
+      "version": "046-2025",
+      "category": "academico",
+      "source_type": "official_pdf",
+      "local_file": "calendario_academico_pregrado_2026.pdf",
+      "status": "ready"
+    },
+    {
+      "corpus_id": "DOC003",
+      "code": "bienestar-universitario",
+      "name": "Marco Institucional de Bienestar Universitario",
+      "version": "340-2022",
+      "category": "bienestar",
+      "source_type": "official_pdf",
+      "local_file": "marco_bienestar_340_2022.pdf",
+      "status": "ready"
+    },
+    {
+      "corpus_id": "DOC004",
+      "code": "registro-control-academico",
+      "name": "Registro y Control Académico",
+      "version": "snapshot-2026",
+      "category": "administrativo",
+      "source_type": "official_web_snapshot",
+      "local_file": "registro_control_academico.txt",
+      "status": "ready"
+    },
+    {
+      "corpus_id": "DOC005",
+      "code": "contactos-ubicaciones",
+      "name": "Contactos y ubicaciones",
+      "version": "snapshot-2026",
+      "category": "sedes",
+      "source_type": "official_web_snapshot",
+      "local_file": "contactos_ubicaciones.txt",
+      "status": "ready"
+    },
+    {
+      "corpus_id": "DOC006",
+      "code": "modificacion-calendario-pregrado-2026",
+      "name": "Modificación del Calendario Académico de Pregrado 2026",
+      "version": "050-2026",
+      "category": "academico",
+      "source_type": "official_pdf",
+      "local_file": "modificacion_calendario_050_2026.pdf",
+      "status": "ready"
+    }
+  ]
+}

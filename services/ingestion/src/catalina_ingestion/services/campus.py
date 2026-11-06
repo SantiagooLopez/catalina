@@ -76,7 +76,9 @@ def location_intent(query: str) -> bool:
     return bool(re.search(
         r"\b(?:donde\s+(?:queda\w*|esta\w*|encuentro|se encuentra\w*|se ubica\w*)|"
         r"ubicacion|ubicar|direccion|como\s+(?:puedo\s+)?(?:llego|llegar|ir)|"
-        r"en que (?:sede|edificio)|en cual sede|mapa|plano|localiza\w*)\b", normalize(query),
+        r"en que (?:sede|edificio)|en cual sede|mapa|plano|localiza\w*|"
+        r"donde\s+(?:puedo\s+)?(?:hacer|realizar|tramitar|solicitar)|"
+        r"a donde\s+(?:voy|debo ir))\b", normalize(query),
     ))
 
 
@@ -142,6 +144,12 @@ def directory_answer(
     if not matches and selected_id:
         matches = [by_id[selected_id]]
 
+    psychology_procedure = bool(re.search(r'\btramites?\b', text) and
+                                re.search(r'\bpsicologia\b', text) and
+                                not re.search(r'\b(cita|terapia|atencion psicologica|servicios psicologicos)\b', text))
+    if psychology_procedure:
+        matches = [by_id['psicologia']]
+
     if force and re.search(r"\b(?:horario\w*|abren|cierran|telefono|costo\w*)\b", text):
         reply = "El mapa no tiene ese dato verificado. Consulta el directorio institucional."
     elif force and not location_intent(query) and re.search(
@@ -178,6 +186,11 @@ def directory_answer(
                 "\nLa dirección exacta está pendiente de confirmación."
             )
             paragraph += f"\n{place.note}"
+            if psychology_procedure:
+                paragraph += ('\nPara orientación sobre trámites propios de tu programa, '
+                              'dirígete a la Facultad de Psicología. Confirma allí el área y '
+                              'los requisitos del trámite específico; este directorio no '
+                              'verifica horarios ni garantiza que todos los trámites se resuelvan en esa oficina.')
             paragraphs.append(paragraph)
         reply = "\n\n".join(paragraphs)
         if len(matches) > 1:

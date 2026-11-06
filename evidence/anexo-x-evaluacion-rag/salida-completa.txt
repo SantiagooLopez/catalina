@@ -1,0 +1,105 @@
+
+========================================
+ FASE 5.12.5 - GROUNDED RAG CHALLENGE
+========================================
+preguntas=20
+documentos_corpus=6
+query_score_threshold=0.5
+minimum_chunk_score=0.5
+minimum_best_score=0.54
+
+H001 | TP | enabled=True | reason=ready | best=0.6980418 | top1=reglamento-estudiantil | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H002 | TP | enabled=True | reason=ready | best=0.63949 | top1=reglamento-estudiantil | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H003 | TP | enabled=True | reason=ready | best=0.7377877 | top1=reglamento-estudiantil | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H004 | TP | enabled=True | reason=ready | best=0.69807506 | top1=reglamento-estudiantil | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H005 | TP | enabled=True | reason=ready | best=0.73030865 | top1=contactos-ubicaciones | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H006 | TP | enabled=True | reason=ready | best=0.745427 | top1=contactos-ubicaciones | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H007 | TP | enabled=True | reason=ready | best=0.7801024 | top1=registro-control-academico | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H008 | TP | enabled=True | reason=ready | best=0.5438516 | top1=registro-control-academico | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H009 | TP | enabled=True | reason=ready | best=0.85349923 | top1=calendario-academico-pregrado-2026 | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H010 | TP | enabled=True | reason=ready | best=0.78103775 | top1=modificacion-calendario-pregrado-2026 | top1_match=True | pass=True
+  grounding=['passed_grounding_checks']
+  evidence=['passed_retrieval_checks']
+
+H011 | TN | enabled=False | reason=unsupported_grounding | best=0.6205307 | top1=None | top1_match=False | pass=True
+  grounding=['missing_year:2027']
+  evidence=['passed_retrieval_checks']
+
+H012 | TN | enabled=False | reason=unsupported_grounding | best=0.6967979 | top1=None | top1_match=False | pass=True
+  grounding=['missing_location:medellin']
+  evidence=['passed_retrieval_checks']
+
+H013 | TN | enabled=False | reason=unsupported_grounding | best=0.6045988 | top1=None | top1_match=False | pass=True
+  grounding=['missing_service:odontologia']
+  evidence=['passed_retrieval_checks']
+
+H014 | TN | enabled=False | reason=unsupported_grounding | best=0.62391275 | top1=None | top1_match=False | pass=True
+  grounding=['unsupported_regulation_scope:profesores']
+  evidence=['passed_retrieval_checks']
+
+H015 | TN | enabled=False | reason=insufficient_evidence | best=0.5139152 | top1=None | top1_match=False | pass=True
+  grounding=[]
+  evidence=['low_best_score', 'too_little_text']
+
+H016 | TN | enabled=False | reason=insufficient_evidence | best=None | top1=None | top1_match=False | pass=True
+  grounding=[]
+  evidence=['no_results']
+
+H017 | TN | enabled=False | reason=unsupported_grounding | best=0.57904094 | top1=None | top1_match=False | pass=True
+  grounding=['missing_year:2027']
+  evidence=['passed_retrieval_checks']
+
+H018 | TN | enabled=False | reason=insufficient_evidence | best=None | top1=None | top1_match=False | pass=True
+  grounding=[]
+  evidence=['no_results']
+
+H019 | TN | enabled=False | reason=unsupported_grounding | best=0.70608896 | top1=None | top1_match=False | pass=True
+  grounding=['missing_location:cali']
+  evidence=['passed_retrieval_checks']
+
+H020 | TN | enabled=False | reason=insufficient_evidence | best=None | top1=None | top1_match=False | pass=True
+  grounding=[]
+  evidence=['no_results']
+
+========================================
+ RESUMEN GROUNDED RAG
+========================================
+TP=10 FN=0 TN=10 FP=0
+precision=1.000
+recall=1.000
+accuracy=1.000
+source_accuracy=1.000
+top1_accuracy=1.000
+end_to_end_accuracy=1.000
+contamination_count=0
+average_latency_ms=178.518
+resultado_json=/opt/catalina/services/ingestion/evaluation/results/grounded_rag_challenge_20261028T232806Z.json
+
+GROUNDED RAG CHALLENGE: EJECUTADO

@@ -1,0 +1,38 @@
+HOJA Hoja1
+ |  | FORMATO EVALUACIÓN DE PROYECTO DE TRABAJO DE GRADO
+PROGRAMA DE INGENIERÍA DE SISTEMAS Y COMPUTACIÓN |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  | Titulo del proyecto |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+FECHA:  |  |  |  |  |  |  |  | CÓDIGO DE PROYECTO
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ASPECTOS EVALUADOS |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+    1.  CALIDAD DEL DOCUMENTO  VALOR 30% (Nota de 1-30) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+RUBRICA APLICADA AL DOCUMENTO |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+RUBRICA APLICADA AL DOCUMENTO |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+    2.  DESARROLLÓ DEL PROYECTO  VALOR 50% (Nota 1- 50) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+2.1 Cumplimiento de los objetivo planteados del primer objetivo (8 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+2.2 Cumplimiento de los objetivos planteados del segundo objetivo (8 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+2.3 Cumplimiento de los objetivos planteados del tercer y/o cuarto objetivo (8 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+Resultados y analisis de resultados (5 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+Aplicación efectiva de la metodología planteada (5 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+2.2 Correspondencia entre lo planeado y lo entregado y cumplimiento del objetivo general. (8 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+2.4 Calidad del producto presentado. (10 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+    3.  CALIDAD DE LA SUSTENTACIÓN  VALOR 20% (Nota 1- 20) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+3.1 DOMINIO DEL TEMA
+(15 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+3.2 PRESENTACIÓN PERSONAL y DE LAS DIAPOSITIVAS (5 PTS) |  |  |  |  |  |  |  | NOTA JURADO 1: |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  |  |  |  | NOTA JURADO 2:  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+   RESULTADOS DE LA EVALUACIÓN Y  SUSTENTACIÓN |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+NOMBRE JURADO 1 |  |  |  |  | NOTA JURADO 1:  |  | FIRMA  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+NOMBRE JURADO 2 |  |  |  |  | NOTA JURADO 2:  |  | FIRMA  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ |  |  |  |  | NOTA DEFINITIVA: |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ESTUDIANTE 1: | NOMBRE |  |  |  |  | CÓDIGO | FIRMA  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+ESTUDIANTE 2: | NOMBRE |  |  |  |  | CÓDIGO | FIRMA |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+DIRECTOR | NOMBRE |  |  |  |  |  | FIRMA |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |

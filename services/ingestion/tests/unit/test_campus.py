@@ -16,6 +16,13 @@ from catalina_ingestion.services.campus import (
 from catalina_ingestion.services.chat import ChatService
 
 
+def test_psychology_procedure_orientation_opens_faculty_without_inventing_requirements():
+    answer = directory_answer('¿Dónde puedo hacer trámites de Psicología?')
+    assert answer.locations == ('psicologia',)
+    assert 'Facultad de Psicología' in answer.text
+    assert 'Confirma allí' in answer.text
+
+
 def test_catalog_marks_reference_pixels_and_unknown_positions_explicitly():
     data = public_catalog()
     assert data["reference_width"] == 760
@@ -89,7 +96,13 @@ async def test_location_response_needs_neither_generation_nor_qdrant():
 
 
 def test_public_campus_api_validation_and_context():
-    client = TestClient(create_app())
+    from catalina_ingestion.api.routes.campus import require_campus_user
+    app = create_app()
+    anonymous = TestClient(app)
+    assert anonymous.get('/api/v1/campus/locations').status_code == 401
+    assert anonymous.post('/api/v1/campus/query', json={'query': 'Biblioteca'}).status_code == 401
+    app.dependency_overrides[require_campus_user] = lambda: SimpleNamespace(id=1)
+    client = TestClient(app)
     assert client.get("/api/v1/campus/locations").status_code == 200
     response = client.post("/api/v1/campus/query", json={
         "query": "¿Dónde queda la Facultad de Psicología?", "selected_id": None,
@@ -103,7 +116,7 @@ def test_public_campus_api_validation_and_context():
     }).status_code == 404
 
 
-def test_guest_location_answer_includes_map_identifiers_without_authentication():
+def test_guest_location_answer_requires_authentication():
     app = create_app()
     app.state.answer_service = ChatService()
     client = TestClient(app)
@@ -111,8 +124,8 @@ def test_guest_location_answer_includes_map_identifiers_without_authentication()
         "query": "¿Dónde queda la Facultad de Psicología?",
     })
     assert response.status_code == 200
-    assert response.json()["locations"] == ["psicologia"]
-    assert response.json()["reason"] == "campus_location"
+    assert response.json()["locations"] == []
+    assert response.json()["reason"] == "authentication_required"
     assert not response.json()["generated"]
 
 

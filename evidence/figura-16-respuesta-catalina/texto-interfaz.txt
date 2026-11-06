@@ -1,0 +1,20 @@
+Catalina
+Tu asistente universitario
+¿Qué reglamento rige actualmente a los estudiantes de la Universidad Católica de Colombia?
+CATALINA
+Respuesta de Ollama reutilizada
+El reglamento que rige actualmente a los estudiantes de la Universidad Católica de Colombia es el Reglamento del Estudiante, identificador/versión documental 406-2026. Este reglamento fue aprobado y adoptado por el Acuerdo 406 del 05 de marzo de 2026. Según el artículo 5 del documento, los estudiantes tienen derechos como acatar y cumplir la ley, actuar de manera respetuosa y mantener un trato respetuoso con los demás miembros de la comunidad universitaria. El reglamento rige a partir del 01 de septiembre de 2026. [S1], [S2], [S3]
+Respuesta en 0.2 s
+ Consultar 3 fuentes
+S1 · Reglamento del Estudiante
+Versión 406-2026 · Pág. 2
+ACUERDA:
+S2 · Reglamento del Estudiante
+Versión 406-2026 · Pág. 11
+Acuerdo No. 406 del 05 de marzo de 2026
+S3 · Reglamento del Estudiante
+Versión 406-2026 · Pág. 2
+FRANCISCO JOSÉ GÓMEZ ORTIZ
+Tu pregunta para Catalina
+Revisa las fuentes y confirma los trámites con el área responsable.
+Sin registro · Preguntas independientes

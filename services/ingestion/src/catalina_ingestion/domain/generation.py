@@ -5,6 +5,8 @@ from catalina_ingestion.domain.rag_context import ContextSource
 
 
 class GenerationReason(StrEnum):
+    PUBLIC_GUIDANCE = "public_guidance"
+    AUTHENTICATION_REQUIRED = "authentication_required"
     CONVERSATIONAL = "conversational"
     GENERAL_CHAT = "general_chat"
     GENERATED = "generated"

@@ -1,0 +1,42 @@
+[
+  {
+    "reason": "document_identifier_resolved",
+    "locations": [],
+    "seconds": 0.21,
+    "text": "El acuerdo identificado en la fuente institucional principal corresponde al identificador documental 050-2026. [S1]",
+    "sources": [
+      {
+        "citation_id": "S1",
+        "point_id": "56e9a33f-3a16-58ce-a091-de387893b140",
+        "document_id": 11,
+        "document_version_id": 11,
+        "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+        "version": "050-2026",
+        "page_start": 1,
+        "page_end": 1,
+        "section": "1992 y de las establecidas en el artículo 25 de los Estatutos de la Universidad y CONSIDERANDO:",
+        "index_run_id": "9d774a75-2326-4750-aa64-dfe415bc97ac"
+      }
+    ],
+    "question": "¿Qué acuerdo modificó el calendario académico de pregrado de 2026?"
+  },
+  {
+    "reason": "campus_location",
+    "locations": [
+      "biblioteca-central",
+      "biblioteca-sede-4"
+    ],
+    "seconds": 0.03,
+    "text": "Encontré varias ubicaciones; selecciona la que necesitas en el mapa:\n\nBiblioteca Central · Carrera 13 · Sede Carrera 13 · en construcción\nDirección publicada: Carrera 13 # 47 – 49, Bogotá.\nAcceso y marcador pendientes de confirmar.\n\nBiblioteca · Sede 4 · Sede 4\nDirección publicada: Carrera 13 # 47 – 30, Bogotá.\nBiblioteca dentro del área de Sede 4, junto al auditorio, según el plano confirmado por el usuario.",
+    "sources": [],
+    "question": "¿Dónde queda la biblioteca?"
+  },
+  {
+    "reason": "insufficient_evidence",
+    "locations": [],
+    "seconds": 0.19,
+    "text": "No encontré evidencia institucional suficiente para responder esta pregunta con seguridad.",
+    "sources": [],
+    "question": "¿Cuál es el menú de almuerzo de la cafetería de la Universidad Católica de Colombia para el 15 de noviembre de 2026 y cuánto cuesta?"
+  }
+]

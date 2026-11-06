@@ -1,0 +1,13 @@
+[
+  {
+    "api_seconds": 0.209,
+    "question": "¿Cómo solicito una constancia académica por PAW 2.0?",
+    "text": "El documento Registro y Control Académico describe el procedimiento para certificados y constancias académicas:\n\nProcedimiento:\n\n1. Ingresar a PAW 2.0 y seleccionar el perfil de estudiantes.\n\n2. Desde el menú de procesos, ingresar a la opción de solicitud de certificados y constancias utilizando las credenciales institucionales correspondientes.\n\n3. Verificar los datos y seleccionar el certificado o constancia requerida.\n\n4. Realizar el pago del recibo generado por el sistema.\n\nDespués del pago, el documento solicitado es enviado posteriormente al correo electrónico del solicitante con firma digital.\n\nLa página institucional informa un plazo de hasta ocho días hábiles para la entrega de estos documentos. [S1]\n\nConfirma las condiciones vigentes con la dependencia antes de realizar el trámite.",
+    "reason": "document_excerpt"
+  },
+  {
+    "question": "¿Cuándo terminan las clases del primer semestre de 2026?",
+    "error": "La solicitud superó 60 segundos; no se obtuvo respuesta HTTP. Se retiraron los campos de respuesta reutilizados por el script tras el error.",
+    "api_seconds": 60.122
+  }
+]

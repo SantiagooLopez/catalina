@@ -1,0 +1,25 @@
+{
+  "conversation_id": 20,
+  "message_id": 34,
+  "query": "¿Cuándo finalizan las clases del segundo semestre de 2026?",
+  "text": "Según el Calendario Académico de Pregrado 2026, para el segundo semestre de 2026 las clases de pregrado terminan así:\n\n• Programas de 16 semanas: 21 noviembre de 2026.\n• Programas de 17 semanas: 28 noviembre de 2026. [S3]\n\nEstas fechas corresponden a la terminación de clases; las evaluaciones finales y el cierre del período son actividades distintas. Confirma la duración de tu programa.",
+  "generated": false,
+  "reason": "document_excerpt",
+  "model": null,
+  "citations": [
+    {
+      "citation_id": "S3",
+      "point_id": "4ab4b750-a27e-5a8b-9191-c67e658bf567",
+      "document_id": 7,
+      "document_version_id": 7,
+      "document_name": "Calendario Académico de Pregrado 2026",
+      "version": "046-2025",
+      "page_start": 4,
+      "page_end": 4,
+      "section": "(Incluye Graduaciones Posgrados)",
+      "index_run_id": "a1c06376-c30a-4bc0-8943-933f92e9f2ef"
+    }
+  ],
+  "statistics": null,
+  "locations": []
+}

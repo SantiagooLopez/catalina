@@ -1,0 +1,970 @@
+{
+  "generated_at": "20261028T232806Z",
+  "policy": {
+    "query_score_threshold": 0.5,
+    "minimum_chunk_score": 0.5,
+    "minimum_best_score": 0.54,
+    "grounding_guard": true
+  },
+  "summary": {
+    "tp": 10,
+    "fn": 0,
+    "tn": 10,
+    "fp": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "accuracy": 1.0,
+    "source_accuracy": 1.0,
+    "top1_accuracy": 1.0,
+    "end_to_end_accuracy": 1.0,
+    "contamination_count": 0,
+    "average_latency_ms": 178.51785
+  },
+  "questions": [
+    {
+      "question_id": "H001",
+      "question": "¿Qué reglamento rige actualmente a los estudiantes de la Universidad Católica de Colombia?",
+      "question_type": "paraphrase",
+      "should_answer": true,
+      "expected_document_code": "reglamento-estudiantil",
+      "expected_version": "406-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.6980418,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "reglamento-estudiantil",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "38401e91-d653-5452-96ac-5d76d4b10bc6",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 2,
+          "page_end": 2,
+          "section": "ACUERDA:"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "da2e4354-4a9c-5dc9-a987-574d0e9cfd35",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 11,
+          "page_end": 11,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "2279ef5d-80b4-5722-baf2-06449e9e7280",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 2,
+          "page_end": 2,
+          "section": "FRANCISCO JOSÉ GÓMEZ ORTIZ"
+        }
+      ],
+      "latency_ms": 1423.7,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H002",
+      "question": "¿Qué establece el reglamento sobre la inscripción a un programa académico?",
+      "question_type": "paraphrase",
+      "should_answer": true,
+      "expected_document_code": "reglamento-estudiantil",
+      "expected_version": "406-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.63949,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "reglamento-estudiantil",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "a1f0e13b-9355-5dd0-a91e-782e4ae0b182",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 22,
+          "page_end": 22,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "76aec2b3-e4c7-5853-86bf-c5874bcba1b5",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 4,
+          "page_end": 4,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "d17c0052-149e-534a-bbc3-ac5744156f39",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "CONSEJO SUPERIOR"
+        },
+        {
+          "citation_id": "S4",
+          "point_id": "2b82a88b-b171-5cbc-ae5d-52c12b7234f2",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 4,
+          "page_end": 4,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        }
+      ],
+      "latency_ms": 118.186,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H003",
+      "question": "¿Qué indica el reglamento sobre la cancelación total o parcial de la carga académica?",
+      "question_type": "paraphrase",
+      "should_answer": true,
+      "expected_document_code": "reglamento-estudiantil",
+      "expected_version": "406-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.7377877,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "reglamento-estudiantil",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "417cc0be-2648-5f58-80c5-8b83421112a7",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 28,
+          "page_end": 28,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "8036e258-dc15-5f82-b4c9-cc0d9e9cfa0b",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 5,
+          "page_end": 5,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        }
+      ],
+      "latency_ms": 122.446,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H004",
+      "question": "¿En qué parte del reglamento se encuentran los derechos y deberes de los estudiantes?",
+      "question_type": "paraphrase",
+      "should_answer": true,
+      "expected_document_code": "reglamento-estudiantil",
+      "expected_version": "406-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.69807506,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "reglamento-estudiantil",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "6257c5a6-1eb1-5a14-82e9-e0fa4799fc43",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 11,
+          "page_end": 11,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "0f0cf61f-3392-5d2c-9044-695fbec18858",
+          "document_id": 6,
+          "document_version_id": 6,
+          "corpus_id": "DOC001",
+          "document_code": "reglamento-estudiantil",
+          "document_name": "Reglamento del Estudiante",
+          "version": "406-2026",
+          "page_start": 36,
+          "page_end": 36,
+          "section": "Acuerdo No. 406 del 05 de marzo de 2026"
+        }
+      ],
+      "latency_ms": 128.196,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H005",
+      "question": "¿Cuál es la dirección y el correo de Bienestar Universitario?",
+      "question_type": "location",
+      "should_answer": true,
+      "expected_document_code": "contactos-ubicaciones",
+      "expected_version": "snapshot-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.73030865,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "contactos-ubicaciones",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "bd5b709f-2e43-5264-8055-8b965bf68244",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "Bienestar Universitario se encuentra en:"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "46a5e8bb-3302-5da0-8c2d-bd650e45df1d",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "ÁREAS Y SERVICIOS DE BIENESTAR"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "9c45bd0e-13f5-5e70-a4b8-5db0cd7cc0da",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "TRAZABILIDAD"
+        },
+        {
+          "citation_id": "S4",
+          "point_id": "f70cd8ec-375a-5bb0-89bf-fb0c19659eba",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "UNIVERSIDAD CATÓLICA DE COLOMBIA CONTACTOS Y UBICACIONES"
+        },
+        {
+          "citation_id": "S5",
+          "point_id": "7fb5e320-7c52-585c-814b-a01a507af9ee",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "FECHA DE CAPTURA 2026-09-08"
+        },
+        {
+          "citation_id": "S6",
+          "point_id": "5cef6cb9-e2b7-52c2-b262-5bf6bdc6823b",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "SEDES PRINCIPALES"
+        }
+      ],
+      "latency_ms": 107.09,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H006",
+      "question": "¿Qué áreas y servicios tiene Bienestar Universitario?",
+      "question_type": "paraphrase",
+      "should_answer": true,
+      "expected_document_code": "contactos-ubicaciones",
+      "expected_version": "snapshot-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.745427,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "contactos-ubicaciones",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "46a5e8bb-3302-5da0-8c2d-bd650e45df1d",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "ÁREAS Y SERVICIOS DE BIENESTAR"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "bd5b709f-2e43-5264-8055-8b965bf68244",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "Bienestar Universitario se encuentra en:"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "9c45bd0e-13f5-5e70-a4b8-5db0cd7cc0da",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "TRAZABILIDAD"
+        },
+        {
+          "citation_id": "S4",
+          "point_id": "f70cd8ec-375a-5bb0-89bf-fb0c19659eba",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "UNIVERSIDAD CATÓLICA DE COLOMBIA CONTACTOS Y UBICACIONES"
+        },
+        {
+          "citation_id": "S5",
+          "point_id": "7fb5e320-7c52-585c-814b-a01a507af9ee",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "FECHA DE CAPTURA 2026-09-08"
+        },
+        {
+          "citation_id": "S6",
+          "point_id": "50423cb7-05a6-50bb-875b-ce5720ca52da",
+          "document_id": 10,
+          "document_version_id": 10,
+          "corpus_id": "DOC005",
+          "document_code": "contactos-ubicaciones",
+          "document_name": "Contactos y ubicaciones",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "OTRAS DEPENDENCIAS"
+        },
+        {
+          "citation_id": "S7",
+          "point_id": "22086602-6b70-56f7-ab7c-44188f463154",
+          "document_id": 8,
+          "document_version_id": 8,
+          "corpus_id": "DOC003",
+          "document_code": "bienestar-universitario",
+          "document_name": "Marco Institucional de Bienestar Universitario",
+          "version": "340-2022",
+          "page_start": 18,
+          "page_end": 18,
+          "section": "Franjas de Bienestar Universitario"
+        }
+      ],
+      "latency_ms": 102.657,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H007",
+      "question": "¿Cómo solicito una constancia académica por PAW 2.0?",
+      "question_type": "procedure",
+      "should_answer": true,
+      "expected_document_code": "registro-control-academico",
+      "expected_version": "snapshot-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.7801024,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "registro-control-academico",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "218ac3bd-f6c8-572f-8b89-77c01a2a2e8f",
+          "document_id": 9,
+          "document_version_id": 9,
+          "corpus_id": "DOC004",
+          "document_code": "registro-control-academico",
+          "document_name": "Registro y Control Académico",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "Procedimiento:"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "0370a0f8-f1e3-5bdf-a1e9-209ba6ed3338",
+          "document_id": 9,
+          "document_version_id": 9,
+          "corpus_id": "DOC004",
+          "document_code": "registro-control-academico",
+          "document_name": "Registro y Control Académico",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "CERTIFICADOS Y CONSTANCIAS EN LÍNEA"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "4dc7ab53-4d00-58b5-bef0-5c2977bcc336",
+          "document_id": 9,
+          "document_version_id": 9,
+          "corpus_id": "DOC004",
+          "document_code": "registro-control-academico",
+          "document_name": "Registro y Control Académico",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "VERIFICACIONES ACADÉMICAS"
+        }
+      ],
+      "latency_ms": 110.826,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H008",
+      "question": "¿Cuánto puede tardar la entrega de un certificado académico solicitado en línea?",
+      "question_type": "direct",
+      "should_answer": true,
+      "expected_document_code": "registro-control-academico",
+      "expected_version": "snapshot-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.5438516,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "registro-control-academico",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "218ac3bd-f6c8-572f-8b89-77c01a2a2e8f",
+          "document_id": 9,
+          "document_version_id": 9,
+          "corpus_id": "DOC004",
+          "document_code": "registro-control-academico",
+          "document_name": "Registro y Control Académico",
+          "version": "snapshot-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "Procedimiento:"
+        }
+      ],
+      "latency_ms": 101.039,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H009",
+      "question": "¿Qué documento contiene el calendario académico de pregrado para el año 2026?",
+      "question_type": "paraphrase",
+      "should_answer": true,
+      "expected_document_code": "calendario-academico-pregrado-2026",
+      "expected_version": "046-2025",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.85349923,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "calendario-academico-pregrado-2026",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "c75159e5-eff3-596a-a68f-2453693cdaaa",
+          "document_id": 7,
+          "document_version_id": 7,
+          "corpus_id": "DOC002",
+          "document_code": "calendario-academico-pregrado-2026",
+          "document_name": "Calendario Académico de Pregrado 2026",
+          "version": "046-2025",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "“ POR EL CUAL SE APRUEBA EL CALENDARIO ACADÉMICO DE PREGRADO PARA EL AÑO 2026.”"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "1c3a35f4-30e0-56a5-a805-a476737f8786",
+          "document_id": 7,
+          "document_version_id": 7,
+          "corpus_id": "DOC002",
+          "document_code": "calendario-academico-pregrado-2026",
+          "document_name": "Calendario Académico de Pregrado 2026",
+          "version": "046-2025",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "CONSIDERANDO:"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "bf0ba4c9-9a50-5915-ac8f-0d7896f19bee",
+          "document_id": 11,
+          "document_version_id": 11,
+          "corpus_id": "DOC006",
+          "document_code": "modificacion-calendario-pregrado-2026",
+          "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+          "version": "050-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "pregrado del año 202 6 .”"
+        }
+      ],
+      "latency_ms": 124.769,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H010",
+      "question": "¿Qué acuerdo modificó el calendario académico de pregrado de 2026?",
+      "question_type": "direct",
+      "should_answer": true,
+      "expected_document_code": "modificacion-calendario-pregrado-2026",
+      "expected_version": "050-2026",
+      "enabled": true,
+      "reason": "ready",
+      "best_score": 0.78103775,
+      "classification": "TP",
+      "source_match": true,
+      "top1_match": true,
+      "top1_document_code": "modificacion-calendario-pregrado-2026",
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "passed_grounding_checks"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [
+        {
+          "citation_id": "S1",
+          "point_id": "56e9a33f-3a16-58ce-a091-de387893b140",
+          "document_id": 11,
+          "document_version_id": 11,
+          "corpus_id": "DOC006",
+          "document_code": "modificacion-calendario-pregrado-2026",
+          "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+          "version": "050-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "1992 y de las establecidas en el artículo 25 de los Estatutos de la Universidad y CONSIDERANDO:"
+        },
+        {
+          "citation_id": "S2",
+          "point_id": "bf0ba4c9-9a50-5915-ac8f-0d7896f19bee",
+          "document_id": 11,
+          "document_version_id": 11,
+          "corpus_id": "DOC006",
+          "document_code": "modificacion-calendario-pregrado-2026",
+          "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+          "version": "050-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "pregrado del año 202 6 .”"
+        },
+        {
+          "citation_id": "S3",
+          "point_id": "b519cdb1-80bc-5002-b5b8-b62769a2efb0",
+          "document_id": 11,
+          "document_version_id": 11,
+          "corpus_id": "DOC006",
+          "document_code": "modificacion-calendario-pregrado-2026",
+          "document_name": "Modificación del Calendario Académico de Pregrado 2026",
+          "version": "050-2026",
+          "page_start": 1,
+          "page_end": 1,
+          "section": "RESUELVE:"
+        }
+      ],
+      "latency_ms": 137.96,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H011",
+      "question": "¿Cuáles son las fechas del calendario académico de pregrado para 2027?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "unsupported_grounding",
+      "best_score": 0.6205307,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "missing_year:2027"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [],
+      "latency_ms": 110.802,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H012",
+      "question": "¿Dónde queda la sede de la Universidad Católica de Colombia en Medellín?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "unsupported_grounding",
+      "best_score": 0.6967979,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "missing_location:medellin"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [],
+      "latency_ms": 105.249,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H013",
+      "question": "¿Bienestar Universitario ofrece servicio de odontología a los estudiantes?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "unsupported_grounding",
+      "best_score": 0.6045988,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "missing_service:odontologia"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [],
+      "latency_ms": 108.492,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H014",
+      "question": "¿Qué establece el reglamento de profesores de la Universidad Católica de Colombia?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "unsupported_grounding",
+      "best_score": 0.62391275,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "unsupported_regulation_scope:profesores"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [],
+      "latency_ms": 106.975,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H015",
+      "question": "¿Cuánto cuesta la matrícula de Ingeniería Civil para 2026?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "insufficient_evidence",
+      "best_score": 0.5139152,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [],
+      "evidence_reasons": [
+        "low_best_score",
+        "too_little_text"
+      ],
+      "sources": [],
+      "latency_ms": 100.635,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H016",
+      "question": "¿Cómo puedo restablecer mi contraseña de PAW 2.0?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "insufficient_evidence",
+      "best_score": null,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [],
+      "evidence_reasons": [
+        "no_results"
+      ],
+      "sources": [],
+      "latency_ms": 97.703,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H017",
+      "question": "¿Cuándo serán las ceremonias de grado del año 2027?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "unsupported_grounding",
+      "best_score": 0.57904094,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "missing_year:2027"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [],
+      "latency_ms": 111.524,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H018",
+      "question": "¿Cuántos cupos de parqueadero para estudiantes tiene la sede El Claustro?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "insufficient_evidence",
+      "best_score": null,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [],
+      "evidence_reasons": [
+        "no_results"
+      ],
+      "sources": [],
+      "latency_ms": 104.199,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H019",
+      "question": "¿Cuál es la dirección de la sede de la Universidad Católica de Colombia en Cali?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "unsupported_grounding",
+      "best_score": 0.70608896,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [
+        "missing_location:cali"
+      ],
+      "evidence_reasons": [
+        "passed_retrieval_checks"
+      ],
+      "sources": [],
+      "latency_ms": 116.409,
+      "end_to_end_pass": true
+    },
+    {
+      "question_id": "H020",
+      "question": "¿Qué beca institucional garantiza el pago del cien por ciento de la matrícula a todos los estudiantes?",
+      "question_type": "hard_negative",
+      "should_answer": false,
+      "expected_document_code": null,
+      "expected_version": null,
+      "enabled": false,
+      "reason": "insufficient_evidence",
+      "best_score": null,
+      "classification": "TN",
+      "source_match": false,
+      "top1_match": false,
+      "top1_document_code": null,
+      "corpus_contamination": false,
+      "grounding_reasons": [],
+      "evidence_reasons": [
+        "no_results"
+      ],
+      "sources": [],
+      "latency_ms": 131.5,
+      "end_to_end_pass": true
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "reason": "campus_location",
+    "seconds": 0.13,
+    "question": "¿Dónde queda la biblioteca de Sede 4?",
+    "text": "Biblioteca · Sede 4 · Sede 4\nDirección publicada: Carrera 13 # 47 – 30, Bogotá.\nBiblioteca dentro del área de Sede 4, junto al auditorio, según el plano confirmado por el usuario.",
+    "locations": [
+      "biblioteca-sede-4"
+    ]
+  },
+  {
+    "reason": "document_overview",
+    "seconds": 0.17,
+    "question": "Dime de qué trata el reglamento estudiantil",
+    "text": "El Reglamento del Estudiante (versión 406-2026) organiza la información del estudiante. Entre los temas de sus capítulos se encuentran:\n\n• Del campo de aplicación y definición de la calidad de estudiante y egresado no graduado. [S1]\n• De los derechos y deberes de los estudiantes. [S2]\n• De los procesos de inscripción, admisión, reingreso, transferencia interna, transferencia externa, titulación en dos programas, doble titulación, homologación y validación. [S3]\n• De los periodos académicos. [S4]\n• De la matrícula. [S5]\n• De la carga académica. [S6]\n• De la evaluación, las calificaciones y los promedios. [S7]\n• De la representación estudiantil. [S15]\n• De los estímulos. [S9]\n• Del régimen disciplinario. [S10]\n• De los egresados y del título. [S11]\n• Disposiciones varias. [S12]\n\nEsta es una visión de su estructura. Los requisitos, derechos o sanciones concretos deben explicarse a partir de sus artículos, no solo de sus títulos.",
+    "locations": []
+  }
+]

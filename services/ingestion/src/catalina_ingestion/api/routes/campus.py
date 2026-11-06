@@ -1,9 +1,20 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, Request, Security
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from catalina_ingestion.domain.exceptions import InvalidAccessTokenError
 from pydantic import BaseModel, Field, field_validator
 
 from catalina_ingestion.services.campus import directory_answer, public_catalog
 
-router = APIRouter(prefix="/campus", tags=["campus"])
+_bearer = HTTPBearer(auto_error=False)
+
+
+async def require_campus_user(request: Request, credentials: HTTPAuthorizationCredentials | None = Security(_bearer)):
+    if credentials is None or credentials.scheme.lower() != 'bearer' or not credentials.credentials:
+        raise InvalidAccessTokenError
+    return await request.app.state.auth_service.get_current_user(access_token=credentials.credentials)
+
+
+router = APIRouter(prefix="/campus", tags=["campus"], dependencies=[Depends(require_campus_user)])
 
 
 class CampusQuestion(BaseModel):

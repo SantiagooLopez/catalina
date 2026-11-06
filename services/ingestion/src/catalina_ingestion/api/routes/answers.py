@@ -106,17 +106,11 @@ class GuestAnswerResponse(BaseModel):
 
 @router.post("/guest/answers", response_model=GuestAnswerResponse)
 async def guest_answer(payload: GuestAnswerRequest, request: Request) -> GuestAnswerResponse:
-    # No account, conversation identifiers or personal history are exposed or persisted.
-    service = request.app.state.answer_service
-    result = await service.answer(RetrievalQuery(query=payload.query))
+    from catalina_ingestion.services.public_assistance import public_reply
+    text, reason = public_reply(payload.query)
     return GuestAnswerResponse(
-        query=result.query,
-        text=result.text,
-        citations=[_source_response(source) for source in result.citations],
-        generated=result.generated,
-        reason=result.reason,
-        model=result.model,
-        locations=list(result.locations),
+        query=payload.query, text=text, citations=[], generated=False,
+        reason=reason, model=None, locations=[],
     )
 
 

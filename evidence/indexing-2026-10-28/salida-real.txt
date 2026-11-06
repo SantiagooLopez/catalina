@@ -1,0 +1,23 @@
+CATALINA | EVIDENCIA REAL DE INDEXACION
+Origen: PostgreSQL + Qdrant. Consulta de solo lectura.
+Fecha UTC                         : 2026-10-28T21:59:16.159625+00:00
+Servidor                          : catalina-server
+Documento                         : registro-control-academico
+ID version                        : 9
+Version                           : snapshot-2026
+ID ejecucion                      : 40ccfbc8-a34b-4741-ab48-61658e0faf9c
+Estado ejecucion                  : activa
+Coleccion                         : documentos_universidad
+Modelo embedding registrado       : embeddinggemma:latest
+Dimension registrada              : 768
+Dimension real Qdrant             : {'default': 768}
+Fragmentos esperados              : 13
+Fragmentos indexados              : 13
+Fragmentos en PostgreSQL          : 13
+Puntos reales Qdrant / ejecucion  : 13
+Conteos coinciden                 : True
+Dimension coincide                : True
+Fecha activacion                  : 2026-09-14 02:24:38.138845+00:00
+Fecha finalizacion                : 2026-09-14 02:24:38.138845+00:00
+Activa = indice publicado y disponible; no significa un proceso trabajando ahora.
+Datos guardados en: /tmp/catalina-indexing-evidence.json

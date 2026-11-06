@@ -1,0 +1,1 @@
+{"errors":[],"contrastChecks":18,"minimumContrast":6.687617116950311,"failures":[]}

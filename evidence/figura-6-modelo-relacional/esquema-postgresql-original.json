@@ -1,0 +1,1815 @@
+{
+  "captured_at_utc": "2026-10-28T23:37:37.942263+00:00",
+  "server": "catalina-server",
+  "postgresql": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+  "columns": [
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.auditoria_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "evento",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "detalle",
+      "data_type": "text",
+      "not_null": false,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "fecha",
+      "data_type": "timestamp without time zone",
+      "not_null": false,
+      "position": 4,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "entidad_tipo",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "entidad_id",
+      "data_type": "character varying(150)",
+      "not_null": false,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "nivel",
+      "data_type": "character varying(20)",
+      "not_null": true,
+      "position": 7,
+      "column_default": "'info'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "correlation_id",
+      "data_type": "uuid",
+      "not_null": false,
+      "position": 8,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "auditoria",
+      "column_name": "datos",
+      "data_type": "jsonb",
+      "not_null": true,
+      "position": 9,
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "configuracion",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.configuracion_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "configuracion",
+      "column_name": "clave",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "configuracion",
+      "column_name": "valor",
+      "data_type": "text",
+      "not_null": false,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "configuracion",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp without time zone",
+      "not_null": false,
+      "position": 4,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "conversaciones",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.conversaciones_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "conversaciones",
+      "column_name": "usuario_id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "conversaciones",
+      "column_name": "fecha_inicio",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 3,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "conversaciones",
+      "column_name": "titulo",
+      "data_type": "character varying(160)",
+      "not_null": true,
+      "position": 4,
+      "column_default": "'Nueva conversación'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "conversaciones",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 5,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.documentos_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "nombre",
+      "data_type": "character varying(255)",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "tipo_archivo",
+      "data_type": "character varying(20)",
+      "not_null": false,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "categoria",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 4,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "descripcion",
+      "data_type": "text",
+      "not_null": false,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "estado",
+      "data_type": "character varying(50)",
+      "not_null": false,
+      "position": 6,
+      "column_default": "'activo'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "fecha_carga",
+      "data_type": "timestamp without time zone",
+      "not_null": false,
+      "position": 7,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "codigo",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 8,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "idioma",
+      "data_type": "character varying(10)",
+      "not_null": true,
+      "position": 9,
+      "column_default": "'es'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "origen",
+      "data_type": "text",
+      "not_null": false,
+      "position": 10,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "metadatos",
+      "data_type": "jsonb",
+      "not_null": true,
+      "position": 11,
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "documentos",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 12,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "id",
+      "data_type": "uuid",
+      "not_null": true,
+      "position": 1,
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "version_documento_id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "trabajo_ingesta_id",
+      "data_type": "uuid",
+      "not_null": false,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "estado",
+      "data_type": "character varying(30)",
+      "not_null": true,
+      "position": 4,
+      "column_default": "'preparando'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "coleccion_qdrant",
+      "data_type": "character varying(150)",
+      "not_null": true,
+      "position": 5,
+      "column_default": "'documentos_universidad'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "modelo_embedding",
+      "data_type": "character varying(100)",
+      "not_null": true,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "dimension_embedding",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 7,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "configuracion_fragmentacion",
+      "data_type": "jsonb",
+      "not_null": true,
+      "position": 8,
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "chunks_esperados",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 9,
+      "column_default": "0"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "chunks_indexados",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 10,
+      "column_default": "0"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "intento",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 11,
+      "column_default": "1"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "fecha_creacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 12,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "fecha_activacion",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 13,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "fecha_finalizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 14,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 15,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "error_codigo",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 16,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "ejecuciones_indexacion",
+      "column_name": "error_detalle",
+      "data_type": "text",
+      "not_null": false,
+      "position": 17,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "id",
+      "data_type": "uuid",
+      "not_null": true,
+      "position": 1,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "ejecucion_indexacion_id",
+      "data_type": "uuid",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "version_documento_id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "chunk_index",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 4,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "pagina_inicio",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "pagina_fin",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "seccion",
+      "data_type": "text",
+      "not_null": false,
+      "position": 7,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "cantidad_caracteres",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 8,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "cantidad_tokens",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 9,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "hash_texto",
+      "data_type": "character varying(64)",
+      "not_null": true,
+      "position": 10,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "metadatos",
+      "data_type": "jsonb",
+      "not_null": true,
+      "position": 11,
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "fragmentos_documento",
+      "column_name": "fecha_creacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 12,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.mensajes_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "conversacion_id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "pregunta",
+      "data_type": "text",
+      "not_null": true,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "respuesta",
+      "data_type": "text",
+      "not_null": true,
+      "position": 4,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "modelo",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "tiempo_respuesta",
+      "data_type": "numeric",
+      "not_null": false,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "mensajes",
+      "column_name": "fecha",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 7,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "metricas",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.metricas_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "metricas",
+      "column_name": "mensaje_id",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "metricas",
+      "column_name": "tokens_input",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "metricas",
+      "column_name": "tokens_output",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 4,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "metricas",
+      "column_name": "satisfaccion",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "metricas",
+      "column_name": "precision",
+      "data_type": "numeric",
+      "not_null": false,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "migraciones_esquema",
+      "column_name": "version",
+      "data_type": "character varying(50)",
+      "not_null": true,
+      "position": 1,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "migraciones_esquema",
+      "column_name": "descripcion",
+      "data_type": "text",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "migraciones_esquema",
+      "column_name": "aplicada_en",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 3,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "id",
+      "data_type": "uuid",
+      "not_null": true,
+      "position": 1,
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "usuario_id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "refresh_token_hash",
+      "data_type": "text",
+      "not_null": true,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "fecha_creacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 4,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "fecha_expiracion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "fecha_revocacion",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "ultima_rotacion",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 7,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "ip",
+      "data_type": "inet",
+      "not_null": false,
+      "position": 8,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "sesiones_auth",
+      "column_name": "user_agent",
+      "data_type": "text",
+      "not_null": false,
+      "position": 9,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "id",
+      "data_type": "uuid",
+      "not_null": true,
+      "position": 1,
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "version_documento_id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "tipo",
+      "data_type": "character varying(30)",
+      "not_null": true,
+      "position": 3,
+      "column_default": "'ingesta'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "estado",
+      "data_type": "character varying(40)",
+      "not_null": true,
+      "position": 4,
+      "column_default": "'pendiente'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "progreso",
+      "data_type": "smallint",
+      "not_null": true,
+      "position": 5,
+      "column_default": "0"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "intento",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 6,
+      "column_default": "0"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "max_intentos",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 7,
+      "column_default": "3"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "prioridad",
+      "data_type": "smallint",
+      "not_null": true,
+      "position": 8,
+      "column_default": "100"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "idempotency_key",
+      "data_type": "character varying(150)",
+      "not_null": false,
+      "position": 9,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "configuracion",
+      "data_type": "jsonb",
+      "not_null": true,
+      "position": 10,
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "worker_id",
+      "data_type": "character varying(150)",
+      "not_null": false,
+      "position": 11,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "bloqueado_hasta",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 12,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "fecha_creacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 13,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "fecha_inicio",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 14,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "fecha_finalizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 15,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 16,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "error_codigo",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 17,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "trabajos_ingesta",
+      "column_name": "error_detalle",
+      "data_type": "text",
+      "not_null": false,
+      "position": 18,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.usuarios_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "rol",
+      "data_type": "character varying(50)",
+      "not_null": true,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "fecha_creacion",
+      "data_type": "timestamp without time zone",
+      "not_null": false,
+      "position": 3,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "activo",
+      "data_type": "boolean",
+      "not_null": false,
+      "position": 4,
+      "column_default": "true"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "email",
+      "data_type": "character varying(320)",
+      "not_null": true,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "nombre",
+      "data_type": "character varying(160)",
+      "not_null": true,
+      "position": 6,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "password_hash",
+      "data_type": "text",
+      "not_null": true,
+      "position": 7,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 8,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "usuarios",
+      "column_name": "ultimo_acceso",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 9,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "id",
+      "data_type": "integer",
+      "not_null": true,
+      "position": 1,
+      "column_default": "nextval('catalina.versiones_documentos_id_seq'::regclass)"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "documento_id",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 2,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "version",
+      "data_type": "character varying(20)",
+      "not_null": true,
+      "position": 3,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "ruta_archivo",
+      "data_type": "text",
+      "not_null": false,
+      "position": 4,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "hash_archivo",
+      "data_type": "character varying(255)",
+      "not_null": false,
+      "position": 5,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "fecha_creacion",
+      "data_type": "timestamp without time zone",
+      "not_null": false,
+      "position": 6,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "nombre_archivo_original",
+      "data_type": "character varying(255)",
+      "not_null": false,
+      "position": 7,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "extension",
+      "data_type": "character varying(20)",
+      "not_null": false,
+      "position": 8,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "mime_type",
+      "data_type": "character varying(150)",
+      "not_null": false,
+      "position": 9,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "tamano_bytes",
+      "data_type": "bigint",
+      "not_null": false,
+      "position": 10,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "hash_contenido",
+      "data_type": "character varying(64)",
+      "not_null": false,
+      "position": 11,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "estado",
+      "data_type": "character varying(30)",
+      "not_null": true,
+      "position": 12,
+      "column_default": "'cargada'::character varying"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "total_paginas",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 13,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "total_secciones",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 14,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "total_chunks",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 15,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "modelo_embedding",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 16,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "dimension_embedding",
+      "data_type": "integer",
+      "not_null": false,
+      "position": 17,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "configuracion_fragmentacion",
+      "data_type": "jsonb",
+      "not_null": true,
+      "position": 18,
+      "column_default": "'{}'::jsonb"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "fecha_indexacion",
+      "data_type": "timestamp with time zone",
+      "not_null": false,
+      "position": 19,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "fecha_actualizacion",
+      "data_type": "timestamp with time zone",
+      "not_null": true,
+      "position": 20,
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "error_codigo",
+      "data_type": "character varying(100)",
+      "not_null": false,
+      "position": 21,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "error_detalle",
+      "data_type": "text",
+      "not_null": false,
+      "position": 22,
+      "column_default": null
+    },
+    {
+      "schema": "catalina",
+      "table_name": "versiones_documentos",
+      "column_name": "ejecucion_indexacion_activa_id",
+      "data_type": "uuid",
+      "not_null": false,
+      "position": 23,
+      "column_default": null
+    }
+  ],
+  "constraints": [
+    {
+      "name": "ck_auditoria_nivel",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "auditoria",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "nivel"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((nivel)::text = ANY ((ARRAY['info'::character varying, 'warning'::character varying, 'error'::character varying])::text[])))"
+    },
+    {
+      "name": "auditoria_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "auditoria",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "configuracion_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "configuracion",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "chk_conversaciones_titulo_no_vacio",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "conversaciones",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "titulo"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((btrim((titulo)::text) <> ''::text))"
+    },
+    {
+      "name": "conversaciones_usuario_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "conversaciones",
+      "target_schema": "catalina",
+      "target_table": "usuarios",
+      "source_columns": [
+        "usuario_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (usuario_id) REFERENCES catalina.usuarios(id)"
+    },
+    {
+      "name": "conversaciones_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "conversaciones",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "ck_documentos_estado",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "documentos",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "estado"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((estado)::text = ANY ((ARRAY['activo'::character varying, 'inactivo'::character varying, 'archivado'::character varying])::text[])))"
+    },
+    {
+      "name": "documentos_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "documentos",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "ck_ejecuciones_chunks",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "ejecuciones_indexacion",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "chunks_esperados",
+        "chunks_indexados"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((chunks_esperados >= 0) AND (chunks_indexados >= 0)))"
+    },
+    {
+      "name": "ck_ejecuciones_dimension",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "ejecuciones_indexacion",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "dimension_embedding"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((dimension_embedding > 0))"
+    },
+    {
+      "name": "ck_ejecuciones_estado",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "ejecuciones_indexacion",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "estado"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((estado)::text = ANY ((ARRAY['preparando'::character varying, 'generando'::character varying, 'indexando'::character varying, 'verificando'::character varying, 'activa'::character varying, 'reemplazada'::character varying, 'fallida'::character varying])::text[])))"
+    },
+    {
+      "name": "ejecuciones_indexacion_trabajo_ingesta_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "ejecuciones_indexacion",
+      "target_schema": "catalina",
+      "target_table": "trabajos_ingesta",
+      "source_columns": [
+        "trabajo_ingesta_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (trabajo_ingesta_id) REFERENCES catalina.trabajos_ingesta(id) ON DELETE SET NULL"
+    },
+    {
+      "name": "ejecuciones_indexacion_version_documento_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "ejecuciones_indexacion",
+      "target_schema": "catalina",
+      "target_table": "versiones_documentos",
+      "source_columns": [
+        "version_documento_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (version_documento_id) REFERENCES catalina.versiones_documentos(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "ejecuciones_indexacion_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "ejecuciones_indexacion",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "ck_fragmentos_indice",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "chunk_index"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((chunk_index >= 0))"
+    },
+    {
+      "name": "ck_fragmentos_paginas",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "pagina_inicio",
+        "pagina_fin"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((((pagina_inicio IS NULL) OR (pagina_inicio >= 1)) AND ((pagina_fin IS NULL) OR (pagina_fin >= 1)) AND ((pagina_inicio IS NULL) OR (pagina_fin IS NULL) OR (pagina_fin >= pagina_inicio))))"
+    },
+    {
+      "name": "ck_fragmentos_tamano",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "cantidad_caracteres",
+        "cantidad_tokens"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((((cantidad_caracteres IS NULL) OR (cantidad_caracteres >= 0)) AND ((cantidad_tokens IS NULL) OR (cantidad_tokens >= 0))))"
+    },
+    {
+      "name": "fragmentos_documento_ejecucion_indexacion_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": "catalina",
+      "target_table": "ejecuciones_indexacion",
+      "source_columns": [
+        "ejecucion_indexacion_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (ejecucion_indexacion_id) REFERENCES catalina.ejecuciones_indexacion(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "fragmentos_documento_version_documento_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": "catalina",
+      "target_table": "versiones_documentos",
+      "source_columns": [
+        "version_documento_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (version_documento_id) REFERENCES catalina.versiones_documentos(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "fragmentos_documento_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "uq_fragmento_indice",
+      "kind": "u",
+      "source_schema": "catalina",
+      "source_table": "fragmentos_documento",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "ejecucion_indexacion_id",
+        "chunk_index"
+      ],
+      "target_columns": [],
+      "definition": "UNIQUE (ejecucion_indexacion_id, chunk_index)"
+    },
+    {
+      "name": "chk_mensajes_pregunta_no_vacia",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "mensajes",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "pregunta"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((btrim(pregunta) <> ''::text))"
+    },
+    {
+      "name": "chk_mensajes_respuesta_no_vacia",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "mensajes",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "respuesta"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((btrim(respuesta) <> ''::text))"
+    },
+    {
+      "name": "mensajes_conversacion_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "mensajes",
+      "target_schema": "catalina",
+      "target_table": "conversaciones",
+      "source_columns": [
+        "conversacion_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (conversacion_id) REFERENCES catalina.conversaciones(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "mensajes_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "mensajes",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "metricas_mensaje_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "metricas",
+      "target_schema": "catalina",
+      "target_table": "mensajes",
+      "source_columns": [
+        "mensaje_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (mensaje_id) REFERENCES catalina.mensajes(id)"
+    },
+    {
+      "name": "metricas_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "metricas",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "migraciones_esquema_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "migraciones_esquema",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "version"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (version)"
+    },
+    {
+      "name": "ck_sesiones_auth_expiracion",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "sesiones_auth",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "fecha_expiracion",
+        "fecha_creacion"
+      ],
+      "target_columns": [],
+      "definition": "CHECK ((fecha_expiracion > fecha_creacion))"
+    },
+    {
+      "name": "sesiones_auth_usuario_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "sesiones_auth",
+      "target_schema": "catalina",
+      "target_table": "usuarios",
+      "source_columns": [
+        "usuario_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (usuario_id) REFERENCES catalina.usuarios(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "sesiones_auth_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "sesiones_auth",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "ck_trabajos_estado",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "trabajos_ingesta",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "estado"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((estado)::text = ANY ((ARRAY['pendiente'::character varying, 'validando'::character varying, 'extrayendo'::character varying, 'limpiando'::character varying, 'fragmentando'::character varying, 'generando_embeddings'::character varying, 'indexando'::character varying, 'verificando'::character varying, 'completado'::character varying, 'fallido'::character varying, 'cancelado'::character varying])::text[])))"
+    },
+    {
+      "name": "ck_trabajos_intentos",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "trabajos_ingesta",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "intento",
+        "max_intentos"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((intento >= 0) AND (max_intentos > 0) AND (intento <= max_intentos)))"
+    },
+    {
+      "name": "ck_trabajos_progreso",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "trabajos_ingesta",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "progreso"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((progreso >= 0) AND (progreso <= 100)))"
+    },
+    {
+      "name": "ck_trabajos_tipo",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "trabajos_ingesta",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "tipo"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((tipo)::text = ANY ((ARRAY['ingesta'::character varying, 'reindexacion'::character varying])::text[])))"
+    },
+    {
+      "name": "trabajos_ingesta_version_documento_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "trabajos_ingesta",
+      "target_schema": "catalina",
+      "target_table": "versiones_documentos",
+      "source_columns": [
+        "version_documento_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (version_documento_id) REFERENCES catalina.versiones_documentos(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "trabajos_ingesta_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "trabajos_ingesta",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "usuarios_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "usuarios",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "ck_versiones_dimension",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "versiones_documentos",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "dimension_embedding"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((dimension_embedding IS NULL) OR (dimension_embedding > 0)))"
+    },
+    {
+      "name": "ck_versiones_estado",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "versiones_documentos",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "estado"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((estado)::text = ANY ((ARRAY['cargada'::character varying, 'pendiente'::character varying, 'procesando'::character varying, 'activa'::character varying, 'reemplazada'::character varying, 'fallida'::character varying, 'archivada'::character varying])::text[])))"
+    },
+    {
+      "name": "ck_versiones_tamano",
+      "kind": "c",
+      "source_schema": "catalina",
+      "source_table": "versiones_documentos",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "tamano_bytes"
+      ],
+      "target_columns": [],
+      "definition": "CHECK (((tamano_bytes IS NULL) OR (tamano_bytes >= 0)))"
+    },
+    {
+      "name": "fk_version_ejecucion_activa",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "versiones_documentos",
+      "target_schema": "catalina",
+      "target_table": "ejecuciones_indexacion",
+      "source_columns": [
+        "ejecucion_indexacion_activa_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (ejecucion_indexacion_activa_id) REFERENCES catalina.ejecuciones_indexacion(id) ON DELETE SET NULL"
+    },
+    {
+      "name": "versiones_documentos_documento_id_fkey",
+      "kind": "f",
+      "source_schema": "catalina",
+      "source_table": "versiones_documentos",
+      "target_schema": "catalina",
+      "target_table": "documentos",
+      "source_columns": [
+        "documento_id"
+      ],
+      "target_columns": [
+        "id"
+      ],
+      "definition": "FOREIGN KEY (documento_id) REFERENCES catalina.documentos(id)"
+    },
+    {
+      "name": "versiones_documentos_pkey",
+      "kind": "p",
+      "source_schema": "catalina",
+      "source_table": "versiones_documentos",
+      "target_schema": null,
+      "target_table": null,
+      "source_columns": [
+        "id"
+      ],
+      "target_columns": [],
+      "definition": "PRIMARY KEY (id)"
+    }
+  ]
+}

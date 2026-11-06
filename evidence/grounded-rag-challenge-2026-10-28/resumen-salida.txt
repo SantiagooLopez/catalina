@@ -1,0 +1,24 @@
+Comando ejecutado en Debian:
+.venv/bin/python scripts/evaluate_grounded_rag_challenge.py
+
+preguntas=20
+documentos_corpus=6
+
+========================================
+ RESUMEN GROUNDED RAG
+========================================
+TP=10 FN=0 TN=10 FP=0
+precision=1.000
+recall=1.000
+accuracy=1.000
+source_accuracy=1.000
+top1_accuracy=1.000
+end_to_end_accuracy=1.000
+contamination_count=0
+average_latency_ms=178.518
+
+GROUNDED RAG CHALLENGE: EJECUTADO
+
+
+Extracto del registro: se omiten el detalle por caso y la ruta del JSON.
+La salida completa y el JSON original se conservan junto a esta captura.

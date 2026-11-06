@@ -1,0 +1,17 @@
+[
+  {
+    "query": "¿Dónde me puedo matricular?",
+    "seconds": 3.062,
+    "text": "Si eres aspirante, empieza por el portal oficial de Admisiones: https://admisiones.ucatolica.edu.co/. Elige el programa y sigue el proceso de inscripción y admisión; la matrícula se formaliza después de cumplir los requisitos. Puedes pedir orientación en admisiones@ucatolica.edu.co. Si ya eres estudiante, consulta el PAW y confirma tu trámite con Registro y Control Académico. Para documentos y ubicaciones dentro de Catalina, inicia sesión."
+  },
+  {
+    "query": "¿Qué carreras tiene la universidad?",
+    "seconds": 5.046,
+    "text": "La oferta pública de pregrado incluye Arquitectura, Derecho, Economía, Psicología, Administración de Empresas e Inteligencia de Negocios, Ingeniería Civil, Ingeniería Industrial, Ingeniería de Sistemas y Computación e Ingeniería de Datos e Inteligencia Artificial. Consulta cada programa, sus requisitos y disponibilidad en el portal oficial: https://admisiones.ucatolica.edu.co/pregrado/."
+  },
+  {
+    "query": "¿Cuánto cuesta la matrícula?",
+    "seconds": 3.068,
+    "text": "Para conocer el valor de matrícula y los costos aplicables a tu caso, acércate a Registro y Control Académico para recibir orientación y confirmar el trámite con el área correspondiente. No puedo cotizar un valor sin una tarifa oficial vigente. También puedes solicitar orientación en https://admisiones.ucatolica.edu.co/."
+  }
+]

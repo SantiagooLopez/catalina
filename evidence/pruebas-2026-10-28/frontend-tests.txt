@@ -1,0 +1,15 @@
+
+> catalina-web@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ login, paginated history, answer payload, and logout use the API contract (19.8113ms)
+✔ concurrent 401 responses share a single refresh and use rotated tokens (32.6924ms)
+✔ failed refresh clears auth and emits expiry; API errors preserve useful details (0.9954ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 916.6382

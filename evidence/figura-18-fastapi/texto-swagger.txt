@@ -1,0 +1,61 @@
+POST
+/api/v1/answers
+Answer
+Parameters
+Try it out
+
+No parameters
+
+Request body
+application/json
+Example Value
+Schema
+AnswerRequestCollapse allobject
+conversation_idinteger> 0
+querystring[1, 1000] characters
+Responses
+Code	Description	Links
+200
+
+Successful Response
+
+Media type
+application/json
+Controls Accept header.
+Example Value
+Schema
+AnswerResponseCollapse allobject
+conversation_idinteger
+message_idinteger
+querystring
+textstring
+generatedboolean
+reasonExpand allstring
+modelExpand all(string | null)
+citationsExpand allarray<object>
+statisticsExpand all(object | null)
+locationsExpand allarray<string>
+	No links
+422
+
+Validation Error
+
+Media type
+application/json
+Example Value
+Schema
+{
+  "detail": [
+    {
+      "loc": [
+        "string",
+        0
+      ],
+      "msg": "string",
+      "type": "string",
+      "input": "string",
+      "ctx": {}
+    }
+  ]
+}
+	No links
